@@ -3,8 +3,8 @@ Proyecto de Ingeniería de Interfaces 9A
 ## Periodo Académico
 Octubre 2019 - Febrero 2020
 ## Equipo responsable
- 1. Briones Cinthya
- 2. Cedeño Wilmer
- 3. Giler Gema
- 4. Marcillo Bryan
- 5. Suárez Luis
+ 1. Briones Cedeño Cinthya Stephanie
+ 2. Cedeño Mendoza Wilmer David
+ 3. Giler Velasquez Gema Briggite
+ 4. Marcillo Delgado Bryan Steeven
+ 5. Suárez Aragundy José Luis
