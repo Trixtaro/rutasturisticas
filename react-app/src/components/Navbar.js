@@ -15,10 +15,14 @@ class Navbar extends React.Component{
                     </div>
                     <div className="user-panel">
                         <div className="separador">
-                            <h2>Registrarse</h2>
+                            <Link to="">
+                                <h2>Iniciar sesión</h2>
+                            </Link>
                         </div>
                         <div>
-                            <h2>Iniciar sesión</h2>
+                            <Link to="">
+                                <h2 className="important">Registrarse</h2>
+                            </Link>
                         </div>
                     </div>
                 </div>

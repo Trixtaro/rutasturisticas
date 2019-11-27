@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Buscador from '../components/Buscador'
+import Buscador from '../components/Buscador';
+import foto from '../images/montecristi_circle.png';
 
 import './styles/Dashboard.css'
 
@@ -19,7 +20,7 @@ class Dashboard extends React.Component{
                         </p>
                     </div>
                     <div className="foto">
-                        
+                        <img src={foto} alt="Montecristi"/>
                     </div>
                 </div>
             </React.Fragment>

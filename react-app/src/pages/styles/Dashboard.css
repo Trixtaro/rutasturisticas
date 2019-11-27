@@ -1,5 +1,5 @@
 .Dashboard{
-    background: rgb(213, 250, 209);
+    background: #eaffd0;
     display: flex;
     justify-content: space-between;
     padding: 30px;
@@ -7,7 +7,7 @@
 }
 
 .Dashboard .hero{
-    width: 70%;
+    width: 60%;
 }
 
 .Dashboard .hero p{
@@ -16,9 +16,14 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     font-weight: 800;
-    color: darkgreen;
+    color: #176859;
 }
 
 .Dashboard .foto{
-    width: 30%;
+    width: 40%;
+    overflow: hidden;
+}
+
+.Dashboard .foto img{
+    width: 100%;
 }
