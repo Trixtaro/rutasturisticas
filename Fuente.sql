@@ -24,11 +24,11 @@ USE RutasTuristicas;
 DROP TABLE IF EXISTS Usuario;
 
 CREATE TABLE Usuario (
-	ID_usuario INT AUTO_INCREMENT NOT NULL  
-		CONSTRAINT CP_usuario PRIMARY KEY,
+	ID_usuario INT AUTO_INCREMENT NOT NULL,  
 	f_ingreso DATETIME NOT NULL,
 	clave CHAR(64) NOT NULL,
-	nickname VARCHAR(25) NOT NULL
+	nickname VARCHAR(25) NOT NULL,
+	CONSTRAINT CP_usuario PRIMARY KEY (ID_usuario)
 );
 
 -- --------------------------------------------------------
@@ -40,8 +40,8 @@ CREATE TABLE Usuario (
 DROP TABLE IF EXISTS Persona;
 
 CREATE TABLE Persona (
-	ID_persona INT AUTO_INCREMENT NOT NULL  
-		CONSTRAINT CP_persona PRIMARY KEY,
+	ID_persona INT AUTO_INCREMENT NOT NULL,  
+	CONSTRAINT CP_persona PRIMARY KEY (ID_persona),
 	f_ingreso DATETIME NOT NULL
 	nombres VARCHAR(50) NOT NULL,
 	apellido_paterno VARCHAR(15) NOT NULL,
@@ -67,8 +67,8 @@ CREATE TABLE Persona (
 DROP TABLE IF EXISTS Telefono;
 
 CREATE TABLE Telefono (
-	numero VARCHAR(10) NOT NULL
-		CONSTRAINT CP_telefono PRIMARY KEY,
+	numero VARCHAR(10) NOT NULL,
+	CONSTRAINT CP_telefono PRIMARY KEY(numero),
 	operadora VARCHAR(25) NULL,
 
 	ID_persona INT NOT NULL
@@ -86,8 +86,8 @@ CREATE TABLE Telefono (
 DROP TABLE IF EXISTS Turista;
 
 CREATE TABLE Turista (
-	ID_turista INT AUTO_INCREMENT NOT NULL  
-		CONSTRAINT CP_turista PRIMARY KEY,
+	ID_turista INT AUTO_INCREMENT NOT NULL,  
+		CONSTRAINT CP_turista PRIMARY KEY(ID_turista),
 	f_ingreso DATETIME NOT NULL,
 	ID_persona NOT NULL
 		CONSTRAINT CF_turista_persona
@@ -104,8 +104,8 @@ CREATE TABLE Turista (
 DROP TABLE IF EXISTS Guia;
 
 CREATE TABLE Guia (
-	ID_guia INT AUTO_INCREMENT NOT NULL  
-		CONSTRAINT CP_guia PRIMARY KEY,
+	ID_guia INT AUTO_INCREMENT NOT NULL,  
+		CONSTRAINT CP_guia PRIMARY KEY(ID_guia),
 	f_ingreso DATETIME NOT NULL,
 	estado ENUM('H','R') NOT NULL COMMENT='Habilitado,Rechazado',
 	foto_identificacion BLOB NULL,
@@ -126,8 +126,8 @@ CREATE TABLE Guia (
 DROP TABLE IF EXISTS Reserva;
 
 CREATE TABLE Reserva (
-	ID_reserva INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_reserva PRIMARY KEY,
+	ID_reserva INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_reserva PRIMARY KEY(ID_reserva),
 	ID_turista INT NOT NULL
 		CONSTRAINT CF_reserva_turista
 			REFERENCES Turista (ID_turista)
@@ -147,8 +147,8 @@ CREATE TABLE Reserva (
 DROP TABLE IF EXISTS Lugar;
 
 CREATE TABLE Lugar (
-	ID_lugar INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_lugar PRIMARY KEY,
+	ID_lugar INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_lugar PRIMARY KEY(ID_lugar),
 	f_ingreso DATETIME NOT NULL,
 	codigo VARCHAR(3) NOT NULL,
 	latitud VARCHAR(10) NOT NULL,
@@ -166,8 +166,8 @@ CREATE TABLE Lugar (
 DROP TABLE IF EXISTS Ruta;
 
 CREATE TABLE Ruta (
-	ID_ruta INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_ruta PRIMARY KEY,
+	ID_ruta INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_ruta PRIMARY KEY(ID_ruta),
 	f_ingreso DATETIME NOT NULL,
 	nombre VARCHAR(25) NOT NULL,
 	precio_referencial MONEY NOT NULL,
@@ -190,8 +190,8 @@ CREATE TABLE Ruta (
 DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE Imagen (
-	ID_imagen INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_imagen PRIMARY KEY,
+	ID_imagen INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_imagen PRIMARY KEY(ID_imagen),
 	ID_ruta INT NOT NULL
 		CONSTRAINT CF_imagen_ruta
 			REFERENCES Ruta (ID_ruta)
@@ -207,8 +207,8 @@ CREATE TABLE Imagen (
 DROP TABLE IF EXISTS PuntoGeografico;
 
 CREATE TABLE PuntoGeografico (
-	ID_puntogeografico INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_puntogeografico PRIMARY KEY,
+	ID_puntogeografico INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_puntogeografico PRIMARY KEY(ID_puntogeografico),
 
 	ID_ruta INT NOT NULL
 		CONSTRAINT CF_puntogeografico_ruta
@@ -225,8 +225,8 @@ CREATE TABLE PuntoGeografico (
 DROP TABLE IF EXISTS Recorrido;
 
 CREATE TABLE Recorrido (
-	ID_recorrido INT AUTO_INCREMENT NOT NULL 
-		CONSTRAINT CP_recorrido PRIMARY KEY,
+	ID_recorrido INT AUTO_INCREMENT NOT NULL, 
+		CONSTRAINT CP_recorrido PRIMARY KEY(ID_recorrido),
 	f_ingreso DATETIME NOT NULL,
 	punto_partida VARCHAR(25) NOT NULL,
 	fecha DATETIME NOT NULL,
