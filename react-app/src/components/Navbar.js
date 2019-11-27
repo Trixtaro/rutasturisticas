@@ -10,12 +10,14 @@ class Navbar extends React.Component{
 
         return (
                 <div className="Navbar">
-                    <div className="logo">
-                        <h1>Rutas turísticas</h1>
-                    </div>
+                    <Link to="/">
+                        <div className="logo">
+                            <h1>Rutas turísticas</h1>
+                        </div>
+                    </Link>
                     <div className="user-panel">
                         <div className="separador">
-                            <Link to="">
+                            <Link to="/login">
                                 <h2>Iniciar sesión</h2>
                             </Link>
                         </div>
