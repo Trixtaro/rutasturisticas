@@ -2,6 +2,12 @@
 -- 
 -- Proyecto
 -- Ingeniería de Interfaces A
+-- Equipo Responsable
+-- 		Briones Cinthya
+-- 		Cedeño Wilmer
+-- 		Giler Gema
+-- 		Marcillo Bryan
+-- 		Suárez Luis
 
 CREATE DATABASE RutasTuristicas;
 
@@ -24,8 +30,8 @@ CREATE TABLE Persona (
 	cedula VARCHAR(10) NOT NULL,
 	pasaporte VARCHAR(15) NULL,
 	f_nacimiento DATE NULL,
-	
-
+	nacionalidad VARCHAR(20) NOT NULL,
+	genero ENUM('M','F') NOT NULL COMMENT='Masculino,Femenino'
 );
 
 -- --------------------------------------------------------
@@ -51,7 +57,9 @@ DROP TABLE IF EXISTS Usuario;
 
 CREATE TABLE Usuario (
 	ID_usuario INT AUTO_INCREMENTAL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL
+	f_ingreso DATETIME NOT NULL,
+	clave CHAR(64) NOT NULL,
+	nickname VARCHAR(25) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -64,7 +72,10 @@ DROP TABLE IF EXISTS Guia;
 
 CREATE TABLE Guia (
 	ID_guia INT AUTO_INCREMENTAL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL
+	f_ingreso DATETIME NOT NULL,
+	estado ENUM('H','R') NOT NULL COMMENT='Habilitado,Rechazado',
+	foto_identificacion BLOB NULL,
+	certificado BLOB NULL
 );
 
 -- --------------------------------------------------------
@@ -77,7 +88,9 @@ DROP TABLE IF EXISTS Ruta;
 
 CREATE TABLE Ruta (
 	ID_ruta INT AUTO_INCREMENTAL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL
+	f_ingreso DATETIME NOT NULL,
+	nombre VARCHAR(25) NOT NULL,
+	precio_referencial MONEY NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -90,7 +103,11 @@ DROP TABLE IF EXISTS Recorrido;
 
 CREATE TABLE Recorrido (
 	ID_recorrido INT AUTO_INCREMENTAL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL
+	f_ingreso DATETIME NOT NULL,
+	punto_partida VARCHAR(25) NOT NULL,
+	fecha DATETIME NOT NULL,
+	n_cupones SMALLINT NOT NULL,
+	precio MONEY NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -103,5 +120,10 @@ DROP TABLE IF EXISTS Lugar;
 
 CREATE TABLE Lugar (
 	ID_lugar INT AUTO_INCREMENTAL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL
+	f_ingreso DATETIME NOT NULL,
+	codigo VARCHAR(3) NOT NULL,
+	latitud VARCHAR(10) NOT NULL,
+	longitud VARCHAR(10) NOT NULL,
+	provincia VARCHAR(25) NOT NULL,
+	pais VARCHAR(25) NOT NULL
 );
