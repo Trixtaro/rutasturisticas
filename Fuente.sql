@@ -23,22 +23,6 @@ USE RutasTuristicas;
 -- --------------------------------------------------------
 
 --
--- Definición de la tabla Usuario
---
-
-DROP TABLE IF EXISTS Usuario;
-
-CREATE TABLE Usuario (
-	ID_usuario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL,
-	clave CHAR(64) NOT NULL,
-	nickname VARCHAR(25) NOT NULL,
-	correo VARCHAR(100) NOT NULL
-);
-
--- --------------------------------------------------------
-
---
 -- Definición de la tabla Persona
 --
 
@@ -54,10 +38,7 @@ CREATE TABLE Persona (
 	pasaporte VARCHAR(15) NULL,
 	f_nacimiento DATE NULL,
 	nacionalidad VARCHAR(20) NOT NULL,
-	genero ENUM('M','F') NOT NULL COMMENT 'Masculino,Femenino',
-
-	ID_usuario INT, 
-	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario)
+	genero ENUM('M','F') NOT NULL COMMENT 'Masculino,Femenino'
 );
 
 -- --------------------------------------------------------
@@ -73,7 +54,26 @@ CREATE TABLE Telefono (
 	operadora VARCHAR(25) NULL,
 	f_ingreso DATETIME NOT NULL,
 
-	ID_persona INT, 
+	ID_persona INT NOT NULL, 
+	FOREIGN KEY (ID_persona) REFERENCES Persona (ID_persona)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Definición de la tabla Usuario
+--
+
+DROP TABLE IF EXISTS Usuario;
+
+CREATE TABLE Usuario (
+	ID_usuario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	f_ingreso DATETIME NOT NULL,
+	clave CHAR(64) NOT NULL,
+	nickname VARCHAR(25) NOT NULL,
+	correo VARCHAR(100) NOT NULL,
+
+	ID_persona INT NOT NULL, 
 	FOREIGN KEY (ID_persona) REFERENCES Persona (ID_persona)
 );
 
@@ -88,8 +88,8 @@ DROP TABLE IF EXISTS Turista;
 CREATE TABLE Turista (
 	ID_turista INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
-	ID_persona INT, 
-	FOREIGN KEY (ID_persona) REFERENCES Persona(ID_persona)
+	ID_usuario INT NOT NULL, 
+	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario)
 );
 
 -- --------------------------------------------------------
@@ -107,8 +107,8 @@ CREATE TABLE Guia (
 	foto_identificacion BLOB NULL,
 	certificado BLOB NULL,
 
-	ID_persona INT, 
-	FOREIGN KEY (ID_persona) REFERENCES Persona(ID_persona)
+	ID_usuario INT NOT NULL, 
+	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario)
 );
 
 -- --------------------------------------------------------
@@ -200,7 +200,7 @@ CREATE TABLE Imagen (
 	tamanio INT NOT NULL,
 	f_ingreso DATETIME NOT NULL,
 	descripcion VARCHAR(200) NULL,
-	ID_ruta INT,
+	ID_ruta INT NOT NULL,
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
 
@@ -215,6 +215,6 @@ DROP TABLE IF EXISTS PuntoGeografico;
 CREATE TABLE PuntoGeografico (
 	ID_puntogeografico INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
-	ID_ruta INT, 
+	ID_ruta INT NOT NULL, 
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
