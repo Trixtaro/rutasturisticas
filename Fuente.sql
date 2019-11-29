@@ -218,3 +218,17 @@ CREATE TABLE PuntoGeografico (
 	ID_ruta INT NOT NULL, 
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
+
+-- ========================================================
+-- =                                                      =
+-- =  MEJORAS                                             =
+-- =                                                      =
+-- ========================================================
+
+ALTER TABLE `usuario` ADD UNIQUE(`nickname`);
+
+ALTER TABLE `usuario` ADD UNIQUE(`correo`);
+
+ALTER TABLE `persona` ADD UNIQUE(`cedula`);
+
+ALTER TABLE `persona` ADD UNIQUE(`pasaporte`);

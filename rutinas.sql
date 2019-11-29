@@ -133,6 +133,44 @@ END$$
 DELIMITER ;
 
 -- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_USUARIO_POR_CEDULA_PERSONA
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_USUARIO_POR_CEDULA_PERSONA;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_USUARIO_POR_CEDULA_PERSONA (
+	IN CLAVE CHAR(64),
+	IN NICKNAME VARCHAR(25),
+	IN CORREO VARCHAR(100),
+	IN CEDULA VARCHAR(10)
+)
+BEGIN
+	IF ( GET_ID_PERSONA_POR_CEDULA(CEDULA) = 0 ) THEN
+		SELECT '0' AS RESULTADO;
+	ELSE
+		INSERT INTO Usuario (
+			f_ingreso,
+			clave,
+			nickname,
+			correo,
+			ID_persona
+		) VALUES (
+			NOW(),
+			CLAVE,
+			NICKNAME,
+			CORREO,
+			GET_ID_PERSONA_POR_CEDULA(CEDULA)
+		);
+	END IF;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
 -- =                                                      =
 -- =  FUNCIONES                                           =
 -- =                                                      =
