@@ -14,6 +14,12 @@
 -- 		Marcillo Delgado Bryan Steeven
 -- 		Suárez Aragundy José Luis
 
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_PERSONA
+--
+
 DROP PROCEDURE IF EXISTS INGRESAR_PERSONA;
 
 DELIMITER $$
