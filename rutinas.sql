@@ -15,6 +15,12 @@
 -- 		Suárez Aragundy José Luis
 
 -- ========================================================
+-- =                                                      =
+-- =  PROCEDMIENTOS ALMACENADOS                           =
+-- =                                                      =
+-- ========================================================
+
+-- ========================================================
 
 --
 -- Definición del procedimiento INGRESAR_PERSONA
@@ -56,6 +62,103 @@ BEGIN
 		NACIONALIDAD,
 		GENERO
 	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_TELEFONO_POR_ID_PERSONA
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_TELEFONO_POR_ID_PERSONA;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_TELEFONO_POR_ID_PERSONA (
+	IN NUMERO VARCHAR(10),
+	IN OPERADORA VARCHAR(25),
+	IN ID_PERSONA INT
+)
+BEGIN
+	INSERT INTO Telefono (
+		numero,
+		operadora,
+		f_ingreso,
+		ID_persona
+	) VALUES (
+		NUMERO,
+		OPERADORA,
+		NOW(),
+		ID_PERSONA
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_TELEFONO_POR_CEDULA_PERSONA
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_TELEFONO_POR_CEDULA_PERSONA;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_TELEFONO_POR_CEDULA_PERSONA (
+	IN NUMERO VARCHAR(10),
+	IN OPERADORA VARCHAR(25),
+	IN CEDULA VARCHAR(10)
+)
+BEGIN
+	IF ( GET_ID_PERSONA_POR_CEDULA(CEDULA) = 0 ) THEN
+		SELECT '0' AS RESULTADO;
+	ELSE
+		INSERT INTO Telefono (
+			numero,
+			operadora,
+			f_ingreso,
+			ID_persona
+		) VALUES (
+			NUMERO,
+			OPERADORA,
+			NOW(),
+			GET_ID_PERSONA_POR_CEDULA(CEDULA)
+		);
+	END IF;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+-- =                                                      =
+-- =  FUNCIONES                                           =
+-- =                                                      =
+-- ========================================================
+
+-- ========================================================
+
+--
+-- Definición de la función GET_ID_PERSONA_POR_CEDULA
+--
+
+DROP FUNCTION IF EXISTS GET_ID_PERSONA_POR_CEDULA;
+
+DELIMITER $$
+
+CREATE FUNCTION GET_ID_PERSONA_POR_CEDULA (
+  CEDULA VARCHAR(10)
+) RETURNS INT
+BEGIN
+  DECLARE ID_RESULTADO INT DEFAULT 0;
+  SET ID_RESULTADO = ( SELECT ID_persona FROM Persona WHERE Persona.cedula = CEDULA );
+  IF ( ID_RESULTADO IS NOT NULL ) THEN
+    RETURN ID_RESULTADO;
+  ELSE
+    RETURN '0';
+  END IF;
 END$$
 
 DELIMITER ;
