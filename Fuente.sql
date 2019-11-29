@@ -54,7 +54,7 @@ CREATE TABLE Telefono (
 	operadora VARCHAR(25) NULL,
 	f_ingreso DATETIME NOT NULL,
 
-	ID_persona INT NOT NULL, 
+	ID_persona INT NULL, 
 	FOREIGN KEY (ID_persona) REFERENCES Persona (ID_persona)
 );
 
@@ -86,29 +86,43 @@ CREATE TABLE Usuario (
 DROP TABLE IF EXISTS Turista;
 
 CREATE TABLE Turista (
-	ID_turista INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
-	ID_usuario INT NOT NULL, 
+	ID_usuario INT NOT NULL PRIMARY KEY,
 	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario)
 );
 
 -- --------------------------------------------------------
 
 --
--- Definición de la tabla Guia
+-- Definición de la tabla Recorrido
 --
 
-DROP TABLE IF EXISTS Guia;
+DROP TABLE IF EXISTS Recorrido;
 
-CREATE TABLE Guia (
-	ID_guia INT AUTO_INCREMENT NOT NULL	PRIMARY KEY,
+CREATE TABLE Recorrido (
+	ID_recorrido INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
-	estado ENUM('H','R') NOT NULL COMMENT 'Habilitado,Rechazado',
-	foto_identificacion BLOB NULL,
-	certificado BLOB NULL,
+	punto_partida VARCHAR(25) NOT NULL,
+	fecha DATETIME NOT NULL,
+	n_cupones SMALLINT NOT NULL,
+	precio FLOAT NOT NULL
+);
 
-	ID_usuario INT NOT NULL, 
-	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario)
+-- --------------------------------------------------------
+
+--
+-- Definición de la tabla Ruta
+--
+
+DROP TABLE IF EXISTS Ruta;
+
+CREATE TABLE Ruta (
+	ID_ruta INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	f_ingreso DATETIME NOT NULL,
+	nombre VARCHAR(25) NOT NULL,
+	precio_referencial FLOAT NOT NULL,
+	ID_recorrido INT NULL,
+	FOREIGN KEY (ID_recorrido) REFERENCES Recorrido(ID_recorrido)
 );
 
 -- --------------------------------------------------------
@@ -126,44 +140,29 @@ CREATE TABLE Lugar (
 	latitud VARCHAR(10) NOT NULL,
 	longitud VARCHAR(10) NOT NULL,
 	provincia VARCHAR(25) NOT NULL,
-	pais VARCHAR(25) NOT NULL
+	pais VARCHAR(25) NOT NULL,
+	ID_ruta INT NULL, 
+	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
 
 -- --------------------------------------------------------
 
 --
--- Definición de la tabla Ruta
+-- Definición de la tabla Guia
 --
 
-DROP TABLE IF EXISTS Ruta;
+DROP TABLE IF EXISTS Guia;
 
-CREATE TABLE Ruta (
-	ID_ruta INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+CREATE TABLE Guia (
 	f_ingreso DATETIME NOT NULL,
-	nombre VARCHAR(25) NOT NULL,
-	precio_referencial FLOAT NOT NULL,
-	ID_guia INT, 
-	FOREIGN KEY (ID_guia) REFERENCES Guia(ID_guia),
-	ID_lugar INT, 
-	FOREIGN KEY (ID_lugar) REFERENCES Lugar(ID_lugar)
-);
+	estado ENUM('H','R') NOT NULL COMMENT 'Habilitado,Rechazado',
+	foto_identificacion BLOB NULL,
+	certificado BLOB NULL,
 
--- --------------------------------------------------------
+	ID_usuario INT NOT NULL PRIMARY KEY, 
+	FOREIGN KEY (ID_usuario) REFERENCES Usuario(ID_usuario),
 
---
--- Definición de la tabla Recorrido
---
-
-DROP TABLE IF EXISTS Recorrido;
-
-CREATE TABLE Recorrido (
-	ID_recorrido INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL,
-	punto_partida VARCHAR(25) NOT NULL,
-	fecha DATETIME NOT NULL,
-	n_cupones SMALLINT NOT NULL,
-	precio FLOAT NOT NULL,
-	ID_ruta INT, 
+	ID_ruta INT NULL,
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
 
@@ -177,11 +176,12 @@ DROP TABLE IF EXISTS Reserva;
 
 CREATE TABLE Reserva (
 	ID_reserva INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	ID_turista INT, 
-	FOREIGN KEY (ID_turista) REFERENCES Turista(ID_turista),
-	ID_recorrido INT, 
+	ID_turista INT NOT NULL, 
+	FOREIGN KEY (ID_turista) REFERENCES Turista(ID_usuario),
+	ID_recorrido INT NOT NULL, 
 	FOREIGN KEY (ID_recorrido) REFERENCES Recorrido(ID_recorrido),
 	horaReservacion TIME NOT NULL,
+	UNIQUE(ID_turista,ID_recorrido,horaReservacion),
 	f_ingreso DATETIME NOT NULL
 );
 
@@ -199,8 +199,8 @@ CREATE TABLE Imagen (
 	extension CHAR(5) NOT NULL,
 	tamanio INT NOT NULL,
 	f_ingreso DATETIME NOT NULL,
-	descripcion VARCHAR(200) NULL,
-	ID_ruta INT NOT NULL,
+	descripcion TEXT NULL,
+	ID_ruta INT NULL,
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
 
