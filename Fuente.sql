@@ -1,15 +1,20 @@
 -- Tiempo de generación de este archivo: 27-11-2019 a las 00:12:59
 -- 
 -- Proyecto
--- Ingeniería de Interfaces A
+-- Ingeniería de Interfaces
+-- Noveno Semestre / Paralelo "A" 
+-- Docente Guía
+-- 		Ing. Veloz Zambrano Jorge Luis
+-- Periodo Aacadémico
+-- 		Octubre  2019 - Febrero 2020
 -- Equipo Responsable
--- 		Briones Cinthya
--- 		Cedeño Wilmer
--- 		Giler Gema
--- 		Marcillo Bryan
--- 		Suárez Luis
+-- 		Briones Cedeño Cinthya Stephanie
+-- 		Cedeño Mendoza Wilmer David
+-- 		Giler Velásquez Gema Briggite
+-- 		Marcillo Delgado Bryan Steeven
+-- 		Suárez Aragundy José Luis
 
-DROP DATABASE IF EXISTS RutasTuristicas;
+-- DROP DATABASE IF EXISTS RutasTuristicas;
 
 CREATE DATABASE IF NOT EXISTS RutasTuristicas;
 
@@ -27,7 +32,8 @@ CREATE TABLE Usuario (
 	ID_usuario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
 	clave CHAR(64) NOT NULL,
-	nickname VARCHAR(25) NOT NULL
+	nickname VARCHAR(25) NOT NULL,
+	correo VARCHAR(100) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -65,6 +71,7 @@ DROP TABLE IF EXISTS Telefono;
 CREATE TABLE Telefono (
 	numero VARCHAR(10) NOT NULL PRIMARY KEY,
 	operadora VARCHAR(25) NULL,
+	f_ingreso DATETIME NOT NULL,
 
 	ID_persona INT, 
 	FOREIGN KEY (ID_persona) REFERENCES Persona (ID_persona)
@@ -173,7 +180,9 @@ CREATE TABLE Reserva (
 	ID_turista INT, 
 	FOREIGN KEY (ID_turista) REFERENCES Turista(ID_turista),
 	ID_recorrido INT, 
-	FOREIGN KEY (ID_recorrido) REFERENCES Recorrido(ID_recorrido)
+	FOREIGN KEY (ID_recorrido) REFERENCES Recorrido(ID_recorrido),
+	horaReservacion TIME NOT NULL,
+	f_ingreso DATETIME NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -186,7 +195,12 @@ DROP TABLE IF EXISTS Imagen;
 
 CREATE TABLE Imagen (
 	ID_imagen INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	ID_ruta INT, 
+	nombre VARCHAR(50) NOT NULL,
+	extension CHAR(5) NOT NULL,
+	tamanio INT NOT NULL,
+	f_ingreso DATETIME NOT NULL,
+	descripcion VARCHAR(200) NULL,
+	ID_ruta INT,
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
 
@@ -200,6 +214,7 @@ DROP TABLE IF EXISTS PuntoGeografico;
 
 CREATE TABLE PuntoGeografico (
 	ID_puntogeografico INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	f_ingreso DATETIME NOT NULL,
 	ID_ruta INT, 
 	FOREIGN KEY (ID_ruta) REFERENCES Ruta(ID_ruta)
 );
