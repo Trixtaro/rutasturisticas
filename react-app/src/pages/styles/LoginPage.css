@@ -6,4 +6,19 @@
     align-items: center;
     padding: 30px;
     min-height: 90vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.LoginPage form{
+    background: #176859;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.LoginPage form input, .LoginPage form label{
+    margin: 5px 0px;
 }
