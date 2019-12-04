@@ -1,0 +1,33 @@
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #55d3bc, #95e1d3);
+    color: #176859;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Navbar .user-panel{
+    display: flex;
+}
+
+.Navbar .user-panel div{
+    padding: 5px 15px;
+}
+
+.Navbar a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.Navbar .user-panel .important{
+    background: #11999e;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+.separador{
+    border-right: 2px white groove;
+}

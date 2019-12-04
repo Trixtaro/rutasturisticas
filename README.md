@@ -10,3 +10,11 @@ Jorge Luis Veloz
  3. Giler Velasquez Gema Briggite
  4. Marcillo Delgado Bryan Steeven
  5. Suárez Aragundy José Luis
+
+#Backend
+
+Laravel
+
+#Frontend
+
+React
