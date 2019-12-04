@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
 import AppRoute from '../components/AppRoute';
 import Layout from './Layout';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/LoginPage';
 import Register from '../pages/RegisterPage';
+import Lugar from '../pages/LugarPage';
 
 function App(){
 
@@ -14,7 +14,7 @@ function App(){
         <BrowserRouter>
             <Switch>
                 <AppRoute exact path="/" component={Dashboard} layout={Layout} />
-                <AppRoute exact path="/" component={Dashboard} />
+                <AppRoute exact path="/lugar" component={Lugar} layout={Layout} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Redirect path="*" to="/404" />
