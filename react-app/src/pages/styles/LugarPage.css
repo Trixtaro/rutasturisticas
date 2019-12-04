@@ -13,5 +13,6 @@
 .lugares{
     background-color: #c7e4e6;
     width: 90%;
-    height: 1000px;
+    display: flex;
+    flex-wrap: wrap;
 }
