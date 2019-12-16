@@ -16,8 +16,18 @@ Octubre  2019 - Febrero 2020
 
 #Backend
 
-Laravel
+Laravel - se debe tener instalado un interprete de php
+
+Para ejecutar el servidor de laravel, se ubica la terminal dentro de laravel/ y se usa el comando:
+
+$ php artisan serv
 
 #Frontend
 
 React
+
+Para ejecutar el servidor de react, se ubica la terminal dentro de react-app/ y se usa el comando:
+
+npm start
+
+**Usar ubuntu de preferencia**
