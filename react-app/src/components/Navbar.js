@@ -22,7 +22,7 @@ class Navbar extends React.Component{
                             </Link>
                         </div>
                         <div>
-                            <Link to="">
+                            <Link to="/register">
                                 <h2 className="important">Registrarse</h2>
                             </Link>
                         </div>

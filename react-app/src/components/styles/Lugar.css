@@ -1,0 +1,15 @@
+.Lugar{
+    margin: 5px;
+    padding: 10px;
+    width: 205px;
+    background: white;
+    height: fit-content;
+}
+
+.Lugar img{
+    width: 100%;
+}
+
+.Lugar .titulo-lugar{
+    color:#47aab1;
+}
