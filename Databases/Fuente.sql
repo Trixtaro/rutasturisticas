@@ -14,7 +14,7 @@
 -- 		Marcillo Delgado Bryan Steeven
 -- 		Suárez Aragundy José Luis
 
--- DROP DATABASE IF EXISTS RutasTuristicas;
+DROP DATABASE IF EXISTS RutasTuristicas;
 
 CREATE DATABASE IF NOT EXISTS RutasTuristicas;
 
@@ -120,11 +120,13 @@ DROP TABLE IF EXISTS Lugar;
 CREATE TABLE Lugar (
 	ID_lugar INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	f_ingreso DATETIME NOT NULL,
-	codigo VARCHAR(3) NOT NULL,
 	latitud VARCHAR(10) NOT NULL,
 	longitud VARCHAR(10) NOT NULL,
-	provincia VARCHAR(25) NOT NULL,
-	pais VARCHAR(25) NOT NULL
+	nombre VARCHAR(50) NOT NULL,
+	cargo VARCHAR(25) NOT NULL COMMENT 'Especifica si el lugar es un país, provincia, ciudad, etc',
+
+	ID_lugar_super INT NULL,
+	FOREIGN KEY (ID_lugar_super) REFERENCES Lugar (ID_lugar)
 );
 
 -- --------------------------------------------------------
@@ -195,8 +197,9 @@ DROP TABLE IF EXISTS Imagen;
 CREATE TABLE Imagen (
 	ID_imagen INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	nombre VARCHAR(50) NOT NULL,
+	ruta VARCHAR(250) NOT NULL,
 	extension CHAR(5) NOT NULL,
-	tamanio INT NOT NULL,
+	tamanio FLOAT NOT NULL,
 	f_ingreso DATETIME NOT NULL,
 	descripcion TEXT NULL,
 	ID_ruta INT NULL,
@@ -231,3 +234,7 @@ ALTER TABLE `usuario` ADD UNIQUE(`correo`);
 ALTER TABLE `persona` ADD UNIQUE(`cedula`);
 
 ALTER TABLE `persona` ADD UNIQUE(`pasaporte`);
+
+ALTER TABLE `lugar` ADD UNIQUE( `nombre`, `cargo`);
+
+ALTER TABLE `imagen` ADD UNIQUE(`ruta`);

@@ -171,6 +171,98 @@ END$$
 DELIMITER ;
 
 -- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_LUGAR_SUPER
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUPER;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
+	IN LATITUD VARCHAR(10),
+	IN LONGITUD VARCHAR(10),
+	IN NOMBRE VARCHAR(50),
+	IN CARGO VARCHAR(25)
+)
+BEGIN
+	INSERT INTO Lugar (
+		f_ingreso,
+		latitud,
+		longitud,
+		nombre,
+		cargo,
+		ID_lugar_super
+	) VALUES (
+		NOW(),
+		LATITUD,
+		LONGITUD,
+		NOMBRE,
+		CARGO,
+		NULL
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_LUGAR_SUB
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUB;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_LUGAR_SUB (
+	IN LATITUD VARCHAR(10),
+	IN LONGITUD VARCHAR(10),
+	IN NOMBRE VARCHAR(50),
+	IN CARGO VARCHAR(25),
+	IN ID_SUPER INT
+)
+BEGIN
+	INSERT INTO Lugar (
+		f_ingreso,
+		latitud,
+		longitud,
+		nombre,
+		cargo,
+		ID_lugar_super
+	) VALUES (
+		NOW(),
+		LATITUD,
+		LONGITUD,
+		NOMBRE,
+		CARGO,
+		ID_SUPER
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento MOSTRAR_LUGARES
+--
+
+DROP PROCEDURE IF EXISTS MOSTRAR_LUGARES;
+
+DELIMITER $$
+
+CREATE PROCEDURE MOSTRAR_LUGARES (
+)
+BEGIN
+	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
+END$$
+
+DELIMITER ;
+
+-- ========================================================
 -- =                                                      =
 -- =  FUNCIONES                                           =
 -- =                                                      =
@@ -191,7 +283,33 @@ CREATE FUNCTION GET_ID_PERSONA_POR_CEDULA (
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
-  SET ID_RESULTADO = ( SELECT ID_persona FROM Persona WHERE Persona.cedula = CEDULA );
+  SET ID_RESULTADO = ( SELECT Persona.ID_persona FROM Persona WHERE Persona.cedula = CEDULA );
+  IF ( ID_RESULTADO IS NOT NULL ) THEN
+    RETURN ID_RESULTADO;
+  ELSE
+    RETURN '0';
+  END IF;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición de la función GET_ID_LUGAR_POR_NOMBRE_Y_CARGO
+--
+
+DROP FUNCTION IF EXISTS GET_ID_LUGAR_POR_NOMBRE_Y_CARGO;
+
+DELIMITER $$
+
+CREATE FUNCTION GET_ID_LUGAR_POR_NOMBRE_Y_CARGO (
+  NOMBRE VARCHAR(50),
+	CARGO VARCHAR(25)
+) RETURNS INT
+BEGIN
+  DECLARE ID_RESULTADO INT DEFAULT 0;
+  SET ID_RESULTADO = ( SELECT Lugar.ID_lugar FROM Lugar WHERE Lugar.cargo = CARGO AND Lugar.nombre = NOMBRE );
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE
