@@ -1,0 +1,60 @@
+.SolicitudGuias{
+    display: flex;
+    width: 100%;
+    min-height: 85vh;
+    justify-content: space-between;
+}
+
+.SolicitudGuias .opciones{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.SolicitudGuias .panel{
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 50vh;
+    padding: 30px;
+    background: cyan;
+}
+
+.SolicitudGuias .panel .informacion{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.SolicitudGuias .panel .informacion .regresar{
+    align-self: flex-start;
+}
+
+.SolicitudGuias .panel .foto-frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.SolicitudGuias .panel .descripcion{
+    width: 40%;
+}
+
+.SolicitudGuias .panel .informacion img{
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+}
+
+
+.SolicitudGuias .botones{
+    display: flex;
+    flex-direction: column;
+}
+
+.SolicitudGuias .botones button{
+    margin: 10px 5px;
+}
