@@ -246,6 +246,65 @@ DELIMITER ;
 -- ========================================================
 
 --
+-- Definición del procedimiento INGRESAR_TURISTA_POR_IDUSUARIO
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_TURISTA_POR_IDUSUARIO;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_TURISTA_POR_IDUSUARIO (
+	IN ID_USUARIO INT
+)
+BEGIN
+	INSERT INTO Turista (
+		f_ingreso,
+		ID_usuario
+	) VALUES (
+		NOW(),
+		ID_USUARIO
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_GUIA_POR_IDUSUARIO
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_GUIA_POR_IDUSUARIO;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_GUIA_POR_IDUSUARIO (
+	IN ID_USUARIO INT,
+	IN ESTADO CHAR(1),
+	IN FOTO_IDENTIFICACION BLOB,
+	IN CERTIFICADO BLOB
+)
+BEGIN
+	INSERT INTO Guia (
+		f_ingreso,
+		ID_usuario,
+		estado,
+		foto_identificacion,
+		certificado
+	) VALUES (
+		NOW(),
+		ID_USUARIO,
+		ESTADO,
+		FOTO_IDENTIFICACION,
+		CERTIFICADO
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
 -- Definición del procedimiento MOSTRAR_LUGARES
 --
 
