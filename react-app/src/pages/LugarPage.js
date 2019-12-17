@@ -15,7 +15,7 @@ class LugarPage extends React.Component{
                 </h1>
                 <div className="lugares">
                     <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
-                    <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
+                    <Lugar titulo="Manta" imagen={foto} descripcion="La capital de los pescados" />
                     <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
                     <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
                     <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
