@@ -10,7 +10,7 @@ class Buscador extends React.Component{
             <form className="Buscador" action="">
                 <input type="text" placeholder={this.props.placeholder} />
                 <Link to="">
-                    <i class="fas fa-search lupa"></i>
+                    <i className="fas fa-search lupa"></i>
                 </Link>
             </form>
         );
