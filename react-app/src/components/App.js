@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/LoginPage';
 import Register from '../pages/RegisterPage';
 import Lugar from '../pages/LugarPage';
+import Page404 from '../pages/Page404';
 import SolicitudGuias from '../pages/SolicitudGuias';
 
 function App(){
@@ -19,6 +20,7 @@ function App(){
                 <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/404" component={Page404} />
                 <Redirect path="*" to="/404" />
             </Switch>
         </BrowserRouter>
