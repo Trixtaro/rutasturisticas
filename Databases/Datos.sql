@@ -103,7 +103,7 @@ CALL INGRESAR_LUGAR_SUB('0', '0', 'Muisne', 'Parroquia', GET_ID_LUGAR_POR_NOMBRE
 
 -- ===================== Datos inciales de prueba =====================
 
-CALL INGRESAR_PERSONA('Test','papi','mami','2222222222','2222222222','01-01-1900','Terrenal','M');
+CALL INGRESAR_PERSONA('Test','papi','mami','2222222222','2222222222','1900-01-01','Terrenal','M');
 CALL INGRESAR_TELEFONO_POR_CEDULA_PERSONA('0987654321','Movistar','2222222222');
 CALL INGRESAR_USUARIO_POR_CEDULA_PERSONA('1234','testito','fake@mail.dev','2222222222');
 CALL INGRESAR_USUARIO_POR_CEDULA_PERSONA('1234','pruebita','fake2@mail.dev','2222222222');
