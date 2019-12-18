@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS Lugar (
 	longitud VARCHAR(10) NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
 	cargo VARCHAR(25) NOT NULL COMMENT 'Especifica si el lugar es un país, provincia, ciudad, etc',
-
+	descripcion TEXT NULL,
 	ID_lugar_super INT NULL,
 	FOREIGN KEY (ID_lugar_super) REFERENCES Lugar (ID_lugar)
 );
@@ -227,14 +227,14 @@ CREATE TABLE IF NOT EXISTS PuntoGeografico (
 -- =                                                      =
 -- ========================================================
 
-ALTER TABLE `usuario` ADD UNIQUE(`nickname`);
+ALTER TABLE `Usuario` ADD UNIQUE(`nickname`);
 
-ALTER TABLE `usuario` ADD UNIQUE(`correo`);
+ALTER TABLE `Usuario` ADD UNIQUE(`correo`);
 
-ALTER TABLE `persona` ADD UNIQUE(`cedula`);
+ALTER TABLE `Persona` ADD UNIQUE(`cedula`);
 
-ALTER TABLE `persona` ADD UNIQUE(`pasaporte`);
+ALTER TABLE `Persona` ADD UNIQUE(`pasaporte`);
 
-ALTER TABLE `lugar` ADD UNIQUE( `nombre`, `cargo`);
+ALTER TABLE `Lugar` ADD UNIQUE( `nombre`, `cargo`);
 
-ALTER TABLE `imagen` ADD UNIQUE(`ruta`);
+ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
