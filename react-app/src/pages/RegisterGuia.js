@@ -27,6 +27,13 @@ class RegisterGuia extends React.Component {
                                             </div>
                                         </div>
                                         <div className="field">
+                                            <label>País de Origen</label>
+                                            <select name="paises">
+                                                <option value="0">Seleccione...</option>
+                                                <option value="1">Ecuador</option>
+                                            </select>
+                                        </div>
+                                        <div className="field">
                                             <label htmlFor="correo">Correo Electrónico:</label>
                                             <input type="email" id="correo" name="correo"></input>
                                         </div>
