@@ -37,3 +37,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.lugares .Lugar:hover{
+    margin: -10px 5px;
+}
