@@ -12,14 +12,14 @@ class RegisterPage extends React.Component{
         return (
             <React.Fragment>
                 <div className="RegisterPage">
-                    <h1 className="titulo">Cómo te deseas registrar?</h1>
+                    <h1 className="titulo">¿Cómo te deseas registrar?</h1>
                     <div className="opciones">
                         <Opcion 
                             titulo="Turista" 
                             foto={FotoTurista} 
                             descripcion="Disfruta de tus viajes acompañados de expertos locales" 
                             link="/register/turista"
-                            />
+                        />
                         <Opcion 
                             titulo="Guia turístico" 
                             foto={FotoGuia} 
@@ -31,7 +31,6 @@ class RegisterPage extends React.Component{
             </React.Fragment>
         );
     }
-
 }
 
 export default RegisterPage;
