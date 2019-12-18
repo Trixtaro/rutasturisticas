@@ -227,14 +227,14 @@ CREATE TABLE IF NOT EXISTS PuntoGeografico (
 -- =                                                      =
 -- ========================================================
 
-ALTER TABLE `usuario` ADD UNIQUE(`nickname`);
+ALTER TABLE `Usuario` ADD UNIQUE(`nickname`);
 
-ALTER TABLE `usuario` ADD UNIQUE(`correo`);
+ALTER TABLE `Usuario` ADD UNIQUE(`correo`);
 
-ALTER TABLE `persona` ADD UNIQUE(`cedula`);
+ALTER TABLE `Persona` ADD UNIQUE(`cedula`);
 
-ALTER TABLE `persona` ADD UNIQUE(`pasaporte`);
+ALTER TABLE `Persona` ADD UNIQUE(`pasaporte`);
 
-ALTER TABLE `lugar` ADD UNIQUE( `nombre`, `cargo`);
+ALTER TABLE `Lugar` ADD UNIQUE( `nombre`, `cargo`);
 
-ALTER TABLE `imagen` ADD UNIQUE(`ruta`);
+ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
