@@ -8,6 +8,7 @@ import Login from '../pages/LoginPage';
 import Register from '../pages/RegisterPage';
 import Lugar from '../pages/LugarPage';
 import SolicitudGuias from '../pages/SolicitudGuias';
+import RegisterTurista from '../pages/RegisterTurista';
 
 function App(){
 
@@ -19,6 +20,7 @@ function App(){
                 <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/register/turista" component={RegisterTurista} />
                 <Redirect path="*" to="/404" />
             </Switch>
         </BrowserRouter>
