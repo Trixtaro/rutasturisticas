@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .Buscador input{
@@ -50,7 +51,6 @@
 
 .autocomplete-items {
     position: absolute;
-    border: 1px solid #d4d4d4;
     border-bottom: none;
     border-top: none;
     z-index: 99;
@@ -61,10 +61,13 @@
 }
 
 .autocomplete-items div {
+    margin-left: 15px;
     padding: 10px;
     cursor: pointer;
     background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
+    border-bottom: 1px solid #d4d4d4;
+    border: 1px solid #d4d4d4;
+    width: 50%;
 }
 
   .autocomplete-items div:hover {
