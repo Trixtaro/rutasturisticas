@@ -13,7 +13,7 @@ class Buscador extends React.Component{
 
     render(){
         return (
-            <form autoComplete="off" className="" action="">
+            <form autoComplete="off" className="" action="/lugar">
                 <div className="Buscador autocomplete">
                     <input id="buscador" type="text" placeholder={this.props.placeholder} />
                     <button className="lupa" type="submit">

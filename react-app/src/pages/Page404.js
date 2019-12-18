@@ -13,7 +13,9 @@ const Page404 = () => (
         </div>
         <Link to="/">
             <i class="fas fa-undo-alt"></i>
-            Regresar 
+            &nbsp;
+            Regresar
+            &nbsp;
             <i class="fas fa-undo-alt"></i>
         </Link>
     </div>
