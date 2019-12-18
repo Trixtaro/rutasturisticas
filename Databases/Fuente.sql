@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS Lugar (
 	longitud VARCHAR(10) NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
 	cargo VARCHAR(25) NOT NULL COMMENT 'Especifica si el lugar es un país, provincia, ciudad, etc',
-
+	descripcion TEXT NULL,
 	ID_lugar_super INT NULL,
 	FOREIGN KEY (ID_lugar_super) REFERENCES Lugar (ID_lugar)
 );
