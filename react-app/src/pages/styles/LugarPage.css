@@ -4,10 +4,31 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eaffd0;
+}
+
+.LugarPage a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.LugarPage .Buscador{
+    width: 50vw;
+    margin-bottom: 30px;
+}
+
+.LugarPage .regresar{
+    margin-top: 30px;
+    margin-left: 100px;
+    align-self: flex-start;
+    color: #176859;
+    font-size: 20px;
 }
 
 .titulo-lugares{
     margin: 50px;
+    color: #176859;
 }
 
 .lugares{
@@ -15,4 +36,8 @@
     width: 90%;
     display: flex;
     flex-wrap: wrap;
+}
+
+.lugares .Lugar:hover{
+    margin: -10px 5px;
 }
