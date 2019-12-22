@@ -13,7 +13,6 @@ import RegisterTurista from '../pages/RegisterTurista';
 import RegisterGuia from '../pages/RegisterGuia'
 
 function App(){
-
     return (
         <BrowserRouter>
             <Switch>

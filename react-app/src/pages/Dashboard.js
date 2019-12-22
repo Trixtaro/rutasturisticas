@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Buscador from '../components/Buscador';
 import foto from '../images/montecristi_circle.png';
 
-import './styles/Dashboard.css'
+import './styles/Dashboard.css';
 
-class Dashboard extends React.Component{
-
-    render(){
+class Dashboard extends React.Component {
+    render () {
         return (
             <React.Fragment>
                 <div className="Dashboard">
@@ -26,7 +24,6 @@ class Dashboard extends React.Component{
             </React.Fragment>
         );
     }
-
 }
 
 export default Dashboard;

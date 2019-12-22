@@ -4,24 +4,18 @@ import './styles/Buscador.css'
 
 class Buscador extends React.Component{
 
-    async componentDidMount(){
-
-        try{
-
+    async componentDidMount () {
+        try {
           const response = await fetch('http://localhost:8000/api/lugares');
           const data = await response.json();
           this.setState({
             'datos': data.data
-          })
+          });
           console.log(this.state.datos);
-
-        } catch (error){
+        } catch (error) {
           console.log(error);
           const data = [];
-
         }
-
-
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
     }
 
