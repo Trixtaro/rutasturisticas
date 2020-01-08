@@ -42,9 +42,8 @@
     width: 300px;
 }
 
-.Dashboard .Lugar.selected{
-    margin: auto 30px;
-    margin-top: 25px;
+.Dashboard .Lugar:hover{
+    margin-top: -20px;
     border: 2px rgb(194, 194, 194) solid;
 }
 
