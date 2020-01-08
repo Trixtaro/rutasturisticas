@@ -17,9 +17,9 @@ class Buscador extends React.Component {
             });
             console.log(this.state.datos);
         } catch (error) {
-            console.log("< Error en componentDidMount clase Buscador >");
+            console.log("< Mi-error en componentDidMount clase Buscador >");
             console.log(error);
-            console.log("< Error en componentDidMount clase Buscador />");
+            console.log("< Mi-error en componentDidMount clase Buscador />");
             const data = [];
         }
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
