@@ -4,9 +4,15 @@
     font-family: 'Maiden Orange', cursive;
     text-align: center;
     padding: 30px;
-    height: 70vh;
+    min-height: 80vh;
     background: url('../../images/bg-1.jpeg') no-repeat;
+    background-position-y: -400px;
     background-size: cover;
+}
+
+.Dashboard-buscador{
+    width: 60%;
+    margin: 10px auto;
 }
 
 .Dashboard .hero h1 { 
@@ -17,4 +23,46 @@
     margin-top: 30px;
     font-size: 30px;
     font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.Dashboard .titulo-lugares{
+    font-size: 30px;
+}
+
+.Dashboard .Dashboard-lugares {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+    margin-top: 5px;
+}
+
+.Dashboard .Lugar{
+    margin: auto 30px;
+    width: 300px;
+}
+
+.Dashboard .Lugar.selected{
+    margin: auto 30px;
+    margin-top: 25px;
+    border: 2px rgb(194, 194, 194) solid;
+}
+
+.Dashboard .points{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 45px;
+}
+
+.Dashboard .points .point{
+    background: rgb(62, 138, 18);
+    border-radius: 3px;
+    width: 5px;
+    height: 5px;
+    margin: 5px;
+}
+
+.Dashboard .points .point.selected{
+    background: white;
+    border: 1px black solid;
 }

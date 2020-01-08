@@ -6,6 +6,13 @@
     height: fit-content;
 }
 
+.Lugar h1, .Lugar p{
+    font-size: initial !important;
+    margin: initial !important;
+    font-weight: initial !important;
+    font-family: initial !important;
+}
+
 .Lugar img{
     width: 100%;
 }

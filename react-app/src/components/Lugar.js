@@ -10,7 +10,7 @@ class Lugar extends React.Component{
     
     render () {
         return (
-            <div className="Lugar">
+            <div className={`Lugar ${this.props.clases}`}>
                 <img src={ this.props.imagen } alt="Lugar" />
                 <h1 className="titulo-lugar">{ this.props.titulo }</h1>
                 <p>{ this.props.descripcion }</p>
