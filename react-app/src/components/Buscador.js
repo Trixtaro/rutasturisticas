@@ -2,7 +2,11 @@ import React from 'react';
 
 import './styles/Buscador.css'
 
-class Buscador extends React.Component{
+class Buscador extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = { datos: [] };
+    }
 
     async componentDidMount () {
         try {
