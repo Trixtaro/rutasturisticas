@@ -1,32 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Buscador from '../components/Buscador';
-import foto from '../images/montecristi_circle.png';
+import Lugar from '../components/Lugar';
+import foto from '../images/montecristi.jpg';
 
-import './styles/Dashboard.css'
+import './styles/Dashboard.css';
 
-class Dashboard extends React.Component{
-
-    render(){
+class Dashboard extends React.Component {
+    render () {
         return (
-            <React.Fragment>
-                <div className="Dashboard">
-                    <div className="hero">
-                        <Buscador placeholder="Escriba su lugar de destino (Ciudad, País, Lugar, etc)" />    
-                        <p>
-                          Encuentra los mejores guias locales en lus lugares que deseas conocer. <br/> <br/>
-                          Elige el que más te guste y ten un viaje inolvidable.  
-                        </p>
+            <div className="Dashboard">
+                <div className="hero">
+                    <h1>Rutas Turísticas</h1> 
+                    <p>Encuentra tu guía  turistico <br /> para ese viaje que tanto deseas.</p>
+                    <div className="Dashboard-buscador">
+                        <Buscador placeholder="Ingrese el lugar" />
                     </div>
-                    <div className="foto">
-                        <img src={foto} alt="Montecristi"/>
+                    <div>
+                        <h2 className="titulo-lugares">
+                            Los lugares más visitados del mes
+                        </h2>
+                        <div className="Dashboard-lugares">
+                            <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
+                            <Lugar clases={'selected'} titulo="Manta" imagen={foto} descripcion="La capital de los pescados" />
+                            <Lugar titulo="Portoviejo" imagen={foto} descripcion="La capital de los manabitas" />
+                        </div>
+                    </div>
+                    <div className="points">
+                        <div className="point"></div>
+                        <div className="point selected"></div>
+                        <div className="point"></div>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
-
 }
 
 export default Dashboard;

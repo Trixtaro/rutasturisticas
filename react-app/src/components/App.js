@@ -12,8 +12,7 @@ import SolicitudGuias from '../pages/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
 import RegisterGuia from '../pages/RegisterGuia'
 
-function App(){
-
+function App () {
     return (
         <BrowserRouter>
             <Switch>

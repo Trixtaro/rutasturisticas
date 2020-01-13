@@ -3,8 +3,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-function Layout(props){
-
+function Layout (props) {
     return (
         <React.Fragment>
             <Navbar />
@@ -12,7 +11,6 @@ function Layout(props){
             <Footer />
         </React.Fragment>
     );
-
 }
 
 export default Layout;
