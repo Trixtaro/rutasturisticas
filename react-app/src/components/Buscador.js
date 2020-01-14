@@ -10,12 +10,11 @@ class Buscador extends React.Component {
 
     async componentDidMount () {
         try {
-            const response = await fetch('http://localhost:8000/api/lugares');
+            const response = await fetch(process.env.REACT_APP_LARAVEL);
             const data = await response.json();
             this.setState({
                 'datos': data.data
             });
-            console.log(this.state.datos);
         } catch (error) {
             console.log("< Mi-error en componentDidMount clase Buscador >");
             console.log(error);
