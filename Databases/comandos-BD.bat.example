@@ -1,0 +1,22 @@
+:: Archivo creado miércoles, 15 de denero de 2020 05:12:33
+
+@echo Script para ingresar archivos SQL a la base de datos RutasTuristicas
+
+cd AQUÍ_RUTA_DE_TU_BD
+@echo Ahora nos cambiamos a la ruta de MySQL
+
+mysql -u AQUï_TÚ_USUARIO_BD -h AQUÍ_HOST_BD --port=3306 RutasTuristicas < AQUÍ_RUTA_ABSOLUTA_DONDE_TIENES_TUS_ARCHIVOS\Fuente.sql
+@echo Ya se ejecutó el archivo Fuente.sql
+
+mysql -u AQUï_TÚ_USUARIO_BD -h AQUÍ_HOST_BD --port=3306 RutasTuristicas < AQUÍ_RUTA_ABSOLUTA_DONDE_TIENES_TUS_ARCHIVOS\rutinas.sql
+@echo Ya se ejecutó el archivo rutinas.sql
+
+mysql -u AQUï_TÚ_USUARIO_BD -h AQUÍ_HOST_BD --port=3306 RutasTuristicas < AQUÍ_RUTA_ABSOLUTA_DONDE_TIENES_TUS_ARCHIVOS\disparadores.sql
+@echo Ya se ejecutó el archivo disparadores.sql
+
+mysql -u AQUï_TÚ_USUARIO_BD -h AQUÍ_HOST_BD --port=3306 RutasTuristicas < AQUÍ_RUTA_ABSOLUTA_DONDE_TIENES_TUS_ARCHIVOS\Datos.sql
+@echo Ya se ejecutó el archivo Datos.sql
+
+@echo Ya se termino de ejecutar este script
+PAUSE
+EXIT
