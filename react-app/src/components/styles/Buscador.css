@@ -40,6 +40,16 @@
     box-sizing: content-box;
 }
 
+.Buscador .lupa:hover{
+    background-color: #AAA;
+    color: white;
+    cursor: pointer
+}
+
+.Buscador .lupa:active{
+    background-color: #888;
+}
+
 .autocomplete{
     position: relative;
 }

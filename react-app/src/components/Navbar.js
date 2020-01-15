@@ -9,8 +9,13 @@ class Navbar extends React.Component {
         return (
             <div className="Navbar">
                 <Link to="/">
-                    <div className="logo">
-                        <h1>Rutas turísticas</h1>
+                    <div className="imagotipo">
+                        <div className="imagen-logo">
+                            <img src="/logointerfaces.png" alt="Rutas turisticas"/>
+                        </div>
+                        <div className="logo">
+                            <h1>Rutas turísticas</h1>
+                        </div>
                     </div>
                 </Link>
                 <div className="user-panel">

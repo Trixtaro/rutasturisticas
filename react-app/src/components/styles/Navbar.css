@@ -21,6 +21,21 @@
     color: inherit;
 }
 
+.imagotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-logo{
+    width: 50px;
+    margin-right: 10px;
+}
+
+.imagen-logo img{
+    width: 100%;
+}
+
 .Navbar .user-panel .important {
     background: #11999e;
     color: white;
