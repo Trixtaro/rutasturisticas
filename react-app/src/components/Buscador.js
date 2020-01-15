@@ -1,11 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import './styles/Buscador.css'
 
 class Buscador extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { datos: [] };
+        this.state = { lugar: {} };
     }
 
     async componentDidMount () {
@@ -24,12 +25,18 @@ class Buscador extends React.Component {
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
     }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        console.log(this.props)
+        this.props.history.push(`/lugar?id=${1}`)
+    }
+
     render () {
         return (
-            <form autoComplete="off" className="" action="/lugar">
+            <form onSubmit={this.handleSubmit} autoComplete="off" className="" action="/lugar">
                 <div className="Buscador autocomplete">
-                    <input id="buscador" type="text" placeholder={this.props.placeholder} />
-                    <button className="lupa" type="submit">
+                    <input id="buscador" name="buscador" type="text" placeholder={this.props.placeholder} />
+                    <button className="lupa">
                         <i className="fas fa-search"></i>
                     </button>
                 </div>
@@ -69,6 +76,7 @@ class Buscador extends React.Component {
                 b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
+                    buscarLugar(lugar)
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
@@ -136,8 +144,12 @@ class Buscador extends React.Component {
         document.addEventListener("click", function (e) {
             closeAllLists(e.target);
         });
+
+        function buscarLugar(lugar){
+            console.log(lugar)
+        }
     }
 
 }
 
-export default Buscador;
+export default withRouter(Buscador);
