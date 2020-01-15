@@ -69,6 +69,7 @@ class Buscador extends React.Component {
                 b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
+                    buscarLugar(lugar)
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
@@ -136,6 +137,10 @@ class Buscador extends React.Component {
         document.addEventListener("click", function (e) {
             closeAllLists(e.target);
         });
+
+        function buscarLugar(lugar){
+            console.log(lugar)
+        }
     }
 
 }
