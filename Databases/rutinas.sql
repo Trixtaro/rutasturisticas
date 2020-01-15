@@ -330,6 +330,26 @@ DELIMITER ;
 -- ========================================================
 
 --
+-- Definición del procedimiento MOSTRAR_ID_LUGARES
+--
+
+DROP PROCEDURE IF EXISTS MOSTRAR_ID_LUGARES;
+
+DELIMITER $$
+
+CREATE PROCEDURE MOSTRAR_ID_LUGARES (
+)
+BEGIN
+	SELECT sub.ID_lugar AS 'Nombre del lugar', super.ID_lugar AS 'Nivel Administrativo Superior' 
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	LIMIT 20;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
 -- Definición del procedimiento OBTENER_LUGARES_POR_ID
 --
 
