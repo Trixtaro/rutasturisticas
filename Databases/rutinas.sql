@@ -361,7 +361,7 @@ CREATE PROCEDURE OBTENER_LUGARES_POR_ID (
 	IN ID_LUGAR_BUSCAR INT
 )
 BEGIN
-	SELECT sub.*
+	SELECT sub.ID_lugar
 	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
 	WHERE sub.ID_lugar_super = ID_LUGAR_BUSCAR
 	LIMIT 20;
