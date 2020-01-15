@@ -328,6 +328,28 @@ END$$
 DELIMITER ;
 
 -- ========================================================
+
+--
+-- Definición del procedimiento OBTENER_LUGARES_POR_ID
+--
+
+DROP PROCEDURE IF EXISTS OBTENER_LUGARES_POR_ID;
+
+DELIMITER $$
+
+CREATE PROCEDURE OBTENER_LUGARES_POR_ID (
+	IN ID_LUGAR_BUSCAR INT
+)
+BEGIN
+	SELECT sub.*
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	WHERE sub.ID_lugar_super = ID_LUGAR_BUSCAR
+	LIMIT 20;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
 -- =                                                      =
 -- =  FUNCIONES                                           =
 -- =                                                      =
