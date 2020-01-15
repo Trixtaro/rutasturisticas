@@ -17,6 +17,7 @@
 
 .Dashboard .hero h1 { 
     font-size: 10rem;
+    color: #0f473d;
 }
 
 .Dashboard .hero p {
@@ -24,6 +25,7 @@
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 30px;
+    color: #19463d;
 }
 
 .Dashboard .titulo-lugares{
@@ -35,16 +37,20 @@
     justify-content: center;
     margin: 50px auto;
     margin-top: 5px;
+    height: 250px;
 }
 
 .Dashboard .Lugar{
-    margin: auto 30px;
+    margin: 10px 30px;
+    margin-top: auto;
     width: 300px;
+    transition: width 2s;
 }
 
 .Dashboard .Lugar:hover{
     margin-top: -20px;
     border: 2px rgb(194, 194, 194) solid;
+    width: 350px;
 }
 
 .Dashboard .points{
