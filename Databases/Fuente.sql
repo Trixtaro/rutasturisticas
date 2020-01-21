@@ -132,6 +132,23 @@ CREATE TABLE IF NOT EXISTS Zona (
 -- --------------------------------------------------------
 
 --
+-- Definición de la tabla Lugar
+--
+
+DROP TABLE IF EXISTS Lugar;
+
+CREATE TABLE IF NOT EXISTS Lugar (
+	ID_lugar INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	nombre VARCHAR(20) NOT NULL,
+	descripcion TEXT NOT NULL,
+	altura_sobre_nivel_del_mar INT NULL,
+	latitud VARCHAR(20) NOT NULL,
+	longitud VARCHAR(20) NOT NULL,
+	URL_img VARCHAR(100) NOT NULL
+);
+-- --------------------------------------------------------
+
+--
 -- Definición de la tabla Ruta
 --
 
