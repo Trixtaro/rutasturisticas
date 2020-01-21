@@ -383,3 +383,44 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_USUARIO_POR_CEDULA_PERSONA
+--
+
+DROP PROCEDURE IF EXISTS BUSCAR_LUGARES;
+
+DELIMITER $$
+
+CREATE PROCEDURE BUSCAR_LUGARES(ID_LUGAR_ INT)
+BEGIN
+	DECLARE CARGO_ VARCHAR(25);
+
+	SET CARGO_ = (SELECT Lugar.cargo FROM Lugar WHERE id_lugar = ID_LUGAR_);
+
+	IF CARGO_ = 'País' THEN
+		SELECT l4.* FROM Lugar l1 
+			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
+			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
+			INNER JOIN Lugar l4 ON l4.id_lugar_super = l3.ID_lugar
+			WHERE l1.ID_lugar = ID_LUGAR_;
+	ELSEIF CARGO_ = 'Provincia' THEN
+		SELECT l3.* FROM Lugar l1 
+			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
+			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
+			WHERE l1.ID_lugar = ID_LUGAR_;
+	ELSEIF CARGO_ = 'Cantón' THEN
+		SELECT l2.* FROM Lugar l1 
+			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
+			WHERE l1.ID_lugar = ID_LUGAR_;
+	ELSEIF CARGO_ = 'Parroquia' THEN
+		SELECT l1.* FROM Lugar l1
+			WHERE l1.ID_lugar = ID_LUGAR_;
+	END IF;
+
+END$$
+
+DELIMITER ;
