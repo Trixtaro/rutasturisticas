@@ -173,14 +173,14 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento INGRESAR_LUGAR_SUPER
+-- Definición del procedimiento INGRESAR_ZONA_SUPER
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUPER;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUPER;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
+CREATE PROCEDURE INGRESAR_ZONA_SUPER (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
@@ -188,21 +188,21 @@ CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
   IN DESCRIPCION TEXT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
-    descripcion,
-		ID_lugar_super
+    	descripcion,
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
 		LONGITUD,
 		NOMBRE,
 		CARGO,
-    DESCRIPCION,
+    	DESCRIPCION,
 		NULL
 	);
 END$$
@@ -212,37 +212,37 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento INGRESAR_LUGAR_SUB
+-- Definición del procedimiento INGRESAR_ZONA_SUB
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUB;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUB;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUB (
+CREATE PROCEDURE INGRESAR_ZONA_SUB (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
 	IN CARGO VARCHAR(25),
-  IN DESCRIPCION TEXT,
+  	IN DESCRIPCION TEXT,
 	IN ID_SUPER INT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
-    descripcion,
-		ID_lugar_super
+    	descripcion,
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
 		LONGITUD,
 		NOMBRE,
 		CARGO,
-    DESCRIPCION,
+    	DESCRIPCION,
 		ID_SUPER
 	);
 END$$
@@ -403,20 +403,20 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición de la función GET_ID_LUGAR_POR_NOMBRE_Y_CARGO
+-- Definición de la función GET_ID_ZONA_POR_NOMBRE_Y_CARGO
 --
 
-DROP FUNCTION IF EXISTS GET_ID_LUGAR_POR_NOMBRE_Y_CARGO;
+DROP FUNCTION IF EXISTS GET_ID_ZONA_POR_NOMBRE_Y_CARGO;
 
 DELIMITER $$
 
-CREATE FUNCTION GET_ID_LUGAR_POR_NOMBRE_Y_CARGO (
+CREATE FUNCTION GET_ID_ZONA_POR_NOMBRE_Y_CARGO (
 	NOMBRE VARCHAR(50),
 	CARGO VARCHAR(25)
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
-  SET ID_RESULTADO = ( SELECT Lugar.ID_lugar FROM Lugar WHERE Lugar.cargo = CARGO AND Lugar.nombre = NOMBRE );
+  SET ID_RESULTADO = ( SELECT Zona.ID_Zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE
