@@ -1,4 +1,4 @@
-.Footer{
+.Footer {
 	font-size: 15px;
 	display: flex;
 	flex-direction: column;
@@ -10,22 +10,22 @@
     background: linear-gradient(to right, #55d3bc, #95e1d3);
 }
 
-.Footer p{
+.Footer p {
     margin: 10px;
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.social-media{
+.social-media {
     display: flex;
     margin: 15px 0;
 }
 
-.Footer div figure{
+.Footer div figure {
     width: 50px;
     margin: 0 30px;
 }
 
-.Footer div img{
+.Footer div img {
 	width: 100%
 }

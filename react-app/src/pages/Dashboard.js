@@ -1,32 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Buscador from '../components/Buscador';
-import foto from '../images/montecristi_circle.png';
+import Lugar from '../components/Lugar';
+import montecristi from '../images/montecristi.jpg';
+import portoviejo from '../images/portoviejo.jpg';
+import manta from '../images/manta.jpg';
 
-import './styles/Dashboard.css'
+import './styles/Dashboard.css';
 
-class Dashboard extends React.Component{
-
-    render(){
+class Dashboard extends React.Component {
+    render () {
         return (
-            <React.Fragment>
-                <div className="Dashboard">
-                    <div className="hero">
-                        <Buscador placeholder="Escriba su lugar de destino (Ciudad, País, Lugar, etc)" />    
-                        <p>
-                          Encuentra los mejores guias locales en lus lugares que deseas conocer. <br/> <br/>
-                          Elige el que más te guste y ten un viaje inolvidable.  
-                        </p>
+            <div className="Dashboard">
+                <div className="hero">
+                    <h1>Rutas Turísticas</h1> 
+                    <p>Encuentra tu guía  turistico <br /> para ese viaje que tanto deseas.</p>
+                    <div className="Dashboard-buscador">
+                        <Buscador placeholder="Busca tus lugares preferidos..." />
                     </div>
-                    <div className="foto">
-                        <img src={foto} alt="Montecristi"/>
+                    <div>
+                        <h2 className="titulo-lugares">
+                            Los lugares más visitados del mes
+                        </h2>
+                        <div className="Dashboard-lugares">
+                            <Lugar titulo="Portoviejo" imagen={portoviejo} descripcion="La capital de los manabitas." />
+                            <Lugar titulo="Manta" imagen={manta} descripcion="Principal puerto atunero del mundo." />
+                            <Lugar titulo="Montecristi" imagen={montecristi} descripcion="La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla." />
+                        </div>
+                    </div>
+                    <div className="points">
+                        <div className="point"></div>
+                        <div className="point selected"></div>
+                        <div className="point"></div>
                     </div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
-
 }
 
 export default Dashboard;

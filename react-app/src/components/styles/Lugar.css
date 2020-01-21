@@ -6,10 +6,27 @@
     height: fit-content;
 }
 
+.Lugar h1, .Lugar p{
+    font-size: initial !important;
+    margin: initial !important;
+    font-family: initial !important;
+}
+
+.Lugar p{
+    color: #143235 !important;
+    height: 20px;
+    font-weight: 200 !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .Lugar img{
     width: 100%;
+    object-fit: cover;
 }
 
 .Lugar .titulo-lugar{
-    color:#47aab1;
+    color:#4cb8c0 !important;
+    font-weight: 600;
 }

@@ -1,11 +1,16 @@
 .LugarPage{
     display: flex;
-    height: 100vh;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    background: #eaffd0;
+    font-family: 'Maiden Orange', cursive;
+    text-align: center;
+    padding: 30px;
+    min-height: 80vh;
+    background: url('../../images/bg-1.jpeg') no-repeat;
+    background-position-y: -400px;
+    background-size: cover;
 }
 
 .LugarPage a{
@@ -32,7 +37,8 @@
 }
 
 .lugares{
-    background-color: #c7e4e6;
+    margin: 30px auto;
+    justify-content: center;
     width: 90%;
     display: flex;
     flex-wrap: wrap;

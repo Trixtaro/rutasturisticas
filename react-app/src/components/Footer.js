@@ -6,10 +6,8 @@ import Instagram from '../images/instagram.svg';
 
 import './styles/Footer.css';
 
-class Footer extends React.Component{
-
-    render(){
-
+class Footer extends React.Component {s
+    render () {
         return (
             <div className="Footer">
                 <p>Trixtaro - Desarrollo de Software - 2019</p>
@@ -33,7 +31,6 @@ class Footer extends React.Component{
             </div>
         );
     }
-
 }
 
 export default Footer;

@@ -1,6 +1,11 @@
 # **Rutas Turísticas**
 Proyecto de Ingeniería de Interfaces
 Noveno Semestre / Paralelo "A" 
+
+# **Servidor de produccion y pruebas**
+
+http://167.71.172.89:3000/
+
 ## Periodo Académico
 Octubre 2019 - Febrero 2020
 ## Docente guía

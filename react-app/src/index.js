@@ -5,6 +5,4 @@ import './index.css';
 
 const $container = document.getElementById("app");
 
-ReactDOM.render(<App />, 
-    $container
-);
+ReactDOM.render(<App />, $container);
