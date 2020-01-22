@@ -49,5 +49,5 @@ class LugarController extends Controller
     public function search($id_lugar){
         $lugares = DB::select(DB::raw('CALL BUSCAR_LUGARES('.$id_lugar.')'));
         return LugarResource2::collection(collect($lugares));
-    }
+    } 
 }

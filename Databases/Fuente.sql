@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS Zona (
 	FOREIGN KEY (ID_zona_super) REFERENCES Zona (ID_zona)
 );
 
-ALTER TABLE Zona CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Zona CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -141,12 +141,13 @@ DROP TABLE IF EXISTS Lugar;
 
 CREATE TABLE IF NOT EXISTS Lugar (
 	ID_lugar INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	nombre VARCHAR(20) NOT NULL,
+	nombre VARCHAR(255) NOT NULL,
 	descripcion TEXT NOT NULL,
 	altura_sobre_nivel_del_mar INT NULL,
 	latitud VARCHAR(20) NOT NULL,
 	longitud VARCHAR(20) NOT NULL,
-	URL_img VARCHAR(100) NOT NULL
+	URL_img TEXT NOT NULL,
+	ID_zona INT UNSIGNED NOT NULL
 );
 -- --------------------------------------------------------
 
