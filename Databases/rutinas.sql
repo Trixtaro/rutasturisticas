@@ -180,11 +180,11 @@ DELIMITER ;
 -- Definición del procedimiento INGRESAR_LUGAR_SUPER
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUPER;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUPER;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
+CREATE PROCEDURE INGRESAR_ZONA_SUPER (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
@@ -219,11 +219,11 @@ DELIMITER ;
 -- Definición del procedimiento INGRESAR_LUGAR_SUB
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUB;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUB;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUB (
+CREATE PROCEDURE INGRESAR_ZONA_SUB (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
@@ -332,6 +332,48 @@ END$$
 DELIMITER ;
 
 -- ========================================================
+
+--
+-- Definición del procedimiento MOSTRAR_ID_LUGARES
+--
+
+DROP PROCEDURE IF EXISTS MOSTRAR_ID_LUGARES;
+
+DELIMITER $$
+
+CREATE PROCEDURE MOSTRAR_ID_LUGARES (
+)
+BEGIN
+	SELECT sub.ID_lugar AS 'Nombre del lugar', super.ID_lugar AS 'Nivel Administrativo Superior' 
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	LIMIT 20;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento OBTENER_LUGARES_POR_ID
+--
+
+DROP PROCEDURE IF EXISTS OBTENER_LUGARES_POR_ID;
+
+DELIMITER $$
+
+CREATE PROCEDURE OBTENER_LUGARES_POR_ID (
+	IN ID_LUGAR_BUSCAR INT
+)
+BEGIN
+	SELECT sub.ID_lugar
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	WHERE sub.ID_lugar_super = ID_LUGAR_BUSCAR
+	LIMIT 20;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
 -- =                                                      =
 -- =  FUNCIONES                                           =
 -- =                                                      =
@@ -365,20 +407,24 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición de la función GET_ID_LUGAR_POR_NOMBRE_Y_CARGO
+-- Definición de la función GET_ID_ZONA_POR_NOMBRE_Y_CARGO
 --
 
-DROP FUNCTION IF EXISTS GET_ID_LUGAR_POR_NOMBRE_Y_CARGO;
+DROP FUNCTION IF EXISTS GET_ID_ZONA_POR_NOMBRE_Y_CARGO;
 
 DELIMITER $$
 
-CREATE FUNCTION GET_ID_LUGAR_POR_NOMBRE_Y_CARGO (
+CREATE FUNCTION GET_ID_ZONA_POR_NOMBRE_Y_CARGO (
 	NOMBRE VARCHAR(50),
 	CARGO VARCHAR(25)
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
+<<<<<<< HEAD
   SET ID_RESULTADO = ( SELECT Zona.ID_zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
+=======
+  SET ID_RESULTADO = ( SELECT Zona.ID_Zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
+>>>>>>> features
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE

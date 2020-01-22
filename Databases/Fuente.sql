@@ -112,6 +112,26 @@ CREATE TABLE IF NOT EXISTS Turista (
 -- --------------------------------------------------------
 
 --
+-- Definición de la tabla Zona
+--
+
+DROP TABLE IF EXISTS Zona;
+
+CREATE TABLE IF NOT EXISTS Zona (
+	ID_zona INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	f_ingreso DATETIME NOT NULL,
+	latitud VARCHAR(10) NOT NULL,
+	longitud VARCHAR(10) NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
+	cargo VARCHAR(25) NOT NULL COMMENT 'Especifica si el zona es un país, provincia, ciudad, etc',
+	descripcion TEXT NULL,
+	ID_zona_super INT NULL,
+	FOREIGN KEY (ID_zona_super) REFERENCES Zona (ID_zona)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Definición de la tabla Lugar
 --
 
@@ -119,16 +139,13 @@ DROP TABLE IF EXISTS Lugar;
 
 CREATE TABLE IF NOT EXISTS Lugar (
 	ID_lugar INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	f_ingreso DATETIME NOT NULL,
-	latitud VARCHAR(10) NOT NULL,
-	longitud VARCHAR(10) NOT NULL,
-	nombre VARCHAR(50) NOT NULL,
-	cargo VARCHAR(25) NOT NULL COMMENT 'Especifica si el lugar es un país, provincia, ciudad, etc',
-	descripcion TEXT NULL,
-	ID_lugar_super INT NULL,
-	FOREIGN KEY (ID_lugar_super) REFERENCES Lugar (ID_lugar)
+	nombre VARCHAR(20) NOT NULL,
+	descripcion TEXT NOT NULL,
+	altura_sobre_nivel_del_mar INT NULL,
+	latitud VARCHAR(20) NOT NULL,
+	longitud VARCHAR(20) NOT NULL,
+	URL_img VARCHAR(100) NOT NULL
 );
-
 -- --------------------------------------------------------
 
 --
@@ -234,7 +251,5 @@ ALTER TABLE `Usuario` ADD UNIQUE(`correo`);
 ALTER TABLE `Persona` ADD UNIQUE(`cedula`);
 
 ALTER TABLE `Persona` ADD UNIQUE(`pasaporte`);
-
-ALTER TABLE `Lugar` ADD UNIQUE( `nombre`, `cargo`);
 
 ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
