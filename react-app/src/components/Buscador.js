@@ -6,12 +6,12 @@ import './styles/Buscador.css'
 class Buscador extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { lugar: {} };
+        this.state = { datos: [] };
     }
 
     async componentDidMount () {
         try {
-            const response = await fetch(process.env.REACT_APP_LARAVEL);
+            const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares`);
             const data = await response.json();
             this.setState({
                 'datos': data.data

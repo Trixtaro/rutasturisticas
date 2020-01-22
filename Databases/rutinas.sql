@@ -149,6 +149,8 @@ CREATE PROCEDURE INGRESAR_USUARIO_POR_CEDULA_PERSONA (
 	IN CEDULA VARCHAR(10)
 )
 BEGIN
+	DECLARE ID_USUARIO_ INT;
+	SET ID_USUARIO_ = (SELECT ID_usuario FROM Usuario);
 	IF ( GET_ID_PERSONA_POR_CEDULA(CEDULA) = 0 ) THEN
 		SELECT '0' AS RESULTADO;
 	ELSE
@@ -165,6 +167,8 @@ BEGIN
 			CORREO,
 			GET_ID_PERSONA_POR_CEDULA(CEDULA)
 		);
+		
+		CALL INGRESAR_TURISTA_POR_IDUSUARIO(ID_USUARIO_);
 	END IF;
 END$$
 
@@ -243,7 +247,7 @@ CREATE PROCEDURE MOSTRAR_LUGARES (
 )
 BEGIN
 	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
-	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
+	FROM Lugar AS sub LEFT JOIN Lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
 END$$
 
 DELIMITER ;
@@ -351,7 +355,7 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento INGRESAR_USUARIO_POR_CEDULA_PERSONA
+-- Definición del procedimiento BUSCAR_LUGARES
 --
 
 DROP PROCEDURE IF EXISTS BUSCAR_LUGARES;
