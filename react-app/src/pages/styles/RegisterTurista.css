@@ -66,6 +66,11 @@
     height: 36px;
 }
 
+.RegisterTurista .field input,
+.RegisterTurista .field select {
+    width: 75%;
+}
+
 .RegisterTurista .botones {
     align-items: center;
     display: flex;
