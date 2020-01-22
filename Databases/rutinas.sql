@@ -177,6 +177,85 @@ DELIMITER ;
 -- ========================================================
 
 --
+-- Definición del procedimiento INGRESAR_LUGAR_SUPER
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUPER;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_ZONA_SUPER (
+	IN LATITUD VARCHAR(10),
+	IN LONGITUD VARCHAR(10),
+	IN NOMBRE VARCHAR(50),
+	IN CARGO VARCHAR(25),
+  IN DESCRIPCION TEXT
+)
+BEGIN
+	INSERT INTO Zona (
+		f_ingreso,
+		latitud,
+		longitud,
+		nombre,
+		cargo,
+    descripcion,
+		ID_zona_super
+	) VALUES (
+		NOW(),
+		LATITUD,
+		LONGITUD,
+		NOMBRE,
+		CARGO,
+    DESCRIPCION,
+		NULL
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento INGRESAR_LUGAR_SUB
+--
+
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUB;
+
+DELIMITER $$
+
+CREATE PROCEDURE INGRESAR_ZONA_SUB (
+	IN LATITUD VARCHAR(10),
+	IN LONGITUD VARCHAR(10),
+	IN NOMBRE VARCHAR(50),
+	IN CARGO VARCHAR(25),
+  IN DESCRIPCION TEXT,
+	IN ID_SUPER INT
+)
+BEGIN
+	INSERT INTO Zona (
+		f_ingreso,
+		latitud,
+		longitud,
+		nombre,
+		cargo,
+    descripcion,
+		ID_zona_super
+	) VALUES (
+		NOW(),
+		LATITUD,
+		LONGITUD,
+		NOMBRE,
+		CARGO,
+    DESCRIPCION,
+		ID_SUPER
+	);
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
 -- Definición del procedimiento INGRESAR_TURISTA_POR_IDUSUARIO
 --
 
@@ -247,7 +326,7 @@ CREATE PROCEDURE MOSTRAR_LUGARES (
 )
 BEGIN
 	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
-	FROM Lugar AS sub LEFT JOIN Lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
+	FROM Zona AS sub LEFT JOIN Zona AS super ON ( super.ID_zona = sub.ID_zona_super );
 END$$
 
 DELIMITER ;
@@ -341,7 +420,7 @@ CREATE FUNCTION GET_ID_ZONA_POR_NOMBRE_Y_CARGO (
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
-  SET ID_RESULTADO = ( SELECT Zona.ID_Zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
+  SET ID_RESULTADO = ( SELECT Zona.ID_zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE
