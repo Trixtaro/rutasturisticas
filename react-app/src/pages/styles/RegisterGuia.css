@@ -1,4 +1,4 @@
-.RegisterTurista {
+.RegisterGuia {
     background: #eaffd0;
     display: flex;
     flex-direction: column;
@@ -6,8 +6,8 @@
     position: relative;
 }
 
-.RegisterTurista:before,
-.RegisterTurista:after {
+.RegisterGuia:before,
+.RegisterGuia:after {
     content:'';
     display:block;
     box-flex:1;
@@ -64,7 +64,7 @@
     margin-right: 16px;
 }
 
-.RegisterTurista .field {
+.RegisterGuia .field {
     padding: 8px 0 8px;
     height: 36px;
 }
