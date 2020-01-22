@@ -10,6 +10,11 @@
     font-size: initial !important;
     margin: initial !important;
     font-family: initial !important;
+    height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
 
 .Lugar p{
@@ -23,6 +28,7 @@
 
 .Lugar img{
     width: 100%;
+    height: 150px;
     object-fit: cover;
 }
 
