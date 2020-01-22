@@ -16,7 +16,7 @@
 
 DROP DATABASE IF EXISTS RutasTuristicas;
 
-CREATE DATABASE IF NOT EXISTS RutasTuristicas;
+CREATE DATABASE IF NOT EXISTS RutasTuristicas CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 USE RutasTuristicas;
 
@@ -128,6 +128,8 @@ CREATE TABLE IF NOT EXISTS Zona (
 	ID_zona_super INT NULL,
 	FOREIGN KEY (ID_zona_super) REFERENCES Zona (ID_zona)
 );
+
+ALTER TABLE Zona CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
