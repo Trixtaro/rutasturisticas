@@ -192,14 +192,14 @@ CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
   IN DESCRIPCION TEXT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
     descripcion,
-		ID_lugar_super
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
@@ -232,14 +232,14 @@ CREATE PROCEDURE INGRESAR_LUGAR_SUB (
 	IN ID_SUPER INT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
     descripcion,
-		ID_lugar_super
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
@@ -326,7 +326,7 @@ CREATE PROCEDURE MOSTRAR_LUGARES (
 )
 BEGIN
 	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
-	FROM Lugar AS sub LEFT JOIN Lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
+	FROM Zona AS sub LEFT JOIN Zona AS super ON ( super.ID_zona = sub.ID_zona_super );
 END$$
 
 DELIMITER ;
@@ -378,7 +378,7 @@ CREATE FUNCTION GET_ID_LUGAR_POR_NOMBRE_Y_CARGO (
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
-  SET ID_RESULTADO = ( SELECT Lugar.ID_lugar FROM Lugar WHERE Lugar.cargo = CARGO AND Lugar.nombre = NOMBRE );
+  SET ID_RESULTADO = ( SELECT Zona.ID_zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE

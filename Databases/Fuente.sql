@@ -16,7 +16,7 @@
 
 DROP DATABASE IF EXISTS RutasTuristicas;
 
-CREATE DATABASE IF NOT EXISTS RutasTuristicas;
+CREATE DATABASE IF NOT EXISTS RutasTuristicas CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 USE RutasTuristicas;
 
