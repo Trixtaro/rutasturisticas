@@ -45,8 +45,6 @@
 
 .RegisterTurista .nombre h1 {
     color: #0f473d;
-    padding-bottom: 0;
-    padding-top: 16px;
 }
 
 .RegisterTurista .cuerpo {
@@ -78,15 +76,23 @@
     min-height: 48px;
     padding-bottom: 0;
 }
-
 .RegisterTurista .btn-accion {
     position: absolute;
-    background: #1a73e8;
+}
+.RegisterTurista .btn-accion button {
+    color: #0f473d;
+    background: transparent;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
+    border: 2px solid #0f473d;
     height: 36px;
     width: 6.5rem;
 }
+
+.RegisterTurista .btn-accion button:hover {
+      background-color: #0f473d;
+      color: white;
+ }
 
 .RegisterTurista .botones span span{
     margin: 8px 16px;
