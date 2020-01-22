@@ -315,17 +315,17 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento MOSTRAR_LUGARES
+-- Definición del procedimiento MOSTRAR_ZONAS
 --
 
-DROP PROCEDURE IF EXISTS MOSTRAR_LUGARES;
+DROP PROCEDURE IF EXISTS MOSTRAR_ZONAS;
 
 DELIMITER $$
 
-CREATE PROCEDURE MOSTRAR_LUGARES (
+CREATE PROCEDURE MOSTRAR_ZONAS (
 )
 BEGIN
-	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
+	SELECT sub.ID_zona, CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
 	FROM Zona AS sub LEFT JOIN Zona AS super ON ( super.ID_zona = sub.ID_zona_super );
 END$$
 

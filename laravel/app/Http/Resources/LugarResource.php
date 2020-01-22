@@ -13,6 +13,7 @@ class LugarResource extends JsonResource
         $administrativo_superior = 'Nivel Administrativo Superior';
 
         return [
+            'Id' => $this->ID_zona,
             'Lugar' => $this->$lugar,
             'nivel_superior' => $this->$administrativo_superior
         ];

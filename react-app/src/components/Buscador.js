@@ -6,7 +6,10 @@ import './styles/Buscador.css'
 class Buscador extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { datos: [] };
+        this.state = { 
+            datos: [],
+            id: ''
+         };
     }
 
     async componentDidMount () {
@@ -28,7 +31,7 @@ class Buscador extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.props)
-        this.props.history.push(`/lugar?id=${1}`)
+        this.props.history.push(`/lugar?id=${this.state.id}`)
     }
 
     render () {
@@ -145,8 +148,11 @@ class Buscador extends React.Component {
             closeAllLists(e.target);
         });
 
-        function buscarLugar(lugar){
-            console.log(lugar)
+        const buscarLugar = lugar =>{
+            this.setState({
+                id: lugar.Id
+            })
+            console.log(this.state)
         }
     }
 
