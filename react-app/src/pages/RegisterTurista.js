@@ -104,11 +104,6 @@ class RegisterTurista extends React.Component {
                                         </div>
                                     </div>
                                     <div className="botones">
-                                        <Link to="../login">
-                                            <div className="btn-iniciar-sesion">
-                                                <div>Prefiero iniciar sesión</div>
-                                            </div>
-                                        </Link>
                                         <div className="btn-accion">
                                             <button>Registrarse</button>
                                         </div>

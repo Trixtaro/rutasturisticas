@@ -1,9 +1,9 @@
 .RegisterTurista {
+    font-family: 'Maiden Orange', cursive;
     display: flex;
     flex-direction: column;
     min-height: 80vh;
     position: relative;
-    font-family: 'Maiden Orange', cursive;
     text-align: center;
     background: url('./../../images/bg-1.jpeg') no-repeat;
     background-position-y: -400px;
@@ -19,7 +19,7 @@
     height:24px
 }
 
-.Caja {
+.RegisterTurista .Caja {
     background: white;
     width: 750px;
     border-radius: 8px;
@@ -30,7 +30,7 @@
     position: relative;
 }
 
-.form {
+.RegisterTurista .form {
     display: flex;
     height: auto;
     min-height: 250px;
@@ -38,29 +38,28 @@
     overflow: hidden;
 }
 
-.nombre {
+.RegisterTurista .nombre {
     font-size: 14px;
     line-height: 1.4286;
 }
 
-.nombre h1 {
-    color: #202124;
-    font-family: 'Google Sans',arial,sans-serif;
+.RegisterTurista .nombre h1 {
+    color: #0f473d;
     padding-bottom: 0;
     padding-top: 16px;
 }
 
-.cuerpo {
+.RegisterTurista .cuerpo {
     padding: 24px 0 0;
 }
 
-.datos {
+.RegisterTurista .datos {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.datos .field:first-child {
+.RegisterTurista .datos .field:first-child {
     margin-right: 16px;
 }
 
@@ -69,7 +68,7 @@
     height: 36px;
 }
 
-.botones {
+.RegisterTurista .botones {
     align-items: center;
     display: flex;
     flex-direction: row-reverse;
@@ -80,19 +79,7 @@
     padding-bottom: 0;
 }
 
-.btn-iniciar-sesion div {
-    color:#1a73e8;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Google Sans',arial,sans-serif;
-    font-weight: 500;
-    letter-spacing: .25px;
-    line-height: 36px;
-    padding: 6px 0;
-    position: relative;
-}
-
-.btn-accion {
+.RegisterTurista .btn-accion {
     position: absolute;
     background: #1a73e8;
     cursor: pointer;
@@ -101,7 +88,7 @@
     width: 6.5rem;
 }
 
-.botones span span{
+.RegisterTurista .botones span span{
     margin: 8px 16px;
     color: #fff;
     font-family: 'Google Sans',arial,sans-serif;
@@ -110,11 +97,11 @@
     line-height: 36px;
 }
 
-.botones span {
+.RegisterTurista .botones span {
     position: relative;
 }
 
-.regresar {
+.RegisterTurista .regresar {
     height: 16.8px;
     position: absolute;
     bottom: -20px;
