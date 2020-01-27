@@ -315,17 +315,17 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento MOSTRAR_LUGARES
+-- Definición del procedimiento MOSTRAR_ZONAS
 --
 
-DROP PROCEDURE IF EXISTS MOSTRAR_LUGARES;
+DROP PROCEDURE IF EXISTS MOSTRAR_ZONAS;
 
 DELIMITER $$
 
-CREATE PROCEDURE MOSTRAR_LUGARES (
+CREATE PROCEDURE MOSTRAR_ZONAS (
 )
 BEGIN
-	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
+	SELECT sub.ID_zona, CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
 	FROM Zona AS sub LEFT JOIN Zona AS super ON ( super.ID_zona = sub.ID_zona_super );
 END$$
 
@@ -441,30 +441,34 @@ DROP PROCEDURE IF EXISTS BUSCAR_LUGARES;
 
 DELIMITER $$
 
-CREATE PROCEDURE BUSCAR_LUGARES(ID_LUGAR_ INT)
+CREATE PROCEDURE BUSCAR_LUGARES(ID_ZONA_ INT)
 BEGIN
 	DECLARE CARGO_ VARCHAR(25);
 
-	SET CARGO_ = (SELECT Lugar.cargo FROM Lugar WHERE id_lugar = ID_LUGAR_);
+	SET CARGO_ = (SELECT Zona.cargo FROM Zona WHERE ID_zona = ID_ZONA_);
 
-	IF CARGO_ = 'País' THEN
-		SELECT l4.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
-			INNER JOIN Lugar l4 ON l4.id_lugar_super = l3.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
+	IF CARGO_ = 'Pais' THEN
+		SELECT l5.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
+			INNER JOIN Zona l4 ON l4.id_zona_super = l3.ID_zona
+			INNER JOIN Lugar l5 ON l5.ID_zona = l4.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	ELSEIF CARGO_ = 'Provincia' THEN
-		SELECT l3.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
-	ELSEIF CARGO_ = 'Cantón' THEN
-		SELECT l2.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
-	ELSEIF CARGO_ = 'Parroquia' THEN
-		SELECT l1.* FROM Lugar l1
-			WHERE l1.ID_lugar = ID_LUGAR_;
+		SELECT l4.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
+			INNER JOIN Lugar l4 ON l4.ID_zona = l3.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
+	ELSEIF CARGO_ = 'Canton' THEN
+		SELECT l3.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Lugar l3 ON l3.ID_zona = l2.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
+	ELSEIF CARGO_ = 'Parroquia' OR CARGO_ = 'Parroquia Rural' OR CARGO_ = 'Parroquia Urbana' THEN
+		SELECT l2.* FROM Zona l1
+			INNER JOIN Lugar l2 ON l2.ID_zona = l1.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	END IF;
 
 END$$
