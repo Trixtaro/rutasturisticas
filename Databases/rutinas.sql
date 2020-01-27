@@ -453,22 +453,22 @@ BEGIN
 			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
 			INNER JOIN Zona l4 ON l4.id_zona_super = l3.ID_zona
 			INNER JOIN Lugar l5 ON l5.ID_zona = l4.ID_zona
-			WHERE l1.ID_zona = ID_ZONA_;
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	ELSEIF CARGO_ = 'Provincia' THEN
 		SELECT l4.* FROM Zona l1 
 			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
 			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
 			INNER JOIN Lugar l4 ON l4.ID_zona = l3.ID_zona
-			WHERE l1.ID_zona = ID_ZONA_;
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	ELSEIF CARGO_ = 'Canton' THEN
 		SELECT l3.* FROM Zona l1 
 			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
 			INNER JOIN Lugar l3 ON l3.ID_zona = l2.ID_zona
-			WHERE l1.ID_zona = ID_ZONA_;
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	ELSEIF CARGO_ = 'Parroquia' OR CARGO_ = 'Parroquia Rural' OR CARGO_ = 'Parroquia Urbana' THEN
 		SELECT l2.* FROM Zona l1
 			INNER JOIN Lugar l2 ON l2.ID_zona = l1.ID_zona
-			WHERE l1.ID_zona = ID_ZONA_;
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	END IF;
 
 END$$
