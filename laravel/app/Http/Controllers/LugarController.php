@@ -26,9 +26,18 @@ class LugarController extends Controller
         //
     }
 
-    public function show($id)
+    public function show($id_lugar)
     {
-        //
+        $lugar = DB::select(DB::raw('CALL CARGAR_LUGAR('.$id_lugar.')'))[0];
+
+        return [
+            'id' => $lugar->ID_lugar,
+            'nombre' => $lugar->nombre,
+            'descripcion' => $lugar->descripcion,
+            'latitud' => $lugar->latitud,
+            'longitud' => $lugar->longitud,
+            'imagen' => $lugar->URL_img
+        ];
     }
 
     public function edit($id)
@@ -49,5 +58,5 @@ class LugarController extends Controller
     public function search($id_lugar){
         $lugares = DB::select(DB::raw('CALL BUSCAR_LUGARES('.$id_lugar.')'));
         return LugarResource2::collection(collect($lugares));
-    } 
+    }
 }

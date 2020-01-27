@@ -474,3 +474,21 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+-- ========================================================
+
+--
+-- Definición del procedimiento CARGAR_LUGAR
+--
+
+DROP PROCEDURE IF EXISTS CARGAR_LUGAR;
+
+DELIMITER $$
+
+CREATE PROCEDURE CARGAR_LUGAR(ID_LUGAR_ INT)
+BEGIN
+	SELECT * FROM Lugar WHERE ID_lugar = ID_LUGAR_;
+END$$
+
+DELIMITER ;
