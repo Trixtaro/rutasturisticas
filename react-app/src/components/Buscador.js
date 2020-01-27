@@ -30,7 +30,13 @@ class Buscador extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+
+        if(!this.state.id)
+            return;
+
         this.props.history.push(`/lugares/${this.state.id}`);
+        window.location.reload(false);
+        console.log(this.props.history);
     }
 
     render () {
