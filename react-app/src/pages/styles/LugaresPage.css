@@ -1,0 +1,48 @@
+.LugaresPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Maiden Orange', cursive;
+    text-align: center;
+    padding: 30px;
+    min-height: 80vh;
+    background: url('../../images/bg-1.jpeg') no-repeat;
+    background-position-y: -400px;
+    background-size: cover;
+}
+
+.LugaresPage a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.LugaresPage .Buscador{
+    width: 50vw;
+    margin-bottom: 30px;
+}
+
+.LugaresPage .LugaresPage-regresar{
+    margin-top: 30px;
+    align-self: flex-start;
+    color: #176859;
+    font-size: 20px;
+}
+
+.titulo-lugares{
+    margin: 50px;
+    color: #176859;
+}
+
+.lugares{
+    margin: 30px auto;
+    justify-content: center;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lugares .Lugar:hover{
+    margin: -10px 5px;
+}
