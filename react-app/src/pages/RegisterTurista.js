@@ -73,12 +73,22 @@ class RegisterTurista extends React.Component {
                                     <div className="fields">
                                         <div className="datos">
                                             <div className="field">
+                                                <label htmlFor="cedula">Cedula:</label>
+                                                <input type="text" id="cedula" name="cedula"></input>
+                                            </div>
+                                            <div className="field">
                                                 <label htmlFor="nombres">Nombres:</label>
                                                 <input type="text" id="nombres" name="nombres" onChange={this.handleChange} value={this.state.nombres}></input>
                                             </div>
+                                        </div>
+                                        <div className="datos">
                                             <div className="field">
-                                                <label htmlFor="apellidos">Apellidos:</label>
-                                                <input type="text" id="apellidos" name="apellidos" onChange={this.handleChange} value={this.state.apellidos}></input>
+                                                <label htmlFor="apellido-p">Apellido Paterno:</label>
+                                                <input type="text" id="apellido-p" name="apellido-p"></input>
+                                            </div>
+                                            <div className="field">
+                                                <label htmlFor="apellido-m">Apellido Materno:</label>
+                                                <input type="text" id="apellido-m" name="apellido-m"></input>
                                             </div>
                                         </div>
                                         <div className="field">
@@ -89,8 +99,20 @@ class RegisterTurista extends React.Component {
                                             </select>
                                         </div>
                                         <div className="field">
+                                            <label htmlFor="usuario">Usuario:</label>
+                                            <input type="text" id="usuario" name="usuario"></input>
+                                        </div>
+                                        <div className="field">
+                                            <label htmlFor="pasaporte">Pasaporte:</label>
+                                            <input type="text" id="pasaporte" name="pasaporte"></input>
+                                        </div>
+                                        <div className="field">
                                             <label htmlFor="correo">Correo Electrónico:</label>
                                             <input type="email" id="correo" name="correo"></input>
+                                        </div>
+                                        <div className="field">
+                                            <label htmlFor="f-nacimiento">Fecha de nacimiento:</label>
+                                            <input type="date" id="f-nacimiento" name="f-nacimiento"></input>
                                         </div>
                                         <div className="datos">
                                             <div className="field">
@@ -104,11 +126,6 @@ class RegisterTurista extends React.Component {
                                         </div>
                                     </div>
                                     <div className="botones">
-                                        <Link to="../login">
-                                            <div className="btn-iniciar-sesion">
-                                                <div>Prefiero iniciar sesión</div>
-                                            </div>
-                                        </Link>
                                         <div className="btn-accion">
                                             <button>Registrarse</button>
                                         </div>
