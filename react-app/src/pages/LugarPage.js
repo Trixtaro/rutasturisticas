@@ -1,56 +1,79 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
-import Buscador from '../components/Buscador';
-
 import './styles/LugarPage.css';
-import Lugar from '../components/Lugar';
 
 class LugarPage extends React.Component{
 
     state = {
-        lugares: []
+        lugar: null
     }
 
     async componentDidMount(){
+        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugar/${this.props.match.params.id}`);
+        this.setState({
+            lugar: await response.json()
+        });
 
-        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
-            const data = await response.json();
-            this.setState({
-                lugares: data.data
-            });
+        this.ponerMapa()
 
     }
 
-    ponerLugares = () => {
+    ponerMapa = () => {
+        const zoom = 14;
 
-        if(this.state.lugares.length)
-            return this.state.lugares.map( lugar => {
-                return <Lugar imagen={lugar.foto} titulo={lugar.nombre} descripcion={lugar.descripcion} />;
-            });
+        var map = window.L.map('map').setView([this.state.lugar.latitud, this.state.lugar.longitud], zoom);
+
+        const addLayerMap = (map) => {
+            window.layer = window.L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox.streets'
+            }).addTo(map);
+        }
+
+        addLayerMap(map);
+
+        window.L.marker([this.state.lugar.latitud, this.state.lugar.longitud]).addTo(map)
+            .bindPopup(this.state.lugar.nombre)
+            .openPopup();
     }
 
     render(){
-        return (
-            <div className="LugarPage">
-                <Link to="/">
-                    <div className="LugarPage-regresar">
-                        <i class="fas fa-undo-alt"></i>
+
+        if(!this.state.lugar) 
+            return (<div className="LugarPage">
+                Cargando
+            </div>);
+
+        return (<div className="LugarPage">
+            <Link className="lugarpage-regresar" to="/">
+                    <i className="fas fa-undo-alt"></i>
                         &nbsp;
-                        Regresar
+                        Regresar 
+            </Link>
+            <div className="body">
+                <figure className="imagen">
+                    <img src={this.state.lugar.imagen} alt=""/>
+                </figure>
+                <div className="info">
+                    <div>
+                        <h1 className="nombre-lugar">
+                            {this.state.lugar.nombre}
+                        </h1>
+                        <p className="descripcion">
+                            {this.state.lugar.descripcion}
+                        </p>
                     </div>
-                </Link>
-                <h1 className="titulo-lugares">
-                    Resultados de la búsqueda de lugares...
-                </h1>
-                <Buscador placeholder="Escriba su lugar de destino (Ciudad, País, Lugar, etc)" />    
-                <div className="lugares">
-                {
-                    this.ponerLugares()
-                }
+                    <div id="map" ></div>
                 </div>
+      
             </div>
-        );
+        </div>);
+
     }
 
 }

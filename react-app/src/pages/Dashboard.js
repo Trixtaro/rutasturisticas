@@ -23,9 +23,27 @@ class Dashboard extends React.Component {
                             Los lugares más visitados del mes
                         </h2>
                         <div className="Dashboard-lugares">
-                            <Lugar titulo="Portoviejo" imagen={portoviejo} descripcion="La capital de los manabitas." />
-                            <Lugar titulo="Manta" imagen={manta} descripcion="Principal puerto atunero del mundo." />
-                            <Lugar titulo="Montecristi" imagen={montecristi} descripcion="La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla." />
+                            <Lugar 
+                                lugar={ {
+                                    nombre: "Portoviejo",
+                                    foto: portoviejo,
+                                    descripcion: "La capital de los manabitas."
+                                } }  
+                            />
+                            <Lugar 
+                                lugar={ {
+                                    nombre: "Manta",
+                                    foto: manta,
+                                    descripcion: "Principal puerto atunero del mundo."
+                                } }
+                            />
+                            <Lugar 
+                                lugar={ {
+                                    nombre: "Montecristi",
+                                    foto: montecristi,
+                                    descripcion: "La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla."
+                                } }
+                            />
                         </div>
                     </div>
                     <div className="points">
