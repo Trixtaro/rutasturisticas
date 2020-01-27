@@ -3,38 +3,33 @@ import { Link } from 'react-router-dom';
 
 import './styles/LoginPage.css';
 
-class Login extends React.Component{
+import IconPeople1 from "../images/iconfinder_User_4200769.svg";
+import IconLock1 from "../images/iconfinder_102_111044.svg";
 
-    render(){
+class Login extends React.Component {
+
+    render () {
         return (
             <React.Fragment>
                 <div className="LoginPage">
-                    <h1>Iniciar sesión</h1>
-                    <div className="formContainer">
-                        <Link to="">
-                            <div className="back">
-                                Regresar
-                            </div>
-                        </Link>
-                        <form action="">
-                            <div className="field">
-                                <label htmlFor="usuario">Usuario:</label>
-                                <input type="text" id="usuario" name="usuario" />
-                            </div>
-                            <div className="field">
-                                <label htmlFor="clave">Contraseña:</label>
-                                <input type="text" id="clave" name="clave" />
-                            </div>
-                            <Link to="">
-                                <div className="boton">Iniciar</div>
-                            </Link>
-                        </form>
-                    </div>
+                    <div className="icono">
+                        <img src={IconPeople1} alt="Icono Persona 1"></img>
+                    </div>                    
+                    <form action="">
+                        <div className="field">
+                            <img src={IconPeople1} alt="Icono Persona 1"></img>
+                            <input type="text" id="usuario" name="usuario" placeholder="Usuario" />
+                        </div>
+                        <div className="field">
+                            <img src={IconLock1} alt="Icono Candado 1"></img>
+                            <input type="text" id="clave" name="clave" placeholder="Contraseña" />
+                        </div>
+                    </form>
+                    <div className="boton"><Link to="">Iniciar</Link></div>
                 </div>
             </React.Fragment>
         );
     }
-
 }
 
 export default Login;

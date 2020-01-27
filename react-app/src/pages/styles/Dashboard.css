@@ -43,14 +43,14 @@
 .Dashboard .Lugar{
     margin: 10px 30px;
     margin-top: auto;
-    width: 300px;
+    width: 250px;
     transition: width 2s;
 }
 
 .Dashboard .Lugar:hover{
     margin-top: -20px;
     border: 2px rgb(194, 194, 194) solid;
-    width: 350px;
+    width: 300px;
 }
 
 .Dashboard .points{

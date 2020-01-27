@@ -23,9 +23,8 @@
     margin-bottom: 30px;
 }
 
-.LugarPage .regresar{
+.LugarPage .LugarPage-regresar{
     margin-top: 30px;
-    margin-left: 100px;
     align-self: flex-start;
     color: #176859;
     font-size: 20px;

@@ -17,7 +17,7 @@ function App () {
         <BrowserRouter>
             <Switch>
                 <AppRoute exact path="/" component={Dashboard} layout={Layout} />
-                <AppRoute exact path="/lugar" component={Lugar} layout={Layout} />
+                <AppRoute exact path="/lugares/:id" component={Lugar} layout={Layout} />
                 <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />

@@ -149,6 +149,8 @@ CREATE PROCEDURE INGRESAR_USUARIO_POR_CEDULA_PERSONA (
 	IN CEDULA VARCHAR(10)
 )
 BEGIN
+	DECLARE ID_USUARIO_ INT;
+	SET ID_USUARIO_ = (SELECT ID_usuario FROM Usuario);
 	IF ( GET_ID_PERSONA_POR_CEDULA(CEDULA) = 0 ) THEN
 		SELECT '0' AS RESULTADO;
 	ELSE
@@ -165,6 +167,8 @@ BEGIN
 			CORREO,
 			GET_ID_PERSONA_POR_CEDULA(CEDULA)
 		);
+		
+		CALL INGRESAR_TURISTA_POR_IDUSUARIO(ID_USUARIO_);
 	END IF;
 END$$
 
@@ -176,11 +180,11 @@ DELIMITER ;
 -- Definición del procedimiento INGRESAR_LUGAR_SUPER
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUPER;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUPER;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
+CREATE PROCEDURE INGRESAR_ZONA_SUPER (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
@@ -188,14 +192,14 @@ CREATE PROCEDURE INGRESAR_LUGAR_SUPER (
   IN DESCRIPCION TEXT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
     descripcion,
-		ID_lugar_super
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
@@ -215,11 +219,11 @@ DELIMITER ;
 -- Definición del procedimiento INGRESAR_LUGAR_SUB
 --
 
-DROP PROCEDURE IF EXISTS INGRESAR_LUGAR_SUB;
+DROP PROCEDURE IF EXISTS INGRESAR_ZONA_SUB;
 
 DELIMITER $$
 
-CREATE PROCEDURE INGRESAR_LUGAR_SUB (
+CREATE PROCEDURE INGRESAR_ZONA_SUB (
 	IN LATITUD VARCHAR(10),
 	IN LONGITUD VARCHAR(10),
 	IN NOMBRE VARCHAR(50),
@@ -228,14 +232,14 @@ CREATE PROCEDURE INGRESAR_LUGAR_SUB (
 	IN ID_SUPER INT
 )
 BEGIN
-	INSERT INTO Lugar (
+	INSERT INTO Zona (
 		f_ingreso,
 		latitud,
 		longitud,
 		nombre,
 		cargo,
     descripcion,
-		ID_lugar_super
+		ID_zona_super
 	) VALUES (
 		NOW(),
 		LATITUD,
@@ -311,18 +315,60 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento MOSTRAR_LUGARES
+-- Definición del procedimiento MOSTRAR_ZONAS
 --
 
-DROP PROCEDURE IF EXISTS MOSTRAR_LUGARES;
+DROP PROCEDURE IF EXISTS MOSTRAR_ZONAS;
 
 DELIMITER $$
 
-CREATE PROCEDURE MOSTRAR_LUGARES (
+CREATE PROCEDURE MOSTRAR_ZONAS (
 )
 BEGIN
-	SELECT CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
-	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super );
+	SELECT sub.ID_zona, CONCAT(sub.nombre,' (',sub.cargo,')') AS 'Nombre del lugar', CONCAT(super.nombre,' (',super.cargo,')') AS 'Nivel Administrativo Superior' 
+	FROM Zona AS sub LEFT JOIN Zona AS super ON ( super.ID_zona = sub.ID_zona_super );
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento MOSTRAR_ID_LUGARES
+--
+
+DROP PROCEDURE IF EXISTS MOSTRAR_ID_LUGARES;
+
+DELIMITER $$
+
+CREATE PROCEDURE MOSTRAR_ID_LUGARES (
+)
+BEGIN
+	SELECT sub.ID_lugar AS 'Nombre del lugar', super.ID_lugar AS 'Nivel Administrativo Superior' 
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	LIMIT 20;
+END$$
+
+DELIMITER ;
+
+-- ========================================================
+
+--
+-- Definición del procedimiento OBTENER_LUGARES_POR_ID
+--
+
+DROP PROCEDURE IF EXISTS OBTENER_LUGARES_POR_ID;
+
+DELIMITER $$
+
+CREATE PROCEDURE OBTENER_LUGARES_POR_ID (
+	IN ID_LUGAR_BUSCAR INT
+)
+BEGIN
+	SELECT sub.ID_lugar
+	FROM lugar AS sub LEFT JOIN lugar AS super ON ( super.ID_lugar = sub.ID_lugar_super )
+	WHERE sub.ID_lugar_super = ID_LUGAR_BUSCAR
+	LIMIT 20;
 END$$
 
 DELIMITER ;
@@ -361,20 +407,20 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición de la función GET_ID_LUGAR_POR_NOMBRE_Y_CARGO
+-- Definición de la función GET_ID_ZONA_POR_NOMBRE_Y_CARGO
 --
 
-DROP FUNCTION IF EXISTS GET_ID_LUGAR_POR_NOMBRE_Y_CARGO;
+DROP FUNCTION IF EXISTS GET_ID_ZONA_POR_NOMBRE_Y_CARGO;
 
 DELIMITER $$
 
-CREATE FUNCTION GET_ID_LUGAR_POR_NOMBRE_Y_CARGO (
+CREATE FUNCTION GET_ID_ZONA_POR_NOMBRE_Y_CARGO (
 	NOMBRE VARCHAR(50),
 	CARGO VARCHAR(25)
 ) RETURNS INT
 BEGIN
   DECLARE ID_RESULTADO INT DEFAULT 0;
-  SET ID_RESULTADO = ( SELECT Lugar.ID_lugar FROM Lugar WHERE Lugar.cargo = CARGO AND Lugar.nombre = NOMBRE );
+  SET ID_RESULTADO = ( SELECT Zona.ID_zona FROM Zona WHERE Zona.cargo = CARGO AND Zona.nombre = NOMBRE );
   IF ( ID_RESULTADO IS NOT NULL ) THEN
     RETURN ID_RESULTADO;
   ELSE
@@ -388,37 +434,41 @@ DELIMITER ;
 -- ========================================================
 
 --
--- Definición del procedimiento INGRESAR_USUARIO_POR_CEDULA_PERSONA
+-- Definición del procedimiento BUSCAR_LUGARES
 --
 
 DROP PROCEDURE IF EXISTS BUSCAR_LUGARES;
 
 DELIMITER $$
 
-CREATE PROCEDURE BUSCAR_LUGARES(ID_LUGAR_ INT)
+CREATE PROCEDURE BUSCAR_LUGARES(ID_ZONA_ INT)
 BEGIN
 	DECLARE CARGO_ VARCHAR(25);
 
-	SET CARGO_ = (SELECT Lugar.cargo FROM Lugar WHERE id_lugar = ID_LUGAR_);
+	SET CARGO_ = (SELECT Zona.cargo FROM Zona WHERE ID_zona = ID_ZONA_);
 
-	IF CARGO_ = 'País' THEN
-		SELECT l4.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
-			INNER JOIN Lugar l4 ON l4.id_lugar_super = l3.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
+	IF CARGO_ = 'Pais' THEN
+		SELECT l5.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
+			INNER JOIN Zona l4 ON l4.id_zona_super = l3.ID_zona
+			INNER JOIN Lugar l5 ON l5.ID_zona = l4.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	ELSEIF CARGO_ = 'Provincia' THEN
-		SELECT l3.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			INNER JOIN Lugar l3 ON l3.id_lugar_super = l2.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
-	ELSEIF CARGO_ = 'Cantón' THEN
-		SELECT l2.* FROM Lugar l1 
-			INNER JOIN Lugar l2 ON l2.id_lugar_super = l1.ID_lugar
-			WHERE l1.ID_lugar = ID_LUGAR_;
-	ELSEIF CARGO_ = 'Parroquia' THEN
-		SELECT l1.* FROM Lugar l1
-			WHERE l1.ID_lugar = ID_LUGAR_;
+		SELECT l4.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Zona l3 ON l3.id_zona_super = l2.ID_zona
+			INNER JOIN Lugar l4 ON l4.ID_zona = l3.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
+	ELSEIF CARGO_ = 'Canton' THEN
+		SELECT l3.* FROM Zona l1 
+			INNER JOIN Zona l2 ON l2.id_zona_super = l1.ID_zona
+			INNER JOIN Lugar l3 ON l3.ID_zona = l2.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
+	ELSEIF CARGO_ = 'Parroquia' OR CARGO_ = 'Parroquia Rural' OR CARGO_ = 'Parroquia Urbana' THEN
+		SELECT l2.* FROM Zona l1
+			INNER JOIN Lugar l2 ON l2.ID_zona = l1.ID_zona
+			WHERE l1.ID_zona = ID_ZONA_ LIMIT 18;
 	END IF;
 
 END$$
