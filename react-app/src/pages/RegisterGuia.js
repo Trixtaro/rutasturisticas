@@ -7,7 +7,7 @@ class RegisterGuia extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <div className="RegisterTurista">
+                <div className="RegisterGuia">
                     <div className="Caja">
                         <div className="form">
                             <form>
