@@ -8,6 +8,7 @@ use App\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
@@ -36,6 +37,8 @@ class CustomAuthController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
+        DB::beginTransaction();
+
         $persona = new Persona();
         $persona->nombres = $request->json()->get('nombres');
         $persona->apellido_paterno = $request->json()->get('apellido_paterno');
@@ -47,15 +50,24 @@ class CustomAuthController extends Controller
         $persona->genero = $request->json()->get('genero');
         $persona->save();
 
+        $usuario = new Usuario();
+        $usuario->nickname = $request->json()->get('nickname');
+        $usuario->correo = $request->json()->get('correo');
+        $usuario->clave = Hash::make($request->json()->get('clave'));
+        $usuario->ID_persona = $persona->ID_persona;
+
+        $usuario->save();
+
         $usuario = User::create([
-            'nickname' => $request->json()->get('nickname'),
-            'correo' => $request->json()->get('correo'),
-            'clave' => Hash::make($request->json()->get('nickname')),
-            'ID_persona' => $persona->ID_persona
+            'clave' => 'nickname',
+            'nickname' => 'nickname',
+            'correo' => 'correo'
         ]);
 
         $token = JWTAuth::fromUser($usuario);
 
+        DB::commit();
+        
         return response()->json(compact('usuario','token',201));
     }
 

@@ -5,28 +5,32 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymor\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
     protected $table = 'Usuario';
     protected $primaryKey = 'ID_usuario';
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'ID_usuario', 'nickname', 'correo','ID_persona'
+        'ID_usuario', 'nickname', 'correo','ID_persona','clave'
     ];
 
     protected $hidden = [
         'clave', 'remember_token',
     ];
 
-    public function getJWTIdentifier(){
+    public function getJWTIdentifier()
+    {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims(){
+    public function getJWTCustomClaims()
+    {
         return [];
     }
 

@@ -10,9 +10,17 @@ class RegisterTurista extends React.Component {
         cargando: false,
         enviado: false,
         form: {
-            nombres: '',
-            apellidos: '',
-            pais: ''
+            nickname: 'Trixtaro',
+            correo: 'wilmerdavid97@hotmail.com',
+            nombres: 'Wilmer',
+            apellido_paterno: 'Cedeño',
+            apellido_materno: 'Mendoza',
+            pais: 'Ecuador',
+            f_nacimiento: '1997-10-22',
+            cedula: '1314011774',
+            pasaporte: '0',
+            genero: 'M',
+            nacionalidad: 'Ecuatoriano'
         }
     }
 
@@ -24,26 +32,14 @@ class RegisterTurista extends React.Component {
         const response = await fetch(
             `${process.env.REACT_APP_LARAVEL}/api/register`, 
                 { 
-                    method: 'post',
-                    body: this.state.form
+                    method: 'POST',
+                    body: JSON.stringify(this.state.form)
                 }
         );
         
         const respuesta = await response.json();
 
-        if(respuesta == 'Exito'){
-            this.setState({
-                enviado: true,
-                cargando: false
-            })
-        } else {
-            this.setState({
-                error: respuesta,
-                cargando: false,
-            })
-        }
-
-        console.log(this.state)
+        console.log(respuesta)
     }
 
     handleChange = e => {
