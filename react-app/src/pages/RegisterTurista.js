@@ -11,6 +11,7 @@ class RegisterTurista extends React.Component {
         enviado: false,
         form: {
             nickname: 'Trixtaro',
+            clave: 'CodeGeass',
             correo: 'wilmerdavid97@hotmail.com',
             nombres: 'Wilmer',
             apellido_paterno: 'Cedeño',

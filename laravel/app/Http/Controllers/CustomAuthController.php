@@ -16,6 +16,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\JWTManager as JWT;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class CustomAuthController extends Controller
 {
@@ -50,18 +52,11 @@ class CustomAuthController extends Controller
         $persona->genero = $request->json()->get('genero');
         $persona->save();
 
-        $usuario = new Usuario();
-        $usuario->nickname = $request->json()->get('nickname');
-        $usuario->correo = $request->json()->get('correo');
-        $usuario->clave = Hash::make($request->json()->get('clave'));
-        $usuario->ID_persona = $persona->ID_persona;
-
-        $usuario->save();
-
         $usuario = User::create([
-            'clave' => 'nickname',
-            'nickname' => 'nickname',
-            'correo' => 'correo'
+            'nickname' => $request->json()->get('nickname'),
+            'clave' => Hash::make($request->json()->get('clave')),
+            'correo' => $request->json()->get('correo'),
+            'ID_persona' => $persona->id_persona
         ]);
 
         $token = JWTAuth::fromUser($usuario);
@@ -69,6 +64,45 @@ class CustomAuthController extends Controller
         DB::commit();
         
         return response()->json(compact('usuario','token',201));
+    }
+
+    public function login(Request $request){
+        
+        $credentials = $request->json()->all();
+
+        // $credentials = $request->only('nickname','password');
+
+        // return $credentials;
+
+        try{
+            if(! $token = JWTAuth::attempt($credentials)){
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+        } catch(JWTException $e){
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        return response()->json(compact('token'));
+
+    }
+
+    public function getAuthenticatedUser(){
+        try{
+            if(!$usuario = JWTAuth::parseToken()->authenticate()){
+                return response()->json(['user_not_found'],404);
+            }
+        } catch (TokenExpiredException $e){
+            return response()->json(['token_expired'], $e->getStatusCode());
+        }
+        catch (TokenInvalidException $e){
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        }
+        catch (JWTException $e){
+            return response()->json(['token_absent'], 401);
+        }
+
+        return response()->json(compact('usuario'));
+
     }
 
 }
