@@ -10,6 +10,7 @@
 
 .Navbar .user-panel {
     display: flex;
+    position: relative;
 }
 
 .Navbar .user-panel div {
@@ -45,4 +46,35 @@
 
 .separador {
     border-right: 2px white groove;
+}
+
+.Navbar .user-panel .flechita{
+    border: none;
+    font-size: 1.5rem;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    width: 30px;
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar .user-panel .user-panel-options{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    border: 2px solid green;
+    border-radius: 10px;
+    right: 10px;
+    top: 70px;
+}
+
+.Navbar .user-panel .user-panel-options>*{
+    margin: 10px 0;
+    width: 100%;
+    text-align: right;
+    border-bottom: 2px dashed #DDD;
 }

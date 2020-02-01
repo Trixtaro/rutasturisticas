@@ -18,3 +18,7 @@ a{
   .rojo{
     color: red;
   }
+
+.invisible{
+    display: none !important;
+}
