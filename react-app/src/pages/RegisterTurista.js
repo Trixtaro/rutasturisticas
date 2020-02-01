@@ -95,8 +95,15 @@ class RegisterTurista extends React.Component {
                                             </select>
                                         </div>
                                         <div className="field">
+                                            <label>Género</label>
+                                            <select name="genero" onChange={this.handleChange} value={this.state.form.genero}>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
+                                            </select>
+                                        </div>
+                                        <div className="field">
                                             <label htmlFor="usuario">Usuario:</label>
-                                            <input type="text" id="usuario" name="usuario" onChange={this.handleChange} value={this.state.form.usuario}></input>
+                                            <input type="text" id="usuario" name="nickname" onChange={this.handleChange} value={this.state.form.nickname}></input>
                                         </div>
                                         <div className="field">
                                             <label htmlFor="pasaporte">Pasaporte:</label>
