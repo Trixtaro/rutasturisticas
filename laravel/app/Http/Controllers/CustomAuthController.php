@@ -56,7 +56,7 @@ class CustomAuthController extends Controller
             'nickname' => $request->json()->get('nickname'),
             'clave' => Hash::make($request->json()->get('clave')),
             'correo' => $request->json()->get('correo'),
-            'ID_persona' => $persona->id_persona
+            'ID_persona' => $persona->ID_persona
         ]);
 
         $token = JWTAuth::fromUser($usuario);
