@@ -23,12 +23,19 @@ function App () {
                 <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />
+                <Route exact path="/logout" component={Logout} />
                 <Route exact path="/404" component={Page404} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
                 <Redirect path="*" to="/404" />
             </Switch>
         </BrowserRouter>
     );
+}
+
+const Logout = () => {
+    localStorage.removeItem('usertoken');
+
+    return <Redirect to="/"/>;
 }
 
 export default App;

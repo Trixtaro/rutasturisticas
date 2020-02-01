@@ -1,0 +1,5 @@
+Link: https://www.nigmacode.com/laravel/JWT-en-Laravel
+
+En el link estan los pasos para instalar JWT
+
+

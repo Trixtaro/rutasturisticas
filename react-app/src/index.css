@@ -9,3 +9,16 @@ body {
 a{
     text-decoration: none;
 }
+
+
+.center{
+    text-align: center;
+  }
+  
+  .rojo{
+    color: red;
+  }
+
+.invisible{
+    display: none !important;
+}
