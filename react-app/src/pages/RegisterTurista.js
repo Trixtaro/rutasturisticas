@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import './styles/RegisterTurista.css';
 
@@ -37,9 +37,14 @@ class RegisterTurista extends React.Component {
                 }
         );
         
-        const respuesta = await response.json();
-
-        console.log(respuesta)
+        const data = await response.json();
+        
+        if(data.token){
+            localStorage.setItem('usertoken',data.token)
+            this.props.history.push(`/`);
+        } else {
+            alert(data)
+        }
     }
 
     handleChange = e => {
@@ -148,4 +153,4 @@ class RegisterTurista extends React.Component {
     }
 }
 
-export default RegisterTurista;
+export default withRouter(RegisterTurista);
