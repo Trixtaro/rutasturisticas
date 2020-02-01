@@ -10,10 +10,10 @@ class LugarResource2 extends JsonResource
     public function toArray($request)
     {
         return [
-            'latitud' => $this->latitud,
-            'longitud' => $this->longitud,
+            'id' => $this->ID_lugar,
             'nombre' => $this->nombre,
-            'cargo' => $this->cargo
+            'descripcion' => $this->descripcion,
+            'foto' => $this->URL_img
         ]; 
     }
 }

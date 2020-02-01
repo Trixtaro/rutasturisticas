@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles/Lugar.css';
 
@@ -10,11 +11,13 @@ class Lugar extends React.Component{
     
     render () {
         return (
-            <div className={`Lugar ${this.props.clases}`}>
-                <img src={ this.props.imagen } alt="Lugar" />
-                <h1 className="titulo-lugar">{ this.props.titulo }</h1>
-                <p>{ this.props.descripcion }</p>
-            </div>
+            <Link to={`/lugar/${this.props.lugar.id}`}>
+                <div className={`Lugar ${this.props.clases}`} title={ this.props.lugar.nombre }>
+                    <img src={ this.props.lugar.foto } alt={this.props.lugar.nombre}/>
+                    <h1 className="titulo-lugar">{ this.props.lugar.nombre }</h1>
+                    <p>{ this.props.lugar.descripcion }</p>
+                </div>
+            </Link>
         );
     }
 }
