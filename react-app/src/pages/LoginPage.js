@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
-import {getProfile} from '../functions/Functions';
-
 import './styles/LoginPage.css';
 
 import Spinner from '../components/General/Spinner';
@@ -20,11 +18,6 @@ class Login extends React.Component {
             nickname: '',
             password: ''
         }
-    }
-
-    async componentDidMount(){
-        const data = await getProfile();
-        console.log(data)
     }
 
     handleSubmit = async (e) => {
@@ -73,7 +66,7 @@ class Login extends React.Component {
 
     render () {
 
-        if(this.state.logueado){
+        if(this.state.logueado || localStorage.usertoken){
             return <Redirect to="/" />;
         }
 
