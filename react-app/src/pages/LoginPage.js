@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
+import {getProfile} from '../functions/Functions';
 
 import './styles/LoginPage.css';
+
+import Spinner from '../components/General/Spinner';
 
 import IconPeople1 from "../images/iconfinder_User_4200769.svg";
 import IconLock1 from "../images/iconfinder_102_111044.svg";
@@ -11,11 +15,16 @@ class Login extends React.Component {
     state = {
         error : '',
         cargando: false,
-        enviado: false,
+        logueado: '',
         form: {
             nickname: '',
             password: ''
         }
+    }
+
+    async componentDidMount(){
+        const data = await getProfile();
+        console.log(data)
     }
 
     handleSubmit = async (e) => {
@@ -24,7 +33,7 @@ class Login extends React.Component {
         console.log('hola')
 
         this.setState({cargando: true});
-
+        
         const response = await fetch(
             `${process.env.REACT_APP_LARAVEL}/api/login`, 
                 { 
@@ -34,8 +43,23 @@ class Login extends React.Component {
         );
 
         const respuesta = await response.json();
+        
+        if(respuesta.token){
 
-        console.log(respuesta)
+            localStorage.setItem('usertoken',respuesta.token)
+
+            this.setState({
+                logueado: true,
+                cargando: false
+            })
+
+        } else if(respuesta.error){
+            this.setState({
+                error: respuesta.error,
+                cargando: false
+            })
+        }
+    
     }
 
     handleChange = e => {
@@ -48,6 +72,11 @@ class Login extends React.Component {
     }
 
     render () {
+
+        if(this.state.logueado){
+            return <Redirect to="/" />;
+        }
+
         return (
             <React.Fragment>
                 <div className="LoginPage">
@@ -57,14 +86,17 @@ class Login extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="field">
                             <img src={IconPeople1} alt="Icono Persona 1"></img>
-                            <input type="text" id="usuario" name="nickname" placeholder="Usuario" onChange={this.handleChange} value={this.state.form.nickname}/>
+                            <input type="text" id="usuario" name="nickname" placeholder="Usuario" onChange={this.handleChange} value={this.state.form.nickname} required/>
                         </div>
                         <div className="field">
                             <img src={IconLock1} alt="Icono Candado 1"></img>
-                            <input type="password" id="clave" name="password" placeholder="Contraseña"  onChange={this.handleChange} value={this.state.form.clave} />
+                            <input type="password" id="clave" name="password" placeholder="Contraseña"  onChange={this.handleChange} value={this.state.form.clave} required/>
                         </div>
-                        <button>Iniciar</button>
+                        <button className="boton">Iniciar</button>
                     </form>
+                    {
+                        (this.state.cargando) && <Spinner />
+                    }
                 </div>
             </React.Fragment>
         );
