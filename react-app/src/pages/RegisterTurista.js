@@ -101,14 +101,16 @@ class RegisterTurista extends React.Component {
                                         <input type="text" id="nombres" name="nombres" onChange={this.handleChange} value={this.state.nombres}></input>
                                     </div>
 
-                                    <div className="field">
-                                        <label className='label' htmlFor="apellido-p">Apellido Paterno:</label>
-                                        <input type="text" id="apellido-p" name="apellido_paterno" onChange={this.handleChange} value={this.state.apellido_paterno}></input>
-                                    </div>
+                                    <div className='group-field'>
+                                        <div className="field">
+                                            <label className='label' htmlFor="apellido-p">Apellido Paterno:</label>
+                                            <input type="text" id="apellido-p" name="apellido_paterno" onChange={this.handleChange} value={this.state.apellido_paterno}></input>
+                                        </div>
 
-                                    <div className="field">
-                                        <label className='label' htmlFor="apellido-m">Apellido Materno:</label>
-                                        <input type="text" id="apellido-m" name="apellido_materno" onChange={this.handleChange} value={this.state.apellido_materno}></input>
+                                        <div className="field">
+                                            <label className='label' htmlFor="apellido-m">Apellido Materno:</label>
+                                            <input type="text" id="apellido-m" name="apellido_materno" onChange={this.handleChange} value={this.state.apellido_materno}></input>
+                                        </div>
                                     </div>
 
                                     <div className="field-select">
@@ -152,16 +154,17 @@ class RegisterTurista extends React.Component {
                                         <input type="date" id="f-nacimiento" name="f_nacimiento" onChange={this.handleChange} value={this.state.form.f_nacimiento}></input>
                                     </div>
 
-                                    <div className="field">
-                                        <label className='label' htmlFor="clave">Contraseña:</label>
-                                        <input type="password" id="clave" name="clave" onChange={this.handleChange} value={this.state.form.clave}></input>
-                                    </div>
+                                    <div className='group-field'>
+                                        <div className="field">
+                                            <label className='label' htmlFor="clave">Contraseña:</label>
+                                            <input type="password" id="clave" name="clave" onChange={this.handleChange} value={this.state.form.clave}></input>
+                                        </div>
 
-                                    <div className="field">
-                                        <label className='label' htmlFor="clave2">Repetir contraseña:</label>
-                                        <input type="password" id="clave2" name="clave2"></input>
+                                        <div className="field">
+                                            <label className='label' htmlFor="clave2">Repetir contraseña:</label>
+                                            <input type="password" id="clave2" name="clave2"></input>
+                                        </div>
                                     </div>
-
                                     <div className="btn-accion">
                                         <button>Registrarse</button>
                                     </div>

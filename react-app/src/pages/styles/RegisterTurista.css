@@ -37,14 +37,17 @@
 .RegisterTurista .nombre {
     font-size: 14px;
     line-height: 1.4286;
+    margin-bottom: 16px;
 }
 
 .RegisterTurista .nombre h1 {
     color: #0f473d;
 }
 
-.RegisterTurista .cuerpo .field:first-child {
-    margin-top: 16px;
+.RegisterTurista form .group-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .RegisterTurista form .field {
