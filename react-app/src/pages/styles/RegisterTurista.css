@@ -200,6 +200,12 @@
     opacity: 0.5;
 }
 
+.RegisterTurista form .field-date {
+    position: relative;
+    width: 350px;
+    margin-bottom: 32px;
+}
+
 .RegisterTurista .btn-accion {
     position: absolute;
 }

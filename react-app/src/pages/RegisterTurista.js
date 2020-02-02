@@ -147,7 +147,7 @@ class RegisterTurista extends React.Component {
                                         <input type="email" id="correo" name="correo" onChange={this.handleChange} value={this.state.form.correo}></input>
                                     </div>
 
-                                    <div className="field">
+                                    <div className="field-date">
                                         <label className='label' htmlFor="f-nacimiento">Fecha de nacimiento:</label>
                                         <input type="date" id="f-nacimiento" name="f_nacimiento" onChange={this.handleChange} value={this.state.form.f_nacimiento}></input>
                                     </div>
