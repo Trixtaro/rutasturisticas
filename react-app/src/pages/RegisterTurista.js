@@ -60,22 +60,15 @@ class RegisterTurista extends React.Component {
         if (document.forms.length === 1) {
             var focusInput = function () {
                 this.parentElement.children[0].className = "label active";
-                this.parentElement.children[1].className = this.parentElement.children[1].className.replace("error", "");
-                /*console.log("focusInput");
-                console.log(this.parentElement);*/
             };
 
             var blurInput = function () {
-                /*console.log("blurInput");
-                console.log(this.parentElement);*/
                 if (this.value <= 0) {
                     this.parentElement.children[0].className = "label";
-                    this.parentElement.children[1].className = this.parentElement.children[1].className + " error";
                 }
             };
             var formulario = document.forms[0],
                 elementos = formulario.elements;
-            console.log(formulario,elementos);
             for (var i = 0; i < elementos.length; i++) {
                 if (elementos[i].type == "text" || elementos[i].type == "email" || elementos[i].type == "password") {
                     elementos[i].addEventListener("focus", focusInput);
@@ -118,20 +111,25 @@ class RegisterTurista extends React.Component {
                                         <input type="text" id="apellido-m" name="apellido_materno" onChange={this.handleChange} value={this.state.apellido_materno}></input>
                                     </div>
 
-                                    <div className="field">
-                                        <label className='label'>País de Origen</label>
-                                        <select name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}>
-                                            <option value="0">Seleccione...</option>
+                                    <div className="field-select">
+                                        <select className='select-text' name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}>
+                                            <option value="" disabled selected></option>
                                             <option value="Ecuador">Ecuador</option>
                                         </select>
+                                        <span class="select-highlight"></span>
+                                        <span class="select-bar"></span>
+                                        <label className='select-label'>País de Origen</label>
                                     </div>
 
-                                    <div className="field">
-                                        <label className='label'>Género</label>
-                                        <select name="genero" onChange={this.handleChange} value={this.state.form.genero}>
+                                    <div className="field-select">
+                                        <select className='select-text' name="genero" onChange={this.handleChange} value={this.state.form.genero}>
+                                            <option value="" disabled selected></option>
                                             <option value="M">Masculino</option>
                                             <option value="F">Femenino</option>
                                         </select>
+                                        <span class="select-highlight"></span>
+                                        <span class="select-bar"></span>
+                                        <label className='select-label'>Género</label>
                                     </div>
 
                                     <div className="field">

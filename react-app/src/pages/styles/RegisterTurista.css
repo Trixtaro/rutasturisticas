@@ -98,6 +98,108 @@
     color: $divider;
 }
 
+.RegisterTurista form .field-select {
+    position: relative;
+    width: 350px;
+    margin-bottom: 32px;
+}
+
+.RegisterTurista form .field-select .select-text {
+    position: relative;
+    font-family: inherit;
+    background-color: transparent;
+    width: 350px;
+    padding: 10px 10px 10px 0;
+    font-size: 18px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0, 0.12);
+}
+
+.RegisterTurista form .field-select .select-text:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(0,0,0, 0);
+}
+
+.RegisterTurista form .field-select .select-text {
+    appearance: none;
+    -webkit-appearance:none
+}
+
+.RegisterTurista form .field-select:after {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+.RegisterTurista form .field-select .select-label {
+    /*color: rgba(0,0,0, 0.26);
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;*/
+}
+
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-label, 
+.RegisterTurista form .field-select .select-text:valid ~ .RegisterTurista form .field-select .select-label {
+    color: #2F80ED;
+    top: -20px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+}
+
+.RegisterTurista form .field-select .select-bar {
+    position: relative;
+    display: block;
+    width: 350px;
+}
+
+.RegisterTurista form .field-select .select-bar:before, 
+.RegisterTurista form .field-select .select-bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #2F80ED;
+    transition: 0.2s ease all;
+}
+
+.RegisterTurista form .field-select .select-bar:before {
+    left: 50%;
+}
+
+.RegisterTurista form .field-select .select-bar:after {
+    right: 50%;
+}
+
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-bar:before, 
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-bar:after {
+    width: 50%;
+}
+
+.RegisterTurista form .field-select .select-highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .RegisterTurista .btn-accion {
     position: absolute;
 }
