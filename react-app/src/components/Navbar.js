@@ -1,25 +1,20 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
-
 import {getProfile} from '../functions/Functions';
-
 import './styles/Navbar.css';
 
 class Navbar extends React.Component {
-
     state = {
         usuario: null,
         persona: null
     }
 
-    async componentDidMount(){
-        
+    async componentDidMount () {
         const data = await getProfile()
-        
-        if(data == 'token_expired' || data == 'token_invalid' ){
+
+        if (data === 'token_expired' || data === 'token_invalid' ) {
             localStorage.removeItem('usertoken');
-            
+
             this.setState({
                 usuario: null,
                 persona: null
@@ -33,18 +28,12 @@ class Navbar extends React.Component {
             usuario: data.usuario,
             persona: data.persona
         })
-
-
         console.log(this.state)
-
     }
 
     toggleOptions = () => {
-        
         const $options = document.querySelector('.user-panel-options')
-
         $options.classList.toggle('invisible')
-
     }
 
     render () {

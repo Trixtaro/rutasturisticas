@@ -1,19 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import foto from '../images/montecristi.jpg';
-
 import './styles/SolicitudGuias.css';
 
-class SolicitudGuias extends React.Component{
-
+class SolicitudGuias extends React.Component {
     guia = {
         nombres : 'Wilmer Cedeño',
         foto : foto,
         descripcion : 'Soy muy guapo'
     };
 
-    render(){
+    render () {
         return (
             <div className="SolicitudGuias">
                 <div className="opciones">
@@ -56,7 +53,6 @@ class SolicitudGuias extends React.Component{
             </div>
         );
     }
-
 }
 
 export default SolicitudGuias;
