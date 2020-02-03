@@ -3,11 +3,10 @@
     background-position-y: -400px;
     background-size: cover;
     min-height: 100vh;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     align-content: center
 }
@@ -57,13 +56,15 @@
 }
 
 .LoginPage .boton {
+    align-self: center;
+    border: none;
     background: #01aef0;
     color: white;
     padding: 2px 7px;
-    border-radius: 5px;
-    align-self: flex-end;
-    width: 57px;
-    height: 30px;
+    border: 2px white solid;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
     font-size: 22px;
-    margin-right: 20px;
+    cursor: pointer;
 }

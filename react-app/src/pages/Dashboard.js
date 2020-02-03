@@ -1,11 +1,9 @@
 import React from 'react';
-
 import Buscador from '../components/Buscador';
 import Lugar from '../components/Lugar';
 import montecristi from '../images/montecristi.jpg';
 import portoviejo from '../images/portoviejo.jpg';
 import manta from '../images/manta.jpg';
-
 import './styles/Dashboard.css';
 
 class Dashboard extends React.Component {

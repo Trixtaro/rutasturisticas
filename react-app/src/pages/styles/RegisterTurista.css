@@ -8,6 +8,7 @@
     background: url('./../../images/bg-1.jpeg') no-repeat;
     background-position-y: -400px;
     background-size: cover;
+    padding: 50px;
 }
 
 .RegisterTurista:before,
@@ -16,74 +17,204 @@
     display:block;
     box-flex:1;
     flex-grow:1;
-    height:24px
+    height:64px
 }
 
 .RegisterTurista .Caja {
-    background: white;
-    width: 750px;
-    border-radius: 8px;
-    border: 1px solid #dadce0;
-    display: block;
-    flex-shrink: 0;
-    margin: 0 auto;
-    position: relative;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0px 0px 3px grey;
+    display: flex;
+    flex-direction: column;
 }
 
-.RegisterTurista .form {
-    display: flex;
-    height: auto;
-    min-height: 250px;
-    padding: 48px 40px 36px;
-    overflow: hidden;
+.RegisterTurista form {
+    width: 100%;
+    margin: auto;
 }
 
 .RegisterTurista .nombre {
     font-size: 14px;
     line-height: 1.4286;
+    margin-bottom: 16px;
 }
 
 .RegisterTurista .nombre h1 {
     color: #0f473d;
 }
 
-.RegisterTurista .cuerpo {
-    padding: 24px 0 0;
-}
-
-.RegisterTurista .datos {
+.RegisterTurista form .group-field {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.RegisterTurista .datos .field:first-child {
-    margin-right: 16px;
+.RegisterTurista form .field {
+    position: relative;
+    margin-bottom: 32px;
 }
 
-.RegisterTurista .field {
-    padding: 8px 0 8px;
-    height: 36px;
+.RegisterTurista form .field input[type="text"],
+.RegisterTurista form .field input[type="email"],
+.RegisterTurista form .field input[type="password"] {
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    padding: 15px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #BBDEFB;
 }
 
-.RegisterTurista .field input,
-.RegisterTurista .field select {
-    width: 75%;
+.RegisterTurista form .field input[type="text"]:focus,
+.RegisterTurista form .field input[type="email"]:focus,
+.RegisterTurista form .field input[type="password"]:focus,
+.RegisterTurista form .field input[type="text"]:active,
+.RegisterTurista form .field input[type="email"]:active,
+.RegisterTurista form .field input[type="password"]:active{
+    outline: none;
+    border-bottom: 2px solid #303F9F;
 }
 
-.RegisterTurista .botones {
-    align-items: center;
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 32px;
-    min-height: 48px;
-    padding-bottom: 0;
+.RegisterTurista form .field label {
+    color: #303F9F;
 }
+
+.RegisterTurista form .field label.label {
+    color: #303F9F;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    margin-left: 15px;
+    font-size: 16px;
+    line-height: 16px;
+    position: absolute;
+    top: 16px;
+    left: 0;
+}
+
+.RegisterTurista form .field label.label.active {
+    top: -12px;
+    font-size: 12px;
+    line-height: 12px;
+    color: $divider;
+}
+
+.RegisterTurista form .field-select {
+    position: relative;
+    width: 350px;
+    margin-bottom: 32px;
+}
+
+.RegisterTurista form .field-select .select-text {
+    position: relative;
+    font-family: inherit;
+    background-color: transparent;
+    width: 350px;
+    padding: 10px 10px 10px 0;
+    font-size: 18px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0, 0.12);
+}
+
+.RegisterTurista form .field-select .select-text:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(0,0,0, 0);
+}
+
+.RegisterTurista form .field-select .select-text {
+    appearance: none;
+    -webkit-appearance:none
+}
+
+.RegisterTurista form .field-select:after {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+.RegisterTurista form .field-select .select-label {
+    /*color: rgba(0,0,0, 0.26);
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;*/
+}
+
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-label, 
+.RegisterTurista form .field-select .select-text:valid ~ .RegisterTurista form .field-select .select-label {
+    color: #2F80ED;
+    top: -20px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+}
+
+.RegisterTurista form .field-select .select-bar {
+    position: relative;
+    display: block;
+    width: 350px;
+}
+
+.RegisterTurista form .field-select .select-bar:before, 
+.RegisterTurista form .field-select .select-bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #2F80ED;
+    transition: 0.2s ease all;
+}
+
+.RegisterTurista form .field-select .select-bar:before {
+    left: 50%;
+}
+
+.RegisterTurista form .field-select .select-bar:after {
+    right: 50%;
+}
+
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-bar:before, 
+.RegisterTurista form .field-select .select-text:focus ~ .RegisterTurista form .field-select .select-bar:after {
+    width: 50%;
+}
+
+.RegisterTurista form .field-select .select-highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.RegisterTurista form .field-date {
+    position: relative;
+    width: 350px;
+    margin-bottom: 32px;
+}
+
 .RegisterTurista .btn-accion {
     position: absolute;
 }
+
 .RegisterTurista .btn-accion button {
     color: #0f473d;
     background: transparent;
@@ -99,21 +230,6 @@
       color: white;
  }
 
-.RegisterTurista .botones span span{
-    margin: 8px 16px;
-    color: #fff;
-    font-family: 'Google Sans',arial,sans-serif;
-    font-weight: 500;
-    letter-spacing: .25px;
-    line-height: 36px;
-}
-
-.RegisterTurista .botones span {
-    position: relative;
-}
-
 .RegisterTurista .regresar {
     height: 16.8px;
-    position: absolute;
-    bottom: -20px;
 }

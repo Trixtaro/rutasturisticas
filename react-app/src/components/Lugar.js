@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import './styles/Lugar.css';
 
 class Lugar extends React.Component{
-    
-    componentDidMount () {
+    componentDidMount () {}
 
-    }
-    
     render () {
         return (
             <Link to={`/lugar/${this.props.lugar.id}`}>
