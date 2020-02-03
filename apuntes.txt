@@ -2,4 +2,6 @@ Link: https://www.nigmacode.com/laravel/JWT-en-Laravel
 
 En el link estan los pasos para instalar JWT
 
+Para que ReactJS pueda usar el archivo para las variables de entorno:
 
+    npm start NOMBRE_ARCHIVO_ENV
