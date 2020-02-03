@@ -9,7 +9,8 @@ import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
 import SolicitudGuias from '../pages/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
-import RegisterGuia from '../pages/RegisterGuia'
+import RegisterGuia from '../pages/RegisterGuia';
+import AdminLugar from '../pages/admin/lugar/LugarPage';
 
 function App () {
     return (
@@ -24,6 +25,8 @@ function App () {
                 <Route exact path="/logout" component={Logout} />
                 <Route exact path="/404" component={Page404} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
+
+                <Route exact path="/admin/lugar" component={AdminLugar} />
                 <Redirect path="*" to="/404" />
             </Switch>
         </BrowserRouter>
