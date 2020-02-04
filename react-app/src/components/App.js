@@ -23,8 +23,8 @@ function App () {
                 <AppRoute exact path="/" component={Dashboard} layout={Layout} />
                 <AppRoute exact path="/lugares/:id" component={BuscarLugares} layout={Layout} />
                 <AppRoute exact path="/lugar/:id" component={LugarPage} layout={Layout} />
-                <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
 
+                <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={AdminLayout} />
                 <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
 
                 <Route exact path="/login" component={Login} />
