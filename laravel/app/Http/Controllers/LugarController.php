@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Lugar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\LugarResource;
 use App\Http\Resources\LugarResource2;
+use Illuminate\Support\Facades\Validator;
 
-class LugarController extends Controller
-{
+class LugarController extends Controller {
 
     public function index()
     {
@@ -20,9 +21,31 @@ class LugarController extends Controller
         //
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function store (Request $request) {
+        $validator = Validator::make($request->json()->all() ,[
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'altura_sobre_nivel_del_mar' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required',
+            'imagen' => 'required',
+            'ID_zona' => 'required',
+        ]);
+        
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $lugar = new Lugar();
+        $lugar->nombre = $request->json()->get('nombre');
+        $lugar->descripcion = $request->json()->get('descripcion');
+        $lugar->altura_sobre_nivel_del_mar = $request->json()->get('cargo');
+        $lugar->latitud = $request->json()->get('latitud');
+        $lugar->longitud = $request->json()->get('longitud');
+        $lugar->URL_img = $request->json()->get('imagen');
+        $lugar->ID_zona = $request->json()->get('ID_zona');
+        $lugar->save();
+
+        return response()->json(compact('lugar',201));
     }
 
     public function show($id_lugar)
