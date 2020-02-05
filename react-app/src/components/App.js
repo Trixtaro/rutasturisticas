@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AppRoute from '../components/AppRoute';
 import Layout from './Layout';
 import AdminLayout from '../components/AdminLayout';
-
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/LoginPage';
 import BuscarLugares from '../pages/LugaresPage';
@@ -26,6 +25,8 @@ function App () {
 
                 <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={AdminLayout} />
                 <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
 
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />
@@ -33,8 +34,6 @@ function App () {
                 <Route exact path="/404" component={Page404} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
 
-                <Route exact path="/admin/lugar" component={AdminLugar} />
-                <Route exact path="/admin/zona" component={AdminZona} />
                 <Redirect path="*" to="/404" />
             </Switch>
         </BrowserRouter>

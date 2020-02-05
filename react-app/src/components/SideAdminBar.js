@@ -19,10 +19,16 @@ class SideAdminBar extends React.Component{
                             <h3>Home</h3>
                         </div>
                     </Link>
-                    <Link to="/admin/lugares">
+                    <Link to="/admin/lugar">
                         <div className="item">
                             <i class="fas fa-map-marked-alt"></i>
-                            <h3>Agregar lugar</h3>
+                            <h3>Lugares</h3>
+                        </div>
+                    </Link>
+                    <Link to="/admin/zona">
+                        <div className="item">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <h3>Zonas</h3>
                         </div>
                     </Link>
                     <Link to="/admin/solicitudes">
