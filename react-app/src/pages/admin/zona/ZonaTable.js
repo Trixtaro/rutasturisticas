@@ -4,14 +4,20 @@ class ZonaTable extends React.Component {
     tabla () {
         return (
             <table>
-                <tr>
-                    <th>Latitud</th>
-                    <th>Longitud</th>
-                    <th>Nombre</th>
-                    <th>Cargo</th>
-                    <th>Descripción</th>
-                </tr>
-                <tr></tr>
+                <thead>
+                    <tr>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Nombre</th>
+                        <th>Cargo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                    </tr>
+                </tbody>
             </table>
         );
     }

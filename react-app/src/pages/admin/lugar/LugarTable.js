@@ -44,20 +44,25 @@ class LugarTable extends React.Component {
     tabla () {
         return (
             <table>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Altura sobre nivel del mar</th>
-                    <th>Latitud</th>
-                    <th>Longitud</th>
-                    <th>Imagen</th>
-                    <th>ID Zona</th>
-                    <th>Acciones</th>
-                </tr>
-                <tr> { this.listar()==null ? this.cargando() : this.listar() } </tr>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Altura sobre nivel del mar</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Imagen</th>
+                        <th>ID Zona</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { this.listar()==null ? this.cargando() : this.listar() }
+                </tbody>
             </table>
         );
     }
+
     render () {
         return ( this.tabla() );
     }
