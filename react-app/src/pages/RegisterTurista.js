@@ -26,9 +26,9 @@ class RegisterTurista extends React.Component {
         e.preventDefault()
 
         this.setState({cargando: true});
-
+        let rutaServer = `${process.env.REACT_APP_LARAVEL}/api/register`;
         const response = await fetch(
-            `${process.env.REACT_APP_LARAVEL}/api/register`, 
+             rutaServer,
                 { 
                     method: 'POST',
                     body: JSON.stringify(this.state.form)
@@ -37,7 +37,7 @@ class RegisterTurista extends React.Component {
 
         const data = await response.json();
 
-        if(data.token){
+        if (data.token) {
             localStorage.setItem('usertoken',data.token)
             this.props.history.push(`/`);
         } else {
@@ -110,8 +110,8 @@ class RegisterTurista extends React.Component {
                                             <option value="" disabled selected></option>
                                             <option value="Ecuador">Ecuador</option>
                                         </select>
-                                        <span class="select-highlight"></span>
-                                        <span class="select-bar"></span>
+                                        <span className="select-highlight"></span>
+                                        <span className="select-bar"></span>
                                         <label className='select-label'>País de Origen</label>
                                     </div>
                                     <div className="field-select">
@@ -120,8 +120,8 @@ class RegisterTurista extends React.Component {
                                             <option value="M">Masculino</option>
                                             <option value="F">Femenino</option>
                                         </select>
-                                        <span class="select-highlight"></span>
-                                        <span class="select-bar"></span>
+                                        <span className="select-highlight"></span>
+                                        <span className="select-bar"></span>
                                         <label className='select-label'>Género</label>
                                     </div>
                                     <div className="field">

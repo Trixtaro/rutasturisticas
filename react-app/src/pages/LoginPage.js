@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './styles/LoginPage.css';
 import Spinner from '../components/General/Spinner';
 import IconPeople1 from "../images/iconfinder_User_4200769.svg";
@@ -67,9 +67,11 @@ class Login extends React.Component {
         return (
             <React.Fragment>
                 <div className="LoginPage">
-                    <div className="icono">
-                        <img src={IconPeople1} alt="Icono Persona 1"></img>
-                    </div>                    
+                    <Link to="./">
+                        <div className="icono">
+                            <img src={IconPeople1} alt="Icono Persona 1"></img>
+                        </div>
+                    </Link>            
                     <form onSubmit={this.handleSubmit}>
                         <div className="field">
                             <img src={IconPeople1} alt="Icono Persona 1"></img>
