@@ -14,7 +14,6 @@ class Buscador extends React.Component {
     async componentDidMount () {
         try {
             const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/zonas`);
-            console.log(response)
             const data = await response.json();
             this.setState({
                 'datos': data.data
