@@ -11,7 +11,7 @@ class LugaresPage extends React.Component {
 
     async componentDidMount () {
 
-        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
+        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/zonas/${this.props.match.params.id}`);
             const data = await response.json();
             this.setState({
                 lugares: data.data

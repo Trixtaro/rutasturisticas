@@ -12,8 +12,7 @@ class LugarController extends Controller
 
     public function index()
     {
-        $zonas = DB::select(DB::raw('CALL MOSTRAR_ZONAS()'));
-        return LugarResource::collection(collect($zonas));
+        
     }
 
     public function create()
