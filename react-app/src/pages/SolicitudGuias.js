@@ -13,10 +13,6 @@ class SolicitudGuias extends React.Component {
     render () {
         return (
             <div className="SolicitudGuias">
-                <div className="opciones">
-                    <button>Perfil</button>
-                    <button>Solicitud de Guias</button>
-                </div>
                 <div className="panel">
                     <div className="informacion">
                         <div className="foto-frame">
