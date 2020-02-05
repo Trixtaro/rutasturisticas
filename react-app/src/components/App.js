@@ -3,6 +3,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AppRoute from '../components/AppRoute';
 import Layout from './Layout';
+import AdminLayout from '../components/AdminLayout';
+
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/LoginPage';
 import Register from '../pages/RegisterPage';
@@ -11,7 +13,8 @@ import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
 import SolicitudGuias from '../pages/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
-import RegisterGuia from '../pages/RegisterGuia'
+import RegisterGuia from '../pages/RegisterGuia';
+import AdminHomePage from '../pages/AdminHomePage';
 
 function App () {
     return (
@@ -20,7 +23,10 @@ function App () {
                 <AppRoute exact path="/" component={Dashboard} layout={Layout} />
                 <AppRoute exact path="/lugares/:id" component={BuscarLugares} layout={Layout} />
                 <AppRoute exact path="/lugar/:id" component={LugarPage} layout={Layout} />
-                <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={Layout} />
+
+                <AppRoute exact path="/admin/solicitudes" component={SolicitudGuias} layout={AdminLayout} />
+                <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
+
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />
                 <Route exact path="/logout" component={Logout} />
