@@ -13,6 +13,7 @@ import RegisterTurista from '../pages/RegisterTurista';
 import RegisterGuia from '../pages/RegisterGuia';
 import AdminLugar from '../pages/admin/lugar/LugarPage';
 import AdminZona from '../pages/admin/zona/ZonaPage';
+import AdminAgregarZona from '../pages/admin/zona/agregarZona';
 import AdminHomePage from '../pages/AdminHomePage';
 
 function App () {
@@ -27,6 +28,7 @@ function App () {
                 <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
                 <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
                 <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
 
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />
