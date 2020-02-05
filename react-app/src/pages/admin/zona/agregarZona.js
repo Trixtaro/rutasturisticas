@@ -16,6 +16,36 @@ class agregarZona extends React.Component {
         }
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(
+                `${process.env.REACT_APP_LARAVEL}/api/zona`, 
+                    { 
+                        method: 'POST',
+                        body: JSON.stringify(this.state.form)
+                    }
+            );
+    
+            const respuesta = await response.json();
+    
+            console.log("El formulario respondio con ", respuesta);
+        } catch (error) {
+            console.log("<Error handleLoguear componente 'agregarZona'>");
+            console.log(error);
+            console.log("<Error handleLoguear componente 'agregarZona'/>");
+        }
+    }
+
+    handleChange = e => {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [e.target.name] : e.target.value
+            }
+        })
+    }
+
     formulario () {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -29,7 +59,11 @@ class agregarZona extends React.Component {
                     <input type="text" id="nombre" name="nombre" placeholder="Nombre"  onChange={this.handleChange} value={this.state.form.nombre} required/>
                 </div>
                 <div className="field">
-                    <input type="text" id="cargo" name="cargo" placeholder="Cargo"  onChange={this.handleChange} value={this.state.form.cargo} required/>
+                    <select id="cargo" name="cargo" placeholder="Cargo" onChange={this.handleChange} value={this.state.form.cargo} required>
+                        <option value="">Seleccione un cargo...</option> 
+                        <option value="Pais">País</option>
+                        <option value="Provincia">Provincia</option>
+                    </select>
                 </div>
                 <div className="field">
                     <input type="text" id="descripcion" name="descripcion" placeholder="Descripción"  onChange={this.handleChange} value={this.state.form.descripcion} required/>

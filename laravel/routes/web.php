@@ -15,3 +15,5 @@ Route::get('/registerx',function (){
 });
 
 Route::post('/usuario/{tipo_usuario}', 'UsuarioController@store');
+
+Route::post('api/zona', 'ZonaController@store');

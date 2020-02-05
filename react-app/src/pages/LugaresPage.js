@@ -11,16 +11,15 @@ class LugaresPage extends React.Component {
 
     async componentDidMount () {
 
-        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/zonas/${this.props.match.params.id}`);
-            const data = await response.json();
-            this.setState({
-                lugares: data.data
-            });
+        const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
+        const data = await response.json();
+        this.setState({
+            lugares: data.data
+        });
         console.log(this.state.lugares)
     }
 
     ponerLugares = () => {
-
         if (this.state.lugares.length)
             return this.state.lugares.map( lugar => {
                 console.log(lugar)
@@ -37,7 +36,7 @@ class LugaresPage extends React.Component {
             <div className="LugaresPage">
                 <Link to="/">
                     <div className="LugaresPage-regresar">
-                        <i class="fas fa-undo-alt"></i>
+                        <i className="fas fa-undo-alt"></i>
                         &nbsp;
                         Regresar
                     </div>
