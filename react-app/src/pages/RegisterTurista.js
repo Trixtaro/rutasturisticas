@@ -64,11 +64,14 @@ class RegisterTurista extends React.Component {
         return (
             <React.Fragment>
                 <div className="RegisterTurista">
-                    <div className="Caja">
-                        <div className="form">
-                            <form onSubmit={this.handleSubmit}>
+
+                    <div className="logo-registro">
+                        <img src="/logointerfaces.png" alt="Rutas turisticas"/>
+                    </div>
+
+                    <form onSubmit={this.handleSubmit}>
                                 <div className="nombre">
-                                    <h1>Create tu cuenta turísta</h1>
+                                    <h1>Regístrate!</h1>
                                 </div>
                                 <div className="cuerpo">
                                     <div className="fields">
@@ -97,13 +100,20 @@ class RegisterTurista extends React.Component {
                                             <select name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}>
                                                 <option value="0">Seleccione...</option>
                                                 <option value="Ecuador">Ecuador</option>
+                                                <option value="Colombia">Colombia</option>
+                                                <option value="Peru">Peru</option>
+                                                <option value="Chile">Chile</option>
+                                                <option value="Argentina">Argentina</option>
+                                                <option value="USA">Estados Unidos de América</option>  
                                             </select>
                                         </div>
                                         <div className="field">
                                             <label>Género</label>
                                             <select name="genero" onChange={this.handleChange} value={this.state.form.genero}>
+                                                <option value="0">Seleccione su género</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Femenino</option>
+                                                <option value="I">Indefinido</option>
                                             </select>
                                         </div>
                                         <div className="field">
@@ -134,20 +144,21 @@ class RegisterTurista extends React.Component {
                                         </div>
                                     </div>
                                     <div className="botones">
+                                    <div className="regresar">
+                                        <Link to="./">
+                                            <i class="fas fa-undo-alt" aria-hidden="true"></i>Regresar
+                                        </Link>
+                                    </div>
+
                                         <div className="btn-accion">
                                             <button>Registrarse</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div className="regresar">
-                            <Link to="./">
-                                Regresar
-                            </Link>
-                        </div>
-                    </div>
+                            </form>   
+                  
                 </div>
+                
             </React.Fragment>
         );
     }

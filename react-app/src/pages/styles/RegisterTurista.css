@@ -1,119 +1,72 @@
 .RegisterTurista {
-    font-family: 'Maiden Orange', cursive;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    flex-direction: column;
-    min-height: 80vh;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
     position: relative;
     text-align: center;
-    background: url('./../../images/bg-1.jpeg') no-repeat;
+    background: url('./../../images/bg-2.png') no-repeat;
     background-position-y: -400px;
     background-size: cover;
+    font-size: 20px;
 }
 
-.RegisterTurista:before,
-.RegisterTurista:after {
-    content:'';
-    display:block;
-    box-flex:1;
-    flex-grow:1;
-    height:24px
+.RegisterTurista .logo-registro{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-color: white;
 }
 
-.RegisterTurista .Caja {
-    background: white;
-    width: 750px;
-    border-radius: 8px;
-    border: 1px solid #dadce0;
-    display: block;
-    flex-shrink: 0;
-    margin: 0 auto;
-    position: relative;
+.RegisterTurista .logo-registro img{
+    height: 100%;
+    width: 100%;
 }
 
-.RegisterTurista .form {
+.RegisterTurista form{
+    width: 40%;
+    padding: 20px;
+    background: rgba(34, 241, 34, 0.397);
+    border-radius: 50px;
+}
+
+.RegisterTurista form .nombre{
+    color: #117a73;
+    margin-bottom: 20px;
+}
+
+.RegisterTurista form .field{
     display: flex;
-    height: auto;
-    min-height: 250px;
-    padding: 48px 40px 36px;
-    overflow: hidden;
-}
-
-.RegisterTurista .nombre {
-    font-size: 14px;
-    line-height: 1.4286;
-}
-
-.RegisterTurista .nombre h1 {
-    color: #0f473d;
-}
-
-.RegisterTurista .cuerpo {
-    padding: 24px 0 0;
-}
-
-.RegisterTurista .datos {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    margin: 10px auto;
+    font-weight: 600;
+    color: #2d6b2d;
 }
 
-.RegisterTurista .datos .field:first-child {
-    margin-right: 16px;
+.RegisterTurista form input, .RegisterTurista form select{
+    width: 50%;
+    color: blue;
+    font-weight: 600;
 }
 
-.RegisterTurista .field {
-    padding: 8px 0 8px;
-    height: 36px;
-}
-
-.RegisterTurista .field input,
-.RegisterTurista .field select {
-    width: 75%;
-}
-
-.RegisterTurista .botones {
-    align-items: center;
+.RegisterTurista form .botones{
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 32px;
-    min-height: 48px;
-    padding-bottom: 0;
+    margin-top: 20px;
+    justify-content: space-around;
 }
-.RegisterTurista .btn-accion {
-    position: absolute;
-}
-.RegisterTurista .btn-accion button {
-    color: #0f473d;
-    background: transparent;
+
+.RegisterTurista form .botones button{
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #49ada6;
+    padding: 10px;
     cursor: pointer;
-    border-radius: 6px;
-    border: 2px solid #0f473d;
-    height: 36px;
-    width: 6.5rem;
+    font-size: 20px;
+
 }
 
-.RegisterTurista .btn-accion button:hover {
-      background-color: #0f473d;
-      color: white;
- }
-
-.RegisterTurista .botones span span{
-    margin: 8px 16px;
-    color: #fff;
-    font-family: 'Google Sans',arial,sans-serif;
-    font-weight: 500;
-    letter-spacing: .25px;
-    line-height: 36px;
-}
-
-.RegisterTurista .botones span {
-    position: relative;
-}
-
-.RegisterTurista .regresar {
-    height: 16.8px;
-    position: absolute;
-    bottom: -20px;
+.RegisterTurista a{
+    color: #2d6b2d;
 }
