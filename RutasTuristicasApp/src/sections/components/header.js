@@ -11,7 +11,7 @@ const Header = (props) => {
                         source={require('../../../assets/logo.png')}
                         style={styles.logo}
                     />
-                    <Text style={styles.trixtaro}>Rutas Turísticas</Text>
+                    <Text style={styles.titulo}>Rutas Turísticas</Text>
                     <View style={styles.right}>
                         {props.children}
                     </View>
@@ -29,15 +29,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: '#07456f',
+        backgroundColor: '#55d3bc',
     },
     logo: {
         width: 50,
         height: 50,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        marginRight: 10
     },
-    trixtaro: {
-        color: 'white',
+    titulo: {
+        color: '#176859',
         fontWeight: '700',
         fontSize: 20
     },

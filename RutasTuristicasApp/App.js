@@ -8,9 +8,9 @@ const App: () => React$Node = () => {
   return (
     <Home>
       <Header>
-        <Text style={{color: 'white'}}>Ser o no ser</Text>
+        <Text style={{color: 'white'}}>Iniciar sesión</Text>
       </Header>
-      <Text>Buscador</Text>
+      <Text>El buscador</Text>
       <Text>Categorias</Text>
       <Text>Sugerencias</Text>
     </Home>
