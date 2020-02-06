@@ -7,7 +7,7 @@ class Lugar extends React.Component{
         return (
             <View style={styles.container} >
                 <View>
-                    <Image source={require('../../../assets/logo.png')} style={styles.cover}/>
+                    <Image source={{uri: this.props.lugar.foto}} style={styles.cover}/>
                 </View>
                 <View>
                     <Text style={styles.title}>{ this.props.lugar.nombre }</Text>
