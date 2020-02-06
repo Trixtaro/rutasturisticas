@@ -1,29 +1,73 @@
-.Dashboard{
-    background: #eaffd0;
-    display: flex;
-    justify-content: space-between;
+@import url('https://fonts.googleapis.com/css?family=Maiden+Orange&display=swap');
+
+.Dashboard {
+    font-family: 'Maiden Orange', cursive;
+    text-align: center;
     padding: 30px;
-    height: 78vh;
+    min-height: 80vh;
+    background: url('../../images/bg-1.jpeg') no-repeat;
+    background-position-y: -400px;
+    background-size: cover;
 }
 
-.Dashboard .hero{
+.Dashboard-buscador{
     width: 60%;
+    margin: 10px auto;
 }
 
-.Dashboard .hero p{
-    width: 80%;
+.Dashboard .hero h1 { 
+    font-size: 10rem;
+    color: #0f473d;
+}
+
+.Dashboard .hero p {
     margin-top: 30px;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     font-weight: 800;
-    color: #176859;
+    margin-bottom: 30px;
+    color: #19463d;
 }
 
-.Dashboard .foto{
-    width: 60%;
-    overflow: hidden;
+.Dashboard .titulo-lugares{
+    font-size: 30px;
 }
 
-.Dashboard .foto img{
-    width: 100%;
+.Dashboard .Dashboard-lugares {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+    margin-top: 5px;
+    height: 250px;
+}
+
+.Dashboard .Lugar{
+    margin: 10px 30px;
+    margin-top: auto;
+    width: 250px;
+    transition: width 2s;
+}
+
+.Dashboard .Lugar:hover{
+    margin-top: -20px;
+    border: 2px rgb(194, 194, 194) solid;
+    width: 300px;
+}
+
+.Dashboard .points{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 45px;
+}
+
+.Dashboard .points .point{
+    background: rgb(62, 138, 18);
+    border-radius: 3px;
+    width: 5px;
+    height: 5px;
+    margin: 5px;
+}
+
+.Dashboard .points .point.selected{
+    background: white;
+    border: 1px black solid;
 }

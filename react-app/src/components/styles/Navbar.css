@@ -1,4 +1,4 @@
-.Navbar{
+.Navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,26 +8,73 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.Navbar .user-panel{
+.Navbar .user-panel {
     display: flex;
+    position: relative;
 }
 
-.Navbar .user-panel div{
+.Navbar .user-panel div {
     padding: 5px 15px;
 }
 
-.Navbar a{
+.Navbar a {
     text-decoration: none;
     color: inherit;
 }
 
-.Navbar .user-panel .important{
+.imagotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-logo{
+    width: 50px;
+    margin-right: 10px;
+}
+
+.imagen-logo img{
+    width: 100%;
+}
+
+.Navbar .user-panel .important {
     background: #11999e;
     color: white;
     padding: 2px 7px;
     border-radius: 5px;
 }
 
-.separador{
+.separador {
     border-right: 2px white groove;
+}
+
+.Navbar .user-panel .flechita{
+    border: none;
+    font-size: 1.5rem;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    width: 30px;
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar .user-panel .user-panel-options{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    border: 2px solid green;
+    border-radius: 10px;
+    right: 10px;
+    top: 70px;
+}
+
+.Navbar .user-panel .user-panel-options>*{
+    margin: 10px 0;
+    width: 100%;
+    text-align: right;
+    border-bottom: 2px dashed #DDD;
 }

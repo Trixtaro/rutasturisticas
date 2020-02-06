@@ -2,6 +2,23 @@
     margin: 0;
 }
 
-body{
+body {
     font-size: 0.8rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.center{
+    text-align: center;
+  }
+  
+  .rojo{
+    color: red;
+  }
+
+.invisible{
+    display: none !important;
 }

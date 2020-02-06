@@ -12,11 +12,7 @@ const Page404 = () => (
             <h2>La página que ha solicitado no está disponible, o no existe.</h2>
         </div>
         <Link to="/">
-            <i class="fas fa-undo-alt"></i>
-            &nbsp;
-            Regresar
-            &nbsp;
-            <i class="fas fa-undo-alt"></i>
+            Regresar <i class="fas fa-undo-alt"></i>
         </Link>
     </div>
 );
