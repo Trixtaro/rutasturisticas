@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class agregarZona extends React.Component {
     constructor (props) {
@@ -49,9 +50,15 @@ class agregarZona extends React.Component {
     formulario () {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                    <input type="text" id="latitud" name="latitud" placeholder="Latitud" onChange={this.handleChange} value={this.state.form.latitud} required/>
+                <div className="input-group input-group-sm mb-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Latitud</span>
+                    </div>
+                    <input type="text" id="latitud" name="latitud" onChange={this.handleChange} value={this.state.form.latitud} required/>
+                    
                 </div>
+
+                
                 <div className="field">
                     <input type="text" id="longitud" name="longitud" placeholder="Longitud"  onChange={this.handleChange} value={this.state.form.longitud} required/>
                 </div>
@@ -63,6 +70,10 @@ class agregarZona extends React.Component {
                         <option value="">Seleccione un cargo...</option> 
                         <option value="Pais">País</option>
                         <option value="Provincia">Provincia</option>
+                        <option value="Canton">Cantón</option>
+                        <option value="Parroquia">Parroquia</option>
+                        <option value="Parroquia Rural">Parroquia Rural</option>
+                        <option value="Parroquia Urbana">Parroquia Urbana</option>
                     </select>
                 </div>
                 <div className="field">
