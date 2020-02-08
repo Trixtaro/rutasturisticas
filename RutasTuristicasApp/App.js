@@ -4,8 +4,9 @@ import { Text } from 'react-native';
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/sections/containers/SuggestionList';
+import ListaCiudades from './src/sections/containers/ListaCiudades';
 
-import API from './utils/API';
+import Api from './utils/API';
 
 class App extends React.Component {
 
@@ -15,11 +16,11 @@ class App extends React.Component {
 
   async componentDidMount(){
 
-    const api = new API()
-    const data = await api.getLugarPorZona(3)
+    const lugaresRecomendados = await Api.getLugarPorZona(3)
 
     this.setState({
-      data: data.data
+      lugaresRecomendados: lugaresRecomendados.data,
+      ciudadesRecomendadas: lugaresRecomendados.data
     })
 
   }
@@ -31,10 +32,12 @@ class App extends React.Component {
         <Header>
         <Text style={{color: 'white'}}>Iniciar sesión</Text>
         </Header>
-{/* 
+
         <Text>El buscador</Text>
-        <Text>Categorias</Text> */}
-        <SuggestionList data={this.state.data} />
+        <Text>Categorias</Text>
+        
+        <ListaCiudades data={this.state.ciudadesRecomendadas} />
+        <SuggestionList data={this.state.lugaresRecomendados} />
       </Home>
     );
   }

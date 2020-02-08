@@ -2,7 +2,7 @@ const BASE_API = 'http://167.71.172.89:8080'
 
 class API {
 
-    async getLugarPorZona(id){
+    getLugarPorZona = async (id) => {
         const response = await fetch(`${BASE_API}/api/lugares/${id}`);
         const data = response.json()
         console.log(data)
@@ -11,4 +11,4 @@ class API {
 
 }
 
-export default API;
+export default new API();
