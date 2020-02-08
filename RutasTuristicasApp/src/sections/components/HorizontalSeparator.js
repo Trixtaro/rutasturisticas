@@ -1,25 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const VerticalSeparator = (props) => {
+const HorizontalSeparator = (props) => {
 
     return (
         <View style={[
             styles.separator,
             {
-                borderTopColor: (props.color) ? props.color : '#eaeaea'
+                borderLeftColor: (props.color) ? props.color : '#eaeaea'
             }
             ]}>
         </View>
     );
 
-};
+}
 
 const styles =  StyleSheet.create({
     separator: {
-        borderTopWidth: 1,
-
+        borderLeftWidth: 1,
     }
 })
 
-export default VerticalSeparator;
+export default HorizontalSeparator;

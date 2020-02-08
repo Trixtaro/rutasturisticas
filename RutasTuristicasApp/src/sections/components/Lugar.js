@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
         padding: 5
     },
     title: {
-        color: '#4cb8c0',
+        color: 'white',
         fontWeight: 'bold',
         fontSize: 20,
-        textAlign: 'center',
-        width: 250,
-        marginBottom: 10
+        textAlign: 'left',
+        width: 200,
+        marginBottom: 5,
+        marginLeft: 15
     },
     description: {
         marginLeft: 20,
-        textAlign: 'center',
         width: 200
     },
     cover: {

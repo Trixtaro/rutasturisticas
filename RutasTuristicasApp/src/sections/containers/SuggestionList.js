@@ -10,7 +10,7 @@ class SuggestionList extends React.Component{
 
     keyExtractor = (item) => item.id.toString()
     renderEmpty = () => <Empty text="No hay sugerencias" />
-    renderSeparator = () => <Separator />
+    renderSeparator = () => <Separator color="green" />
     renderLugar = ({item}) => <Lugar lugar={item}/>
 
     render(){

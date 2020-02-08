@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet, ImageBackground } from 'react-native';
 
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/Header';
@@ -33,15 +33,27 @@ class App extends React.Component {
         <Text style={{color: 'white'}}>Iniciar sesión</Text>
         </Header>
 
-        <Text>El buscador</Text>
-        <Text>Categorias</Text>
-        
-        <ListaCiudades data={this.state.ciudadesRecomendadas} />
-        <SuggestionList data={this.state.lugaresRecomendados} />
+        <ImageBackground
+          source={require('./assets/bg-2.png')}
+          style={styles.container}
+          >
+          <Text>El buscador</Text>
+          <Text>Categorias</Text>
+
+          <ListaCiudades data={this.state.ciudadesRecomendadas} />
+          <SuggestionList data={this.state.lugaresRecomendados} />
+        </ImageBackground>
+
       </Home>
     );
   }
 
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default App;
