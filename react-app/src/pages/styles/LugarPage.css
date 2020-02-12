@@ -8,9 +8,6 @@
     text-align: center;
     padding: 30px;
     min-height: 80vh;
-    background: url('../../images/bg-1.jpeg') no-repeat;
-    background-position-y: -400px;
-    background-size: cover;
 }
 
 .LugarPage .lugarpage-regresar{
@@ -47,6 +44,7 @@
 
 .LugarPage .body .info{
     width: 55%;
+    font-size: 40px;
     padding: 40px;
     display: flex;
     flex-direction: column;
