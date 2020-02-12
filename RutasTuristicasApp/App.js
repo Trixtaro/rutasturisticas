@@ -6,12 +6,32 @@ import Header from './src/sections/components/Header';
 import SuggestionList from './src/sections/containers/SuggestionList';
 import ListaCiudades from './src/sections/containers/ListaCiudades';
 
+import portoviejo from './assets/portoviejo.jpg';
+import manta from './assets/manta.jpg';
+import montecristi from './assets/montecristi.jpg';
+
 import Api from './utils/API';
 
 class App extends React.Component {
 
   state = {
-    data : []
+    ciudadesRecomendadas: [
+      {
+        nombre: "Portoviejo",
+        foto: 1,
+        descripcion: "La capital de los manabitas."
+      },
+      {
+        nombre: "Manta",
+        foto: 2,
+        descripcion: "Principal puerto atunero del mundo."
+      },
+      {
+        nombre: "Montecristi",
+        foto: 3,
+        descripcion: "La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla."
+      }
+    ]
   }
 
   async componentDidMount(){
@@ -19,8 +39,8 @@ class App extends React.Component {
     const lugaresRecomendados = await Api.getLugarPorZona(3)
 
     this.setState({
+      ...this.state,
       lugaresRecomendados: lugaresRecomendados.data,
-      ciudadesRecomendadas: lugaresRecomendados.data
     })
 
   }
@@ -30,7 +50,7 @@ class App extends React.Component {
     return (
       <Home>
         <Header>
-        <Text style={{color: 'white'}}>Iniciar sesión</Text>
+        <Text style={{color: 'white'}}></Text>
         </Header>
 
         <ImageBackground

@@ -4,14 +4,14 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Layout from '../components/SuggestionListLayout';
 import Empty from '../components/Empty';
 import Separator from '../components/HorizontalSeparator';
-import Lugar from '../components/Lugar';
+import Ciudad from '../components/Ciudad';
 
 class ListaCiudades extends React.Component{
 
-    keyExtractor = (item) => item.id.toString()
+    keyExtractor = (item) => item.nombre.toString()
     renderEmpty = () => <Empty text="No hay sugerencias" />
     renderSeparator = () => <Separator color="green" />
-    renderLugar = ({item}) => <Lugar lugar={item}/>
+    renderCiudad = ({item}) => <Ciudad ciudad={item}/>
 
     render(){
         return (
@@ -22,7 +22,7 @@ class ListaCiudades extends React.Component{
                     data={this.props.data}
                     ListEmptyComponent={this.renderEmpty}
                     ItemSeparatorComponent={this.renderSeparator}
-                    renderItem={this.renderLugar}
+                    renderItem={this.renderCiudad}
                 />
             </Layout>
         );

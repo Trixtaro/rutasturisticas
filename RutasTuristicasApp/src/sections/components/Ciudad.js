@@ -5,19 +5,35 @@ class Ciudad extends React.Component{
 
     render(){
         return (
-            <View>
                 <ImageBackground
-                    source={require('./assets/bg-2.png')}
+                    source={ this.props.ciudad.foto }
                     style={styles.container}
                     >
-                    <Text>
-                        
+                    <Text style={styles.text}>
+                        { this.props.ciudad.nombre }
                     </Text>
                 </ImageBackground>
-            </View>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: 200,
+        margin: 10,
+        borderRadius: 10,
+        overflow: 'hidden'
+    },
+    text: {
+        color: 'white',
+        backgroundColor: 'black',
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+        padding: 5,
+        borderTopLeftRadius: 10,
+    }
+})
 
 export default Ciudad;
