@@ -69,12 +69,12 @@ class agregarLugar extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="InputNombre">Nombre</label>
-                        <input className="form-control" type="text" id="InputNombre" onChange={this.handleChange} value={this.state.form.nombre} required aria-describedby="nombreHelp" />
+                        <input className="form-control" type="text" id="InputNombre" name='nombre' onChange={this.handleChange} value={this.state.form.nombre} required aria-describedby="nombreHelp" />
                         <small id="nombreHelp" className="form-text text-muted"></small>
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcionTextarea">Descripción</label>
-                        <textarea className="form-control" id="descripcionTextarea" rows="3" onChange={this.handleChange} value={this.state.form.descripcion} required ></textarea>
+                        <textarea className="form-control" id="descripcionTextarea" rows="3" name='descripcion' onChange={this.handleChange} value={this.state.form.descripcion} required ></textarea>
                     </div>
                     <div className="form-group">
                         <label htmlFor="InputASNM">Altura sobre el nivel del mar</label>
@@ -97,7 +97,7 @@ class agregarLugar extends React.Component {
                     </div>
                     <div class="form-group">
                         <label for="InputImagen">Imagen</label>
-                        <input type="file" class="form-control-file" id="InputImagen" />
+                        <input type="file" class="form-control-file" id="InputImagen" name='imagen' />
                     </div>
                     <div className="form-group">
                     <label htmlFor="ID_zona">Zonas</label>
