@@ -25,12 +25,18 @@ class ZonaController extends Controller {
             'longitud' => 'required',
             'nombre' => 'required',
             'cargo' => 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'required|between:2,255',
         ]);
         
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return response()->json([
+                'data' => null,
+                'error' => 'Error en validar datos',
+                'message' => $validator->messages(),
+                'success' => false 
+            ]);
         }
+        
         $now = new \DateTime();
         $ahora = $now->format('Y-m-d H:i:s');
         $zona = new Zona();
@@ -42,7 +48,13 @@ class ZonaController extends Controller {
         $zona->f_ingreso = $ahora;
         $zona->save();
 
-        return response()->json(compact('zona',201));
+        return response()->json([
+            'success' => true,
+            'message'=> 'Se agrego con éxito',
+            'data' => [
+                'zona' => $zona
+            ]
+        ],201);
     }
 
     public function show ($id_lugar) {
