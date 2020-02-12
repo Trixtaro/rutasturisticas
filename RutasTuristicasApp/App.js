@@ -57,8 +57,8 @@ class App extends React.Component {
           source={require('./assets/bg-2.png')}
           style={styles.container}
           >
-          <Text>El buscador</Text>
-          <Text>Categorias</Text>
+          {/* <Text>El buscador</Text>
+          <Text>Categorias</Text> */}
 
           <ListaCiudades data={this.state.ciudadesRecomendadas} />
           <SuggestionList data={this.state.lugaresRecomendados} />
