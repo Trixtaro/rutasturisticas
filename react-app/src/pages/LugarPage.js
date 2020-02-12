@@ -1,11 +1,8 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
-
 import './styles/LugarPage.css';
 
-class LugarPage extends React.Component{
-
+class LugarPage extends React.Component {
     state = {
         lugar: null
     }
@@ -17,7 +14,6 @@ class LugarPage extends React.Component{
         });
 
         this.ponerMapa()
-
     }
 
     ponerMapa = () => {
@@ -48,9 +44,8 @@ class LugarPage extends React.Component{
 
     }
 
-    render(){
-
-        if(!this.state.lugar) 
+    render () {
+        if ( !this.state.lugar )
             return (<div className="LugarPage">
                 Cargando
             </div>);
@@ -72,12 +67,9 @@ class LugarPage extends React.Component{
                     </div>
                     <div id="map" ></div>
                 </div>
-      
             </div>
         </div>);
-
     }
-
 }
 
 export default LugarPage;

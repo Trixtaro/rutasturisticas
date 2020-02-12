@@ -1,14 +1,11 @@
 import React from 'react';
-
 import Opcion from '../components/OpcionUsuario';
 import FotoTurista from '../images/turista.jpg';
 import FotoGuia from '../images/guia.jpg';
-
 import './styles/RegisterPage.css';
 
-class RegisterPage extends React.Component{
-
-    render(){
+class RegisterPage extends React.Component {
+    render () {
         return (
             <React.Fragment>
                 <div className="RegisterPage">

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import './styles/OpcionUsuario.css';
 
-class OpcionUsuario extends React.Component{
-
-    render(){
+class OpcionUsuario extends React.Component {
+    render () {
         return (
             <React.Fragment>
                 <div className="OpcionUsuario">
@@ -27,7 +25,6 @@ class OpcionUsuario extends React.Component{
             </React.Fragment>
         )
     }
-
 }
 
 export default OpcionUsuario;

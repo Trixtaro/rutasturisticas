@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AppRoute from '../components/AppRoute';
 import Layout from './Layout';
@@ -7,7 +6,6 @@ import AdminLayout from '../components/AdminLayout';
 
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/LoginPage';
-import Register from '../pages/RegisterPage';
 import BuscarLugares from '../pages/LugaresPage';
 import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
@@ -40,7 +38,6 @@ function App () {
 
 const Logout = () => {
     localStorage.removeItem('usertoken');
-
     return <Redirect to="/"/>;
 }
 
