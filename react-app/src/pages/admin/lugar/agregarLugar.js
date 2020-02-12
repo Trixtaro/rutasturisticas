@@ -1,5 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class agregarLugar extends React.Component {
     constructor (props) {
@@ -56,33 +57,58 @@ class agregarLugar extends React.Component {
 
     formulario () {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" onChange={this.handleChange} value={this.state.form.nombre} required/>
-                </div>
-                <div className="field">
-                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción" onChange={this.handleChange} value={this.state.form.descripcion} required/>
-                </div>
-                <div className="field">
-                    <input type="text" id="altura_sobre_nivel_del_mar" name="altura_sobre_nivel_del_mar" placeholder="Altura sobre el nivel del mar" onChange={this.handleChange} value={this.state.form.altura_sobre_nivel_del_mar} required/>
-                </div>
-                <div className="field">
-                    <input type="text" id="latitud" name="latitud" placeholder="Latitud" onChange={this.handleChange} value={this.state.form.latitud} required/>
-                </div>
-                <div className="field">
-                    <input type="text" id="longitud" name="longitud" placeholder="Longitud"  onChange={this.handleChange} value={this.state.form.longitud} required/>
-                </div>
-                <div className="field">
-                    <input type="text" id="imagen" name="imagen" placeholder="Imagen"  onChange={this.handleChange} value={this.state.form.imagen} required/>
-                </div>
-                <div className="field">
-                    <select id="ID_zona" name="ID_zona" onChange={this.handleChange} value={this.state.form.ID_zona} required>
-                        <option value="">Seleccione una zona...</option> 
-                        { this.comboZonas() }
-                    </select>    
-                </div>
-                <button className="boton">Agregar Lugares</button>
-            </form>
+            <div className="container-sm">
+                <h1>Agregue <span className="badge badge-secondary">Lugar</span></h1>
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item"><Link to="/admin/home">Home</Link></li>
+                      <li className="breadcrumb-item"><Link to="/admin/lugar">Lugares</Link></li>
+                      <li className="breadcrumb-item active" aria-current="page">Nuevo</li>
+                    </ol>
+                </nav>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="InputNombre">Nombre</label>
+                        <input className="form-control" type="text" id="InputNombre" onChange={this.handleChange} value={this.state.form.nombre} required aria-describedby="nombreHelp" />
+                        <small id="nombreHelp" className="form-text text-muted"></small>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="descripcionTextarea">Descripción</label>
+                        <textarea className="form-control" id="descripcionTextarea" rows="3" onChange={this.handleChange} value={this.state.form.descripcion} required ></textarea>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="InputASNM">Altura sobre el nivel del mar</label>
+                        <input className="form-control" type="text" id="InputASNM" name="altura_sobre_nivel_del_mar" onChange={this.handleChange} value={this.state.form.altura_sobre_nivel_del_mar} required/>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col'>
+                            <div className="form-group">
+                                <label htmlFor="InputLatitud">Latitud</label>
+                                <input className="form-control" type="text" id="InputLatitud" name="latitud" onChange={this.handleChange} value={this.state.form.latitud} required/>
+                            </div>
+                        </div>
+                        <div className='col'>
+                            <div className="form-group">
+                                <label htmlFor="InputLongitud">Longitud</label>
+                                <input className="form-control" type="text" id="InputLongitud" name="longitud" onChange={this.handleChange} value={this.state.form.longitud} required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputImagen">Imagen</label>
+                        <input type="file" class="form-control-file" id="InputImagen" />
+                    </div>
+                    <div className="form-group">
+                    <label htmlFor="ID_zona">Zonas</label>
+                        <select className="form-control" id="ID_zona" name="ID_zona" onChange={this.handleChange} value={this.state.form.ID_zona} required>
+                            <option value="">Seleccione una zona...</option> 
+                            { this.comboZonas() }
+                        </select>    
+                    </div>
+                    <button type="button" className="btn btn-primary">Agregar Lugar</button>
+                </form>
+            </div>
         );
     }
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
 
 class agregarZona extends React.Component {
     constructor (props) {
@@ -51,44 +50,44 @@ class agregarZona extends React.Component {
     formulario () {
         return (
             <div className="container-sm">
-                <h1>Agregue <span class="badge badge-secondary">Zona</span></h1>
+                <h1>Agregue <span className="badge badge-secondary">Zona</span></h1>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><Link to="/admin/home">Home</Link></li>
-                      <li class="breadcrumb-item"><Link to="/admin/zona">Zonas</Link></li>
-                      <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item"><Link to="/admin/home">Home</Link></li>
+                      <li className="breadcrumb-item"><Link to="/admin/zona">Zonas</Link></li>
+                      <li className="breadcrumb-item active" aria-current="page">Nuevo</li>
                     </ol>
                 </nav>
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col">
-                            <div class="form-group">
-                                <label for="InputLatitud">Latitud</label>
-                                <input type="text" class="form-control" id="InputLatitud" onChange={this.handleChange} value={this.state.form.latitud} required aria-describedby="latitudHelp" />
-                                <small id="latitudHelp" class="form-text text-muted"></small>
+                            <div className="form-group">
+                                <label htmlFor="InputLatitud">Latitud</label>
+                                <input type="text" className="form-control" id="InputLatitud" onChange={this.handleChange} value={this.state.form.latitud} required aria-describedby="latitudHelp" />
+                                <small id="latitudHelp" className="form-text text-muted"></small>
                             </div>
                         </div>
                         <div className="col">
-                            <div class="form-group">
-                                <label for="InputLongitud">longitud</label>
-                                <input type="text" class="form-control" id="InputLongitud" onChange={this.handleChange} value={this.state.form.longitud} required aria-describedby="longitudHelp" />
-                                <small id="longitudHelp" class="form-text text-muted"></small>
+                            <div className="form-group">
+                                <label htmlFor="InputLongitud">longitud</label>
+                                <input type="text" className="form-control" id="InputLongitud" onChange={this.handleChange} value={this.state.form.longitud} required aria-describedby="longitudHelp" />
+                                <small id="longitudHelp" className="form-text text-muted"></small>
                             </div>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className='col'>
-                            <div class="form-group">
-                                <label for="InputNombre">Nombre</label>
-                                <input type="text" class="form-control" id="InputNombre" onChange={this.handleChange} value={this.state.form.nombre} required onChange={this.handleChange} value={this.state.form.longitud} required aria-describedby="nombreHelp" />
-                                <small id="nombreHelp" class="form-text text-muted"></small>
+                            <div className="form-group">
+                                <label htmlFor="InputNombre">Nombre</label>
+                                <input type="text" className="form-control" id="InputNombre" onChange={this.handleChange} value={this.state.form.nombre} required aria-describedby="nombreHelp" />
+                                <small id="nombreHelp" className="form-text text-muted"></small>
                             </div>
                         </div>                        
                         <div className='col'>
-                            <div class="form-group">
-                                <label for="cargoSelect">Cargo</label>
-                                <select class="form-control" id="cargoSelect" onChange={this.handleChange} value={this.state.form.cargo} required >
+                            <div className="form-group">
+                                <label htmlFor="cargoSelect">Cargo</label>
+                                <select className="form-control" id="cargoSelect" onChange={this.handleChange} value={this.state.form.cargo} required >
                                     <option value="">Seleccione un cargo...</option> 
                                     <option value="Pais">País</option>
                                     <option value="Provincia">Provincia</option>
@@ -101,9 +100,9 @@ class agregarZona extends React.Component {
                         </div>                                        
                     </div>
  
-                    <div class="form-group">
-                        <label for="descripcionTextarea">Descripción</label>
-                        <textarea class="form-control" id="descripcionTextarea" rows="3" onChange={this.handleChange} value={this.state.form.descripcion} required ></textarea>
+                    <div className="form-group">
+                        <label htmlFor="descripcionTextarea">Descripción</label>
+                        <textarea className="form-control" id="descripcionTextarea" rows="3" onChange={this.handleChange} value={this.state.form.descripcion} required ></textarea>
                     </div>
 
                     <button type="button" className="btn btn-primary">Agregar Zona</button>
