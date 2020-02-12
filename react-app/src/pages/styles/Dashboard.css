@@ -6,8 +6,33 @@
     padding: 30px;
     min-height: 80vh;
     background: url('../../images/bg-1.jpeg') no-repeat;
-    background-position-y: -400px;
+    background-position-y: -200px;
     background-size: cover;
+    display: flex;
+    position: relative;
+}
+
+.Dashboard .principal{
+    width: 80%;
+}
+
+.Dashboard .recomendaciones{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(238, 238, 238);
+    height: 100%;
+    z-index: 100;
+    overflow: scroll;
+    border-left: 3px rgb(26, 202, 173) solid;
+}
+
+.Dashboard .recomendaciones .titulo{
+    margin: 10px;
+    color: rgb(20, 143, 224)
 }
 
 .Dashboard-buscador{
@@ -47,7 +72,7 @@
     transition: width 2s;
 }
 
-.Dashboard .Lugar:hover{
+.Dashboard .principal .Lugar:hover{
     margin-top: -20px;
     border: 2px rgb(194, 194, 194) solid;
     width: 300px;

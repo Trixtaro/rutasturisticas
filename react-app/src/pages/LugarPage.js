@@ -23,23 +23,29 @@ class LugarPage extends React.Component{
     ponerMapa = () => {
         const zoom = 14;
 
-        var map = window.L.map('map').setView([this.state.lugar.latitud, this.state.lugar.longitud], zoom);
+        try{
+            var map = window.L.map('map').setView([this.state.lugar.latitud, this.state.lugar.longitud], zoom);
+    
+            const addLayerMap = (map) => {
+                window.layer = window.L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                        'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+                    id: 'mapbox.streets'
+                }).addTo(map);
+            }
+    
+            addLayerMap(map);
+    
+            window.L.marker([this.state.lugar.latitud, this.state.lugar.longitud]).addTo(map)
+                .bindPopup(this.state.lugar.nombre)
+                .openPopup();
+            
+        } catch (error){
 
-        const addLayerMap = (map) => {
-            window.layer = window.L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-                maxZoom: 18,
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                    'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
-                id: 'mapbox.streets'
-            }).addTo(map);
         }
 
-        addLayerMap(map);
-
-        window.L.marker([this.state.lugar.latitud, this.state.lugar.longitud]).addTo(map)
-            .bindPopup(this.state.lugar.nombre)
-            .openPopup();
     }
 
     render(){
@@ -50,11 +56,7 @@ class LugarPage extends React.Component{
             </div>);
 
         return (<div className="LugarPage">
-            <Link className="lugarpage-regresar" to="/">
-                    <i className="fas fa-undo-alt"></i>
-                        &nbsp;
-                        Regresar 
-            </Link>
+            
             <div className="body">
                 <figure className="imagen">
                     <img src={this.state.lugar.imagen} alt=""/>

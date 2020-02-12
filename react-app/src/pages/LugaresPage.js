@@ -33,6 +33,9 @@ class LugaresPage extends React.Component{
                     />
                 );
             });
+        else {
+            return <h2 style={{color: '#333'}}>No hay lugares para mostrar.</h2>
+        }
     }
 
     render(){
