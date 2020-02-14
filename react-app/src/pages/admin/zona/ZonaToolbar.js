@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 class ZonaToolbar extends React.Component {
 	render () {
 		return (
-			<Link to="/admin/zona/agregar">Agregar</Link>
+			<div className="btn-group btn-group-lg" role="group">
+				<Link className="btn btn-primary" role="button" to="/admin/zona/agregar">Agregar</Link>
+			</div>
 		);
 	}
 }

@@ -6,7 +6,10 @@ class LugarPage extends React.Component {
     render () {
         return (
             <>
-                <h1>Lugares (Admin)</h1>
+				<h3>
+					Lugares
+					<small class="text-muted"> administrador</small>
+				</h3>
                 <LugarToolbar />
                 <LugarTable />
             </>
