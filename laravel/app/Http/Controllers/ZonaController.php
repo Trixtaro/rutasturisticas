@@ -21,9 +21,9 @@ class ZonaController extends Controller {
 
     public function store (Request $request) {
         $validator = Validator::make($request->json()->all() ,[
-            'latitud' => 'required',
-            'longitud' => 'required',
-            'nombre' => 'required',
+            'latitud' => 'required|max:10',
+            'longitud' => 'required|max:10',
+            'nombre' => 'required|between:2,50',
             'cargo' => 'required',
             'descripcion' => 'required|between:2,255',
         ]);

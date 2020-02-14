@@ -96,7 +96,7 @@ class agregarLugar extends React.Component {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="InputImagen">Imagen</label>
+                        <label htmlFor="InputImagen">Imagen</label>
                         <input type="file" class="form-control-file" id="InputImagen" name='imagen' />
                     </div>
                     <div className="form-group">

@@ -6,59 +6,112 @@ class agregarZona extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            toHome:false,
             form: {
                 latitud: '',
                 longitud: '',
                 nombre: '',
                 cargo: '',
                 descripcion: '',
-                e_descripcion: ''
             },
+            errores: {
+                latitud: '',
+                longitud: '',
+                nombre: '',
+                cargo: '',
+                descripcion: ''
+            },
+            alerta: {
+                titulo: '',
+                cuerpo: '',
+                extra: '',
+                tipo: '',
+            },
+            toHome:false,
             cargando:false,
             cargandoTexto:'Agregar Zona',
         }
     }
 
     handleSubmit = async (e) => {
+        e.preventDefault();
         this.setState({
             cargando:true,
             cargandoTexto:' agregando...'
         });
-        e.preventDefault();
         try {
-            const response = await fetch(
+            const response = await fetch( 
                 `${process.env.REACT_APP_LARAVEL}/api/zona`, 
-                    { 
-                        method: 'POST',
-                        body: JSON.stringify(this.state.form)
-                    }
+                { 
+                    method: 'POST', 
+                    body: JSON.stringify(this.state.form) 
+                } 
             );
     
             const respuesta = await response.json();
             console.log("El formulario respondio con ", respuesta);
 
             if ( respuesta.success ) {
+                alert("Agregado con éxito");
                 this.setState({
                     cargando:false,
-                    cargandoTexto:'Agregar Zona'
+                    toHome:true,
+                    cargandoTexto:'Agregar Zona',
+                    alerta: {
+                        ...this.state.alerta,
+                        tipo: 'alert-success',
+                        titulo: respuesta.message,
+                        cuerpo: '',
+                        extra: ''
+                    },
+                    errores: {
+                        ...this.state.errores,
+                        descripcion: '',
+                        nombre: '',
+                        latitud: '',
+                        longitud: ''
+                    },
                 });
             } else {
-                alert("Error");
+                var e_nombre = respuesta.message.nombre ? respuesta.message.nombre : "";
+                var e_descripcion = respuesta.message.descripcion ? respuesta.message.descripcion : "";
+                var e_latitud = respuesta.message.latitud ? respuesta.message.latitud : "";
+                var e_longitud = respuesta.message.longitud ? respuesta.message.longitud : "";
                 this.setState({
                     cargando:false,
                     cargandoTexto:'Agregar Zona',
-                    form: {
-                        ...this.state.form,
-                        e_descripcion : respuesta.message.descripcion
+                    errores: {
+                        ...this.state.errores,
+                        descripcion: e_descripcion,
+                        nombre: e_nombre,
+                        latitud: e_latitud,
+                        longitud: e_longitud
+                    },
+                    alerta: {
+                        ...this.state.alerta,
+                        tipo: 'alert-danger',
+                        titulo: respuesta.error
                     }
                 });
             }
-    
         } catch (error) {
+            alert("Error");
             this.setState({
                 cargando:false,
-                cargandoTexto:'Agregar Zona'
+                cargandoTexto:'Agregar Zona',
+                alerta: {
+                    ...this.state.alerta,
+                    tipo: 'alert-danger',
+                    titulo: 'Caught an error.',
+                    cuerpo: error.message,
+                    extra: error.name
+                },
+                errores: {
+                    ...this.state.errores,
+                    descripcion: '',
+                    nombre: '',
+                    latitud: '',
+                    longitud: ''
+                },
             });
             console.log("<Error handleLoguear componente 'agregarZona'>");
             console.log(error);
@@ -86,20 +139,32 @@ class agregarZona extends React.Component {
                       <li className="breadcrumb-item active" aria-current="page">Nuevo</li>
                     </ol>
                 </nav>
+                { this.state.alerta.tipo === '' ? null : (
+                    <div className={"alert " + this.state.alerta.tipo} role="alert">
+                        <h4 className="alert-heading">{this.state.alerta.titulo}</h4>
+                        <p>{this.state.alerta.cuerpo}</p>
+                        <hr />
+                        <p className="mb-0">{this.state.alerta.extra}</p>
+                    </div>
+                ) }
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="InputLatitud">Latitud</label>
-                                <input type="text" className="form-control" id="InputLatitud" name='latitud' onChange={this.handleChange} value={this.state.form.latitud} required aria-describedby="latitudHelp" />
-                                <small id="latitudHelp" className="form-text text-muted"></small>
+                                <input type="text" className={ this.state.errores.latitud === '' ? "form-control" : "form-control is-invalid" } id="InputLatitud" name='latitud' onChange={this.handleChange} value={this.state.form.latitud} required />
+                                <div className={ this.state.errores.latitud === '' ? "" : "invalid-feedback" } >
+                                    {this.state.errores.latitud}
+                                </div>
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="InputLongitud">longitud</label>
-                                <input type="text" className="form-control" id="InputLongitud" name='longitud' onChange={this.handleChange} value={this.state.form.longitud} required aria-describedby="longitudHelp" />
-                                <small id="longitudHelp" className="form-text text-muted"></small>
+                                <input type="text" className={ this.state.errores.longitud === '' ? "form-control" : "form-control is-invalid" } id="InputLongitud" name='longitud' onChange={this.handleChange} value={this.state.form.longitud} required />
+                                <div className={ this.state.errores.longitud === '' ? "" : "invalid-feedback" } >
+                                    {this.state.errores.longitud}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,14 +173,16 @@ class agregarZona extends React.Component {
                         <div className='col'>
                             <div className="form-group">
                                 <label htmlFor="InputNombre">Nombre</label>
-                                <input type="text" className="form-control" id="InputNombre" name='nombre' onChange={this.handleChange} value={this.state.form.nombre} required aria-describedby="nombreHelp" />
-                                <small id="nombreHelp" className="form-text text-muted"></small>
+                                <input type="text" className={ this.state.errores.nombre === '' ? "form-control" : "form-control is-invalid" } id="InputNombre" name='nombre' onChange={this.handleChange} value={this.state.form.nombre} required />
+                                <div className={ this.state.errores.nombre === '' ? "" : "invalid-feedback" } >
+                                    {this.state.errores.nombre}
+                                </div>
                             </div>
                         </div>                        
                         <div className='col'>
                             <div className="form-group">
                                 <label htmlFor="cargoSelect">Cargo</label>
-                                <select className="form-control" id="cargoSelect" name='cargo' onChange={this.handleChange} value={this.state.form.cargo} required >
+                                <select className="form-control" id="cargoSelect" name='cargo' onChange={this.handleChange} value={this.state.form.cargo} required aria-describedby="cargoHelp" >
                                     <option value="">Seleccione un cargo...</option> 
                                     <option value="Pais">País</option>
                                     <option value="Provincia">Provincia</option>
@@ -124,14 +191,17 @@ class agregarZona extends React.Component {
                                     <option value="Parroquia Rural">Parroquia Rural</option>
                                     <option value="Parroquia Urbana">Parroquia Urbana</option>
                                 </select>
+                                <small id="cargoHelp" className="form-text text-muted">{this.state.errores.cargo}</small>
                             </div>
                         </div>                                        
                     </div>
  
                     <div className="form-group">
                         <label htmlFor="descripcionTextarea">Descripción</label>
-                        <textarea className="form-control" id="descripcionTextarea" rows="3" name='descripcion' onChange={this.handleChange} value={this.state.form.descripcion} required aria-describedby="descripcionHelp" ></textarea>
-                        <small id="descripcionHelp" className="form-text text-muted">{this.state.form.e_descripcion}</small>
+                        <textarea className={ this.state.errores.descripcion === '' ? "form-control" : "form-control is-invalid" } id="descripcionTextarea" rows="3" name='descripcion' onChange={this.handleChange} value={this.state.form.descripcion} required></textarea>
+                        <div className={ this.state.errores.descripcion === '' ? "" : "invalid-feedback" } >
+                            {this.state.errores.descripcion}
+                        </div>
                     </div>
 
                     <button className="btn btn-primary" type="submit" disabled={this.state.cargando} >
@@ -146,8 +216,8 @@ class agregarZona extends React.Component {
     render () {
         return (
             <>
-            {this.state.toHome ? <Redirect to="/admin/zona" /> : null}
-            {this.formulario()}
+            { this.state.toHome ? <Redirect to="/admin/zona" /> : null }
+            { this.formulario() }
             </>
         );
     }

@@ -254,3 +254,5 @@ ALTER TABLE `Persona` ADD UNIQUE(`cedula`);
 ALTER TABLE `Persona` ADD UNIQUE(`pasaporte`);
 
 ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
+
+ALTER TABLE `zona` ADD UNIQUE( `nombre`, `cargo`);
