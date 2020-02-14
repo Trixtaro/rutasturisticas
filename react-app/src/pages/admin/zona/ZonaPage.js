@@ -7,9 +7,8 @@ class ZonaPage extends React.Component {
     render () {
         return (
             <>
-				<h1>
-					Zonas
-					<small className="text-muted"> administrador</small>
+				<h1 className='mt-3'>
+					Zonas <small className="text-muted"> administrador</small>
 				</h1>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">

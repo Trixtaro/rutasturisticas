@@ -149,7 +149,7 @@ class agregarZona extends React.Component {
                 ) }
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
-                        <div className="col">
+                        <div className="col-12 col-md-6">
                             <div className="form-group">
                                 <label htmlFor="InputLatitud">Latitud</label>
                                 <input type="text" className={ this.state.errores.latitud === '' ? "form-control" : "form-control is-invalid" } id="InputLatitud" name='latitud' onChange={this.handleChange} value={this.state.form.latitud} required />
@@ -158,7 +158,7 @@ class agregarZona extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col">
+                        <div className="col-12 col-md-6">
                             <div className="form-group">
                                 <label htmlFor="InputLongitud">longitud</label>
                                 <input type="text" className={ this.state.errores.longitud === '' ? "form-control" : "form-control is-invalid" } id="InputLongitud" name='longitud' onChange={this.handleChange} value={this.state.form.longitud} required />
@@ -170,7 +170,7 @@ class agregarZona extends React.Component {
                     </div>
 
                     <div className="row">
-                        <div className='col'>
+                        <div className='col-12 col-md-6'>
                             <div className="form-group">
                                 <label htmlFor="InputNombre">Nombre</label>
                                 <input type="text" className={ this.state.errores.nombre === '' ? "form-control" : "form-control is-invalid" } id="InputNombre" name='nombre' onChange={this.handleChange} value={this.state.form.nombre} required />
@@ -179,7 +179,7 @@ class agregarZona extends React.Component {
                                 </div>
                             </div>
                         </div>                        
-                        <div className='col'>
+                        <div className='col-12 col-md-6'>
                             <div className="form-group">
                                 <label htmlFor="cargoSelect">Cargo</label>
                                 <select className="form-control" id="cargoSelect" name='cargo' onChange={this.handleChange} value={this.state.form.cargo} required aria-describedby="cargoHelp" >

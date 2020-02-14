@@ -6,6 +6,12 @@ class ZonaTable extends React.Component {
         super(props);
         this.state = {
             zonas:[],
+            alerta: {
+                titulo: '',
+                cuerpo: '',
+                extra: '',
+                tipo: '',
+            },
         }
     }
 
@@ -24,17 +30,39 @@ class ZonaTable extends React.Component {
             const respuesta = await response.json();
             if (response.ok) {
                 this.setState({
-                    zonas : respuesta.data
+                    zonas : respuesta.data,
+                    alerta: {
+                        ...this.state.alerta,
+                        tipo: '',
+                        titulo: '',
+                        cuerpo: '',
+                        extra: ''
+                    },
                 });
             } else {
                 this.setState({
-                    zonas : []
+                    zonas : [],
+                    alerta: {
+                        ...this.state.alerta,
+                        tipo: 'alert-danger',
+                        titulo: 'Caught an error.',
+                        cuerpo: response.status,
+                        extra: response.statusText
+                    },
                 });
                 console.log("Error " + response.statusText + " estado es " + response.status);
             }
         } catch (error) {
+            alert("error");
             this.setState({
-                zonas : []
+                zonas : [],
+                alerta: {
+                    ...this.state.alerta,
+                    tipo: 'alert-danger',
+                    titulo: 'Caught an error.',
+                    cuerpo: error.message,
+                    extra: error.name
+                },
             });
             console.log("<Error handleLoguear componente clase 'ZonaTable'>");
             console.log(error);
@@ -89,8 +117,21 @@ class ZonaTable extends React.Component {
             </table>
         );
     }
+
     render () {
-        return ( this.tabla() );
+        return (
+            <>
+            { this.state.alerta.tipo === '' ? null : (
+                <div className={"alert " + this.state.alerta.tipo} role="alert">
+                    <h4 className="alert-heading">{this.state.alerta.titulo}</h4>
+                    <p>{this.state.alerta.cuerpo}</p>
+                    <hr />
+                    <p className="mb-0">{this.state.alerta.extra}</p>
+                </div>
+            ) }
+            { this.tabla() }
+            </>
+        );
     }
 }
 
