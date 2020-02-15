@@ -27,7 +27,7 @@
 .RegisterTurista form{
     width: 40%;
     padding: 20px;
-    background: rgba(34, 241, 34, 0.397);
+    background: rgba(230, 255, 230, 0.397);
     border-radius: 50px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .RegisterTurista form input, .RegisterTurista form select{
-    width: 50%;
+    width: 40%;
     color: blue;
     font-weight: 600;
 }

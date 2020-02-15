@@ -10,24 +10,19 @@ class LugaresPage extends React.Component {
     }
 
     async componentDidMount () {
-
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
-            const data = await response.json();
-            this.setState({
-                lugares: data.data
-            });
+        const data = await response.json();
+        this.setState({
+            lugares: data.data
+        });
         console.log(this.state.lugares)
     }
 
     ponerLugares = () => {
-
         if (this.state.lugares.length)
             return this.state.lugares.map( lugar => {
-                console.log(lugar)
                 return (
-                    <Lugar 
-                        lugar={lugar} 
-                    />
+                    <Lugar lugar={lugar} key={lugar.id} />
                 );
             });
         else {
@@ -40,7 +35,7 @@ class LugaresPage extends React.Component {
             <div className="LugaresPage">
                 <Link to="/">
                     <div className="LugaresPage-regresar">
-                        <i class="fas fa-undo-alt"></i>
+                        <i className="fas fa-undo-alt"></i>
                         &nbsp;
                         Regresar
                     </div>
@@ -49,10 +44,8 @@ class LugaresPage extends React.Component {
                     Resultados de la búsqueda de lugares...
                 </h1>
                 <Buscador placeholder="Escriba su lugar de destino (Ciudad, País, Lugar, etc)" />    
-                <div className="lugares">
-                {
-                    this.ponerLugares()
-                }
+                <div className="card-columns">
+                    { this.ponerLugares() }
                 </div>
             </div>
         );

@@ -8,17 +8,17 @@ class RegisterTurista extends React.Component {
         cargando: false,
         enviado: false,
         form: {
-            nickname: '',
             clave: '',
             correo: '',
+            nickname: '',
             nombres: '',
             apellido_paterno: '',
-            apellido_materno: '',
-            f_nacimiento: '',
+            apellido_materno: '_',
+            f_nacimiento: '2000-1-1',
             cedula: '',
-            pasaporte: '',
+            pasaporte: ' ',
             genero: '',
-            nacionalidad: ''
+            nacionalidad: 'Ecuador'
         }
     }
 
@@ -26,9 +26,9 @@ class RegisterTurista extends React.Component {
         e.preventDefault()
 
         this.setState({cargando: true});
-
+        let rutaServer = `${process.env.REACT_APP_LARAVEL}/api/register`;
         const response = await fetch(
-            `${process.env.REACT_APP_LARAVEL}/api/register`, 
+             rutaServer,
                 { 
                     method: 'POST',
                     body: JSON.stringify(this.state.form)
@@ -37,7 +37,7 @@ class RegisterTurista extends React.Component {
 
         const data = await response.json();
 
-        if(data.token){
+        if (data.token) {
             localStorage.setItem('usertoken',data.token)
             this.props.history.push(`/`);
         } else {
@@ -52,6 +52,17 @@ class RegisterTurista extends React.Component {
                 [e.target.name] : e.target.value
             }
         })
+
+        if(e.target.name == 'correo')
+            this.setState({
+                form: {
+                    ...this.state.form,
+                    correo: e.target.value,
+                    nickname: e.target.value
+                }
+            })
+
+        console.log(this.state.form)
     }
 
     componentDidMount () {
@@ -93,7 +104,7 @@ class RegisterTurista extends React.Component {
                                     <div className="fields">
                                         <div className="datos">
                                             <div className="field">
-                                                <label htmlFor="cedula">Cedula:</label>
+                                                <label htmlFor="cedula">Cedula o Pasaporte:</label>
                                                 <input type="text" id="cedula" name="cedula" onChange={this.handleChange} value={this.state.form.cedula}></input>
                                             </div>
                                             <div className="field">
@@ -103,16 +114,16 @@ class RegisterTurista extends React.Component {
                                         </div>
                                         <div className="datos">
                                             <div className="field">
-                                                <label htmlFor="apellido-p">Apellido Paterno:</label>
+                                                <label htmlFor="apellido-p">Apellidos:</label>
                                                 <input type="text" id="apellido-p" name="apellido_paterno" onChange={this.handleChange} value={this.state.apellido_paterno}></input>
                                             </div>
-                                            <div className="field">
-                                                <label htmlFor="apellido-m">Apellido Materno:</label>
-                                                <input type="text" id="apellido-m" name="apellido_materno" onChange={this.handleChange} value={this.state.apellido_materno}></input>
-                                            </div>
+                                            {/* <div className="field"> */}
+                                                {/* <label htmlFor="apellido-m">Apellido Materno:</label> */}
+                                                <input type="hidden" id="apellido-m" name="apellido_materno" ></input>
+                                            {/* </div> */}
                                         </div>
-                                        <div className="field">
-                                            <label>País de Origen</label>
+                                        {/* <div className="field"> */}
+                                            {/* <label>País de Origen</label>
                                             <select name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}>
                                                 <option value="0">Seleccione...</option>
                                                 <option value="Ecuador">Ecuador</option>
@@ -121,80 +132,54 @@ class RegisterTurista extends React.Component {
                                                 <option value="Chile">Chile</option>
                                                 <option value="Argentina">Argentina</option>
                                                 <option value="USA">Estados Unidos de América</option>  
-                                            </select>
-                                        </div>
+                                            </select> */}
+                                            <input type="hidden" name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}/>
+                                        {/* </div> */}
                                         <div className="field">
                                             <label>Género</label>
                                             <select name="genero" onChange={this.handleChange} value={this.state.form.genero}>
                                                 <option value="0">Seleccione su género</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Femenino</option>
-                                                <option value="I">Indefinido</option>
+                                                <option value="I">Otro</option>
                                             </select>
                                         </div>
+                                        {/* <div className="field"> */}
+                                            {/* <label htmlFor="usuario">Usuario:</label> */}
+                                            <input type="hidden" id="usuario" name="nickname" ></input>
+                                        {/* </div> */}
+                                        {/* <div className="field"> */}
+                                            {/* <label htmlFor="pasaporte">Pasaporte:</label> */}
+                                            <input type="hidden" id="pasaporte" name="pasaporte" onChange={this.handleChange} value={this.state.form.pasaporte}></input>
+                                        {/* </div> */}
                                         <div className="field">
-                                            <label className='label' htmlFor="apellido-p">Apellido Paterno:</label>
-                                            <input type="text" id="apellido-p" name="apellido_paterno" onChange={this.handleChange} value={this.state.apellido_paterno}></input>
+                                            <label htmlFor="correo">Correo Electrónico:</label>
+                                            <input type="email" id="correo" name="correo" onChange={this.handleChange} value={this.state.form.correo}></input>
                                         </div>
-                                        <div className="field">
-                                            <label className='label' htmlFor="apellido-m">Apellido Materno:</label>
-                                            <input type="text" id="apellido-m" name="apellido_materno" onChange={this.handleChange} value={this.state.apellido_materno}></input>
-                                        </div>
-                                    </div>
-                                    <div className="field-select">
-                                        <select className='select-text' name="nacionalidad" onChange={this.handleChange} value={this.state.form.nacionalidad}>
-                                            <option value="" disabled selected></option>
-                                            <option value="Ecuador">Ecuador</option>
-                                        </select>
-                                        <span class="select-highlight"></span>
-                                        <span class="select-bar"></span>
-                                        <label className='select-label'>País de Origen</label>
-                                    </div>
-                                    <div className="field-select">
-                                        <select className='select-text' name="genero" onChange={this.handleChange} value={this.state.form.genero}>
-                                            <option value="" disabled selected></option>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                        </select>
-                                        <span class="select-highlight"></span>
-                                        <span class="select-bar"></span>
-                                        <label className='select-label'>Género</label>
-                                    </div>
-                                    <div className="field">
-                                        <label className='label' htmlFor="usuario">Usuario:</label>
-                                        <input type="text" id="usuario" name="nickname" onChange={this.handleChange} value={this.state.form.nickname}></input>
-                                    </div>
-                                    <div className="field">
-                                        <label className='label' htmlFor="pasaporte">Pasaporte:</label>
-                                        <input type="text" id="pasaporte" name="pasaporte" onChange={this.handleChange} value={this.state.form.pasaporte}></input>
-                                    </div>
-                                    <div className="field">
-                                        <label className='label' htmlFor="correo">Correo Electrónico:</label>
-                                        <input type="email" id="correo" name="correo" onChange={this.handleChange} value={this.state.form.correo}></input>
-                                    </div>
-                                    <div className="field-date">
-                                        <label className='label' htmlFor="f-nacimiento">Fecha de nacimiento:</label>
-                                        <input type="date" id="f-nacimiento" name="f_nacimiento" onChange={this.handleChange} value={this.state.form.f_nacimiento}></input>
-                                    </div>
-                                    <div className='group-field'>
-                                        <div className="field">
-                                            <label className='label' htmlFor="clave">Contraseña:</label>
-                                            <input type="password" id="clave" name="clave" onChange={this.handleChange} value={this.state.form.clave}></input>
-                                        </div>
-                                        <div className="field">
-                                            <label className='label' htmlFor="clave2">Repetir contraseña:</label>
-                                            <input type="password" id="clave2" name="clave2"></input>
+                                        {/* <div className="field"> */}
+                                            {/* <label htmlFor="f-nacimiento">Fecha de nacimiento:</label> */}
+                                            <input type="hidden" id="f-nacimiento" name="f_nacimiento" onChange={this.handleChange} value={this.state.form.f_nacimiento}></input>
+                                        {/* </div> */}
+                                        <div className="datos">
+                                            <div className="field">
+                                                <label htmlFor="clave">Contraseña:</label>
+                                                <input type="password" id="clave" name="clave" onChange={this.handleChange} value={this.state.form.clave}></input>
+                                            </div>
+                                            {/* <div className="field">
+                                                <label htmlFor="clave2">Repetir contraseña:</label>
+                                                <input type="password" id="clave2" name="clave2"></input>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="botones">
-                                    <div className="regresar">
+                                    {/* <div className="regresar">
                                         <Link to="./">
                                             <i class="fas fa-undo-alt" aria-hidden="true"></i>Regresar
                                         </Link>
-                                    </div>
+                                    </div> */}
 
                                         <div className="btn-accion">
-                                            <button>Registrarse</button>
+                                            <button>Enviar!</button>
                                         </div>
                                     </div>
                                 </div>

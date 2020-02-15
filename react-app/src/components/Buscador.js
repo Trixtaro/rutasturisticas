@@ -13,15 +13,15 @@ class Buscador extends React.Component {
 
     async componentDidMount () {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares`);
+            const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/zonas`);
             const data = await response.json();
             this.setState({
                 'datos': data.data
             });
         } catch (error) {
-            console.log("< Mi-error en componentDidMount clase Buscador >");
+            console.log("< Mi-error en componentDidMount clase Buscador@componentDidMount >");
             console.log(error);
-            console.log("< Mi-error en componentDidMount clase Buscador />");
+            console.log("< Mi-error en componentDidMount clase Buscador@componentDidMount />");
         }
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
     }
@@ -154,7 +154,8 @@ class Buscador extends React.Component {
             this.setState({
                 id: lugar.Id
             })
-            console.log(this.state)
+
+            this.props.history.push(`/lugares/${this.state.id}`);
         }
     }
 }

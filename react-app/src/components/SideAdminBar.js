@@ -4,38 +4,36 @@ import { Link } from 'react-router-dom';
 import './styles/SideAdminBar.css';
 
 class SideAdminBar extends React.Component{
-
-    render(){
+    render () {
         return (
-            <div className="SideAdminBar">
-                <div className="profile">
-                    <i className="fas fa-user" style={{ fontSize: '80px', marginBottom: '20px' }}></i> 
-                    <h1>Wilmer David Cedeño Mendoza</h1>
+            <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+                <div className='sidebar-sticky'>
+                    <ul className="nav flex-column">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/admin/home">
+                                <h4><i className="fas fa-home"></i> Home</h4>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/admin/lugar">
+                                <h4><i className="fas fa-location-arrow"></i> Lugares</h4>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/admin/zona">
+                                <h4><i className="fas fa-map-marked-alt"></i> Zonas</h4>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/admin/solicitudes">
+                                <h4><i className="fas fa-user-check"></i> Solicitudes de guias</h4>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
-                <div className="items">
-                    <Link to="/admin/home">
-                        <div className="item">
-                            <i class="fas fa-home"></i>
-                            <h3>Home</h3>
-                        </div>
-                    </Link>
-                    <Link to="/admin/lugares">
-                        <div className="item">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <h3>Agregar lugar</h3>
-                        </div>
-                    </Link>
-                    <Link to="/admin/solicitudes">
-                        <div className="item">
-                            <i class="fas fa-user-check"></i>
-                            <h3>Solicitudes de guias</h3>
-                        </div>
-                    </Link>
-                </div>
-            </div>
+            </nav>
         )
     }
-
 }
 
 export default SideAdminBar;
