@@ -7,7 +7,7 @@ class Lugar extends React.Component{
 
     render () {
         return (
-            <Link to={`/lugar/${this.props.lugar.id}`}>
+            <Link to={this.props.url || `/lugar/${this.props.lugar.id}`}>
                 <div className={`Lugar ${this.props.clases}`} title={ this.props.lugar.nombre }>
                     <img src={ this.props.lugar.foto } alt={this.props.lugar.nombre}/>
                     <h1 className="titulo-lugar">{ this.props.lugar.nombre }</h1>
