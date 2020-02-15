@@ -6,6 +6,12 @@ class LugarTable extends React.Component {
         super(props);
         this.state = {
             lugares:[],
+            alerta: {
+                titulo: '',
+                cuerpo: '',
+                extra: '',
+                tipo: '',
+            },
         }
     }
 
@@ -14,7 +20,7 @@ class LugarTable extends React.Component {
             return this.state.lugares.map(
                 (e, i) => 
                 <tr key={i}>
-                    <td>{e.nombre}</td>
+                    <th scope="row">{e.nombre}</th>
                     <td>{e.descripcion}</td>
                     <td>{e.altura_sobre_nivel_del_mar}</td>
                     <td>{e.latitud}</td>
@@ -34,26 +40,26 @@ class LugarTable extends React.Component {
     cargando () {
         return (
             <tr>
-                <td colSpan="8">
+                <th scope="row">
                     <img src="/ajax-loader.gif" alt="gif de un pacman :v" />
-                </td>
+                </th>
             </tr>
         );
     }
 
     tabla () {
         return (
-            <table>
+            <table className="table table-hover table-dark">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Altura sobre nivel del mar</th>
-                        <th>Latitud</th>
-                        <th>Longitud</th>
-                        <th>Imagen</th>
-                        <th>ID Zona</th>
-                        <th>Acciones</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Altura sobre nivel del mar</th>
+                        <th scope="col">Latitud</th>
+                        <th scope="col">Longitud</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">ID Zona</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +70,19 @@ class LugarTable extends React.Component {
     }
 
     render () {
-        return ( this.tabla() );
+        return ( 
+            <>
+            { this.state.alerta.tipo === '' ? null : (
+                <div className={"alert " + this.state.alerta.tipo} role="alert">
+                    <h4 className="alert-heading">{this.state.alerta.titulo}</h4>
+                    <p>{this.state.alerta.cuerpo}</p>
+                    <hr />
+                    <p className="mb-0">{this.state.alerta.extra}</p>
+                </div>
+            ) }
+            { this.tabla() }
+            </>
+         );
     }
 }
 

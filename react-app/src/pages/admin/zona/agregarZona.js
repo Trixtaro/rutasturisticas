@@ -89,7 +89,9 @@ class agregarZona extends React.Component {
                     alerta: {
                         ...this.state.alerta,
                         tipo: 'alert-danger',
-                        titulo: respuesta.error
+                        titulo: respuesta.error,
+                        cuerpo: '',
+                        extra: ''
                     }
                 });
             }

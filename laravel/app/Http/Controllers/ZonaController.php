@@ -28,7 +28,7 @@ class ZonaController extends Controller {
             'descripcion' => 'required|between:2,255',
         ]);
         
-        if($validator->fails()){
+        if( $validator->fails() ){
             return response()->json([
                 'data' => null,
                 'error' => 'Error en validar datos',

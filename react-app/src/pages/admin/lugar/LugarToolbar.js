@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 class LugarToolbar extends React.Component {
 	render () {
 		return (
-			<Link to="/admin/lugar/agregar">Agregar</Link>
+			<div className="btn-group btn-group-lg mb-3" role="group">
+				<Link className="btn btn-primary" role="button" to="/admin/lugar/agregar">Agregar</Link>
+			</div>
 		);
 	}
 }

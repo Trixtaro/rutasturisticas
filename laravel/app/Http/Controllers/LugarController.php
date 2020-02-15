@@ -23,17 +23,22 @@ class LugarController extends Controller {
 
     public function store (Request $request) {
         $validator = Validator::make($request->json()->all() ,[
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'altura_sobre_nivel_del_mar' => 'required',
-            'latitud' => 'required',
-            'longitud' => 'required',
+            'nombre' => 'required|between:2,255',
+            'descripcion' => 'required|between:2,255',
+            'altura_sobre_nivel_del_mar' => 'required|digits_between:1,50000',
+            'latitud' => 'required|max:20',
+            'longitud' => 'required|max:20',
             'imagen' => 'required',
-            'ID_zona' => 'required',
+            'ID_zona' => 'required|exists:zona,ID_zona',
         ]);
         
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        if( $validator->fails() ){
+            return response()->json([
+                'data' => null,
+                'error' => 'Error en validar datos',
+                'message' => $validator->messages(),
+                'success' => false 
+            ], 400);
         }
         $lugar = new Lugar();
         $lugar->nombre = $request->json()->get('nombre');

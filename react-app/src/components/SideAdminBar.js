@@ -16,7 +16,7 @@ class SideAdminBar extends React.Component{
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin/lugar">
-                                <i className="fas fa-user"></i> Lugares
+                                <i className="fas fa-location-arrow"></i> Lugares
                             </Link>
                         </li>
                         <li className="nav-item">
