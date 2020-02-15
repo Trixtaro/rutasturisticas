@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import './styles/Buscador.css'
 
@@ -157,7 +157,8 @@ class Buscador extends React.Component {
             this.setState({
                 id: lugar.Id
             })
-            console.log(this.state)
+
+            this.props.history.push(`/lugares/${this.state.id}`);
         }
     }
 
