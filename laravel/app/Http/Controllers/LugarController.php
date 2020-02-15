@@ -30,6 +30,27 @@ class LugarController extends Controller {
             'longitud' => 'required|max:20',
             'imagen' => 'required',
             'ID_zona' => 'required|exists:zona,ID_zona',
+        ], [
+            //Para nombre
+            'nombre.required' => '¡Necesitamos saber el :attribute!',
+            'nombre.between' => '¡Te pasaste del rango entre :min - :max!',
+            //Para descripción
+            'descripcion.required' => '¡Necesitamos saber la descripción!',
+            'descripcion.between' => '¡Te pasaste del rango entre :min - :max!',
+            //Para altura sobre el nivel del mar
+            'altura_sobre_nivel_del_mar.required' => '¡Necesitamos saber la altura sobre el nivel del mar!',
+            'altura_sobre_nivel_del_mar.digits_between' => '¡Te pasaste del rango entre :min - :max!',
+            //Para latitud
+            'latitud.required' => '¡Necesitamos saber la :attribute!',
+            'latitud.max' => '¡No puedes pasarte de :max caracteres!',
+            //Para longitud
+            'longitud.required' => '¡Necesitamos saber la :attribute!',
+            'longitud.max' => '¡No puedes pasarte de :max caracteres!',
+            //Para imagen
+            'imagen.required' => '¡Necesitamos el archivo de la :attribute!',
+            //Para ID_zona
+            'ID_zona.required' => '¡Necesitamos sabes el identificador de la zona!',
+            'ID_zona.exists' => '¡No encontramos este identificador en nuestras bases de datos!',
         ]);
         
         if( $validator->fails() ){

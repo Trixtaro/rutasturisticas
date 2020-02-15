@@ -26,6 +26,21 @@ class ZonaController extends Controller {
             'nombre' => 'required|between:2,50',
             'cargo' => 'required',
             'descripcion' => 'required|between:2,255',
+        ], [
+            //Para latitud
+            'latitud.required' => '¡Necesitamos saber la :attribute!',
+            'latitud.max' => '¡No puedes pasarte de :max caracteres!',
+            //Para longitud
+            'longitud.required' => '¡Necesitamos saber la :attribute!',
+            'longitud.max' => '¡No puedes pasarte de :max caracteres!',
+            //Para nombre
+            'nombre.required' => '¡Necesitamos saber el :attribute!',
+            'nombre.between' => '¡Te pasaste del rango entre :min - :max!',
+            //Para cargo
+            'cargo.required' => '¡Necesitamos saber el :attribute!',
+            //Para descripción
+            'descripcion.required' => '¡Necesitamos saber la descripción!',
+            'descripcion.between' => '¡Te pasaste del rango entre :min - :max!',
         ]);
         
         if( $validator->fails() ){
