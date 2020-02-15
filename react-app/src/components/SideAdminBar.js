@@ -11,22 +11,22 @@ class SideAdminBar extends React.Component{
                     <ul className="nav flex-column">
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin/home">
-                                    <i className="fas fa-home"></i> Home
+                                <h4><i className="fas fa-home"></i> Home</h4>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin/lugar">
-                                <i className="fas fa-location-arrow"></i> Lugares
+                                <h4><i className="fas fa-location-arrow"></i> Lugares</h4>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin/zona">
-                                <i className="fas fa-map-marked-alt"></i> Zonas
+                                <h4><i className="fas fa-map-marked-alt"></i> Zonas</h4>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/admin/solicitudes">
-                                <i className="fas fa-user-check"></i> Solicitudes de guias
+                                <h4><i className="fas fa-user-check"></i> Solicitudes de guias</h4>
                             </Link>
                         </li>
                     </ul>
