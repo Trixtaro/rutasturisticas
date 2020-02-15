@@ -154,7 +154,8 @@ class Buscador extends React.Component {
             this.setState({
                 id: lugar.Id
             })
-            console.log(this.state)
+
+            this.props.history.push(`/lugares/${this.state.id}`);
         }
     }
 }
