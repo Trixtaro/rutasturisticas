@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './styles/LugarPage.css';
 
 class LugarPage extends React.Component {

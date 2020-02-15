@@ -3,28 +3,20 @@
 .Dashboard {
     font-family: 'Maiden Orange', cursive;
     text-align: center;
-    padding: 30px;
     min-height: 80vh;
     background: url('../../images/bg-1.jpeg') no-repeat;
-    background-position-y: -200px;
     background-size: cover;
-    display: flex;
-    position: relative;
 }
 
-.Dashboard .principal{
-    width: 80%;
+.Dashboard h1 { 
+    font-size: 10rem;
+    color: #0f473d;
 }
 
 .Dashboard .recomendaciones{
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    right: 0;
     background-color: rgb(238, 238, 238);
-    height: 100%;
+    height: 100vh;
     z-index: 100;
     overflow: scroll;
     border-left: 3px rgb(26, 202, 173) solid;
@@ -40,19 +32,6 @@
     margin: 10px auto;
 }
 
-.Dashboard .hero h1 { 
-    font-size: 10rem;
-    color: #0f473d;
-}
-
-.Dashboard .hero p {
-    margin-top: 30px;
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 30px;
-    color: #19463d;
-}
-
 .Dashboard .titulo-lugares{
     font-size: 30px;
 }
@@ -63,36 +42,4 @@
     margin: 50px auto;
     margin-top: 5px;
     height: 250px;
-}
-
-.Dashboard .Lugar{
-    margin: 10px 30px;
-    margin-top: auto;
-    width: 250px;
-    transition: width 2s;
-}
-
-.Dashboard .principal .Lugar:hover{
-    margin-top: -20px;
-    border: 2px rgb(194, 194, 194) solid;
-    width: 300px;
-}
-
-.Dashboard .points{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 45px;
-}
-
-.Dashboard .points .point{
-    background: rgb(62, 138, 18);
-    border-radius: 3px;
-    width: 5px;
-    height: 5px;
-    margin: 5px;
-}
-
-.Dashboard .points .point.selected{
-    background: white;
-    border: 1px black solid;
 }
