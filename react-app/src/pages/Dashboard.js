@@ -8,13 +8,11 @@ import './styles/Dashboard.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Dashboard extends React.Component {
-
     state = {
         recomendaciones: []
     }
 
     async componentDidMount(){
-
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/3`);
             const data = await response.json();
             this.setState({
@@ -75,7 +73,7 @@ class Dashboard extends React.Component {
                 <h2 className="titulo">Recomendaciones</h2>
                 {
                     this.state.recomendaciones.map( lugar => 
-                        <Lugar lugar={lugar} />
+                        <Lugar key={lugar.id} lugar={lugar} />
                     )
                 }
             </div>

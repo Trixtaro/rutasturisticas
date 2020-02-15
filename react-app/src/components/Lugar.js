@@ -8,10 +8,12 @@ class Lugar extends React.Component{
     render () {
         return (
             <Link to={this.props.url || `/lugar/${this.props.lugar.id}`}>
-                <div className={`Lugar ${this.props.clases}`} title={ this.props.lugar.nombre }>
-                    <img src={ this.props.lugar.foto } alt={this.props.lugar.nombre}/>
-                    <h1 className="titulo-lugar">{ this.props.lugar.nombre }</h1>
-                    <p>{ this.props.lugar.descripcion }</p>
+                <div className="card Lugar" title={ this.props.lugar.nombre } >
+                    <img src={ this.props.lugar.foto } className="card-img-top" alt={this.props.lugar.nombre} />
+                    <div className="card-body">
+                        <h5 className="card-title">{ this.props.lugar.nombre }</h5>
+                        <p className="card-text">{ this.props.lugar.descripcion }</p>
+                    </div>
                 </div>
             </Link>
         );
