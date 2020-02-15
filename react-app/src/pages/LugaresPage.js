@@ -22,9 +22,8 @@ class LugaresPage extends React.Component {
     ponerLugares = () => {
         if (this.state.lugares.length)
             return this.state.lugares.map( lugar => {
-                console.log(lugar)
                 return (
-                    <Lugar 
+                    <Lugar key={lugar.id}
                         lugar={lugar} 
                     />
                 );
