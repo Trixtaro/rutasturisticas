@@ -4,9 +4,8 @@ class API {
 
     getLugarPorZona = async (id) => {
         const response = await fetch(`${BASE_API}/api/lugares/${id}`);
-        const data = response.json()
-        console.log(data)
-        return data
+        const data = await response.json()
+        return data.data
     }
 
 }

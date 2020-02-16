@@ -1,10 +1,15 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
+import { connect } from 'react-redux';
 
 import Layout from '../components/SuggestionListLayout';
 import Empty from '../components/Empty';
 import Separator from '../components/VerticalSeparator';
 import Lugar from '../components/Lugar';
+
+import * as lugaresActions from '../../../redux/actions/lugaresActions';
+
+const { traerPorZona : traerLugarPorZona } = lugaresActions
 
 class SuggestionList extends React.Component{
 
@@ -13,13 +18,21 @@ class SuggestionList extends React.Component{
     renderSeparator = () => <Separator color="green" />
     renderLugar = ({item}) => <Lugar lugar={item}/>
 
+    async componentDidMount(){
+
+        if (!this.props.lugares.length){
+            await this.props.traerLugarPorZona(3)
+        }
+        
+    }
+
     render(){
 
         return (
             <Layout title="Lugares sugeridos">
                 <FlatList 
                     keyExtractor={this.keyExtractor}
-                    data={this.props.data}
+                    data={this.props.lugares }
                     ListEmptyComponent={this.renderEmpty}
                     ItemSeparatorComponent={this.renderSeparator}
                     renderItem={this.renderLugar}
@@ -30,4 +43,10 @@ class SuggestionList extends React.Component{
 
 };
 
-export default SuggestionList;
+const mapStateToProps = ({ lugaresReducer }) => lugaresReducer
+
+const mapDispatchToProps = {
+    traerLugarPorZona
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList);

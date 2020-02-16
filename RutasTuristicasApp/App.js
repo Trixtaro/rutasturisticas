@@ -18,35 +18,11 @@ import Api from './utils/API';
 
 class App extends React.Component {
 
-  state = {
-    ciudadesRecomendadas: [
-      {
-        nombre: "Portoviejo",
-        foto: 1,
-        descripcion: "La capital de los manabitas."
-      },
-      {
-        nombre: "Manta",
-        foto: 2,
-        descripcion: "Principal puerto atunero del mundo."
-      },
-      {
-        nombre: "Montecristi",
-        foto: 3,
-        descripcion: "La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla."
-      }
-    ]
-  }
-
   async componentDidMount(){
 
     const lugaresRecomendados = await Api.getLugarPorZona(3)
 
-    this.setState({
-      ...this.state,
-      lugaresRecomendados: lugaresRecomendados.data,
-    })
-
+    
   }
 
   render(){
@@ -68,8 +44,8 @@ class App extends React.Component {
           <Text>Buscador</Text>
           <Player />
 
-          <ListaCiudades data={this.state.ciudadesRecomendadas} />
-          <SuggestionList data={this.state.lugaresRecomendados} />
+          <ListaCiudades />
+          <SuggestionList />
         </ImageBackground>
 
       </Home>
