@@ -4,7 +4,12 @@ import { View, StyleSheet } from 'react-native';
 const VideoLayout = (props) => (
     <View style={styles.container}>
         <View style={styles.video}>
-            {props.children}
+            {props.video}
+        </View>
+        <View style={styles.overlay}>
+            {
+                props.loading && props.loader
+            }
         </View>
     </View>
 );
@@ -20,6 +25,15 @@ const styles = StyleSheet.create({
         bottom: 0,
         top: 0,
         backgroundColor: '#000'
+    },
+    overlay: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 
