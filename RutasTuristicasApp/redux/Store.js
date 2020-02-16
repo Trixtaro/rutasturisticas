@@ -13,7 +13,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const Store = createStore(
-    persistedReducer, //Todos l
+    persistedReducer,
     {},
     applyMiddleware(reduxThunk)   
 );

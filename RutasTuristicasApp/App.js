@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 
 import { Provider } from 'react-redux';
 import { Store , Persistor } from './redux/Store';
@@ -33,7 +33,7 @@ class App extends React.Component {
         store={Store}
       >
       <PersistGate
-        loading={null} persistor={Persistor}
+        loading={<ActivityIndicator />} persistor={Persistor}
       >
 
       <Home>

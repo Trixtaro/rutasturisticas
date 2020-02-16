@@ -19,7 +19,7 @@ const VideoLayout = (props) => (
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: '56.25%',
+        paddingTop: '40%',
     },
     video: {
         position: 'absolute',
