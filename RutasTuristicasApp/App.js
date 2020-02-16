@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, StyleSheet, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/sections/containers/SuggestionList';
 import ListaCiudades from './src/sections/containers/ListaCiudades';
+import Player from './src/player/container/Player';
 
 import portoviejo from './assets/portoviejo.jpg';
 import manta from './assets/manta.jpg';
@@ -52,6 +53,7 @@ class App extends React.Component {
         <Header>
         <Text style={{color: 'white'}}></Text>
         </Header>
+        <Player />
 
         <ImageBackground
           source={require('./assets/bg-2.png')}
