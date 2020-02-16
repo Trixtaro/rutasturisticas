@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 
+import { Provider } from 'react-redux';
+import Store from './redux/Store';
+
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/sections/containers/SuggestionList';
@@ -49,6 +52,9 @@ class App extends React.Component {
   render(){
 
     return (
+      <Provider
+        store={Store}
+      >
       <Home>
         <Header>
         <Text style={{color: 'white'}}></Text>
@@ -67,6 +73,7 @@ class App extends React.Component {
         </ImageBackground>
 
       </Home>
+      </Provider>
     );
   }
 
