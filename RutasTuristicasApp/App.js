@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 
 import { Provider } from 'react-redux';
-import Store from './redux/Store';
+import { Store , Persistor } from './redux/Store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import Home from './src/screens/containers/home';
 import Header from './src/sections/components/Header';
@@ -31,6 +32,10 @@ class App extends React.Component {
       <Provider
         store={Store}
       >
+      <PersistGate
+        loading={null} persistor={Persistor}
+      >
+
       <Home>
         <Header>
         <Text style={{color: 'white'}}></Text>
@@ -49,6 +54,8 @@ class App extends React.Component {
         </ImageBackground>
 
       </Home>
+
+      </PersistGate>
       </Provider>
     );
   }
