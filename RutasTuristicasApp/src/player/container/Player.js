@@ -2,11 +2,14 @@ import React from 'react';
 import { StyleSheet, ActivityIndicator } from 'react-native';
 import Video from 'react-native-video';
 import Layout from '../components/VideoLayout';
+import PlayPause from '../components/PlayPause';
+import ControlLayout from '../components/ControlLayout';
 
 class Player extends React.Component{
 
     state = {
         loading: true,
+        pausado: false,
     }
     
     onBuffer = ({ isBuffering }) => {
@@ -21,6 +24,12 @@ class Player extends React.Component{
         })
     }
 
+    playPause = () => {
+        this.setState({
+            pausado: !this.state.pausado
+        })
+    }
+
     render(){
         return(
             <Layout
@@ -32,12 +41,21 @@ class Player extends React.Component{
                         resizeMode="cover"
                         onBuffer={this.onBuffer}
                         onLoad={this.onLoad}
+                        paused={this.state.pausado}
                         repeat
                         muted
                     />
                 }
                 loader={
                     <ActivityIndicator color="white" />
+                }
+                controls={
+                    <ControlLayout>
+                        <PlayPause
+                            onPress={this.playPause}
+                            paused={this.state.pausado}
+                        />
+                    </ControlLayout>
                 }
             />
         );

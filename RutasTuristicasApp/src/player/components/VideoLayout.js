@@ -11,6 +11,9 @@ const VideoLayout = (props) => (
                 props.loading && props.loader
             }
         </View>
+        {
+            props.controls
+        }
     </View>
 );
 
