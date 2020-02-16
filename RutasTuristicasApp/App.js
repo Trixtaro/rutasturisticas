@@ -53,14 +53,14 @@ class App extends React.Component {
         <Header>
         <Text style={{color: 'white'}}></Text>
         </Header>
-        <Player />
 
         <ImageBackground
           source={require('./assets/bg-2.png')}
           style={styles.container}
           >
-          {/* <Text>El buscador</Text>
-          <Text>Categorias</Text> */}
+
+          <Text>Buscador</Text>
+          <Player />
 
           <ListaCiudades data={this.state.ciudadesRecomendadas} />
           <SuggestionList data={this.state.lugaresRecomendados} />

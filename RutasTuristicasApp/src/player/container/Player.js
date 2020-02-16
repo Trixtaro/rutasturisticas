@@ -36,7 +36,7 @@ class Player extends React.Component{
                 loading={this.state.loading}
                 video={
                     <Video 
-                        source={{ uri: 'http://techslides.com/demos/sample-videos/small.mp4' }}
+                        source={ require('../../../assets/portoviejo-video.mp4') }
                         style={styles.container}
                         resizeMode="cover"
                         onBuffer={this.onBuffer}

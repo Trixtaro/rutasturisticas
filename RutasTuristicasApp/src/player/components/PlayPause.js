@@ -28,11 +28,8 @@ const PlayPause = (props) => {
 
 const styles = StyleSheet.create({
     button: {
-      color: 'white',
       height: 50,
       width: 50,
-      fontSize: 10,
-      fontWeight: 'bold',
     },
     container: {
       justifyContent: 'center',
