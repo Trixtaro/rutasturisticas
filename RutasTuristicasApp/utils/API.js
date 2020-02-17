@@ -8,6 +8,17 @@ class API {
         return data.data
     }
 
+    getZonasPorNombre = async (input) => {
+        try {
+            const response = await fetch(`${BASE_API}/api/lugares`);
+            const data = await response.json();
+            return data.data
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+
 }
 
 export default new API();

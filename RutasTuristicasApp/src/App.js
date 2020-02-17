@@ -6,6 +6,7 @@ import Header from './sections/components/Header';
 import SuggestionList from './sections/containers/SuggestionList';
 import ListaCiudades from './sections/containers/ListaCiudades';
 import Player from './player/container/Player';
+import Buscador from './sections/components/Buscador';
 
 class AppLayout extends React.Component{
 
@@ -20,8 +21,8 @@ class AppLayout extends React.Component{
                     source={require('../assets/bg-2.png')}
                     style={styles.container}
                 >
+                    <Buscador />
 
-                    <Text>Buscador</Text>
                     <Player />
 
                     <ListaCiudades />
