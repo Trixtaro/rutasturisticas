@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './styles/RegisterTurista.css';
 
 class RegisterTurista extends React.Component {
@@ -53,7 +53,7 @@ class RegisterTurista extends React.Component {
             }
         })
 
-        if(e.target.name == 'correo')
+        if (e.target.name === 'correo')
             this.setState({
                 form: {
                     ...this.state.form,

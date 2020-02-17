@@ -5,22 +5,18 @@ import montecristi from '../images/montecristi.jpg';
 import portoviejo from '../images/portoviejo.jpg';
 import manta from '../images/manta.jpg';
 import './styles/Dashboard.css';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Dashboard extends React.Component {
-
     state = {
         recomendaciones: []
     }
 
-    async componentDidMount(){
-
+    async componentDidMount () {
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/3`);
-            const data = await response.json();
-            this.setState({
-                recomendaciones: data.data
-            });
-        console.log(this.state.lugares)
+        const data = await response.json();
+        this.setState({
+            recomendaciones: data.data
+        });
     }
 
     render () {
@@ -73,11 +69,9 @@ class Dashboard extends React.Component {
             </div>
             <div className="recomendaciones">
                 <h2 className="titulo">Recomendaciones</h2>
-                {
-                    this.state.recomendaciones.map( lugar => 
-                        <Lugar lugar={lugar} />
-                    )
-                }
+                { this.state.recomendaciones.map( lugar => 
+                    <Lugar key={lugar.id} lugar={lugar} />
+                )}
             </div>
             </div>
         );
