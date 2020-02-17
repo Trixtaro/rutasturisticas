@@ -1,6 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
+import { connect } from 'react-redux';
+
+import * as lugaresActions from '../../../redux/actions/lugaresActions';
+
+const { seleccionarZona : guardarIdZonaSeleccionada } = lugaresActions
 
 import API from '../../../utils/API';
 
@@ -32,7 +37,8 @@ class Buscador extends React.Component{
             idZona: id
         })
 
-        console.log(this.state.idZona)
+        this.props.guardarIdZonaSeleccionada(id)
+        console.log(this.props.zona)
     }
 
     async componentDidMount () {
@@ -90,4 +96,10 @@ const styles = StyleSheet.create({
     },
   });
 
-export default Buscador;
+const mapStateToProps = ({ lugaresReducer }) => lugaresReducer
+
+const mapDispatchToProps = {
+    guardarIdZonaSeleccionada
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Buscador);

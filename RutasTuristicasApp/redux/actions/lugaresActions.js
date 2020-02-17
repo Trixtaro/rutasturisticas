@@ -1,6 +1,6 @@
 import API from '../../utils/API';
 
-import { CARGANDO, LUGARES_TRAER_POR_ZONA, ERROR } from '../types/lugaresTypes';
+import { CARGANDO, LUGARES_TRAER_POR_ZONA, GUARDAR_ZONA, ERROR } from '../types/lugaresTypes';
 
 export const traerPorZona = (key) => async( dispatch ,getState ) => {
     try{
@@ -28,4 +28,11 @@ export const traerPorZona = (key) => async( dispatch ,getState ) => {
         })
 
     }
+}
+
+export const seleccionarZona = (key) => async( dispatch ,getState ) => {
+    dispatch({
+        type: GUARDAR_ZONA,
+        payload: key
+    })
 }

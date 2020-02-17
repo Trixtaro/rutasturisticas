@@ -1,7 +1,8 @@
-import { LUGARES_TRAER_POR_ZONA, CARGANDO, ERROR } from "../types/lugaresTypes";
+import { LUGARES_TRAER_POR_ZONA, GUARDAR_ZONA, CARGANDO, ERROR } from "../types/lugaresTypes";
 
 const INITIAL_STATE = {
     lugares: [],
+    zona: null,
     cargando: false,
     error: '',
 };
@@ -14,6 +15,13 @@ export default (state = INITIAL_STATE, action ) =>{
                 lugares: action.payload, 
                 cargando: false
             };
+        }
+        case GUARDAR_ZONA:{
+            return {
+                ...state,
+                zona: action.payload,
+                cargando: false
+            }
         }
         case CARGANDO:
             return { 
