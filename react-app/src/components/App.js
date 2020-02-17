@@ -8,7 +8,8 @@ import Login from '../pages/LoginPage';
 import BuscarLugares from '../pages/LugaresPage';
 import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
-import GuiasPendientePage from '../pages/admin/solicitudGuia/GuiasPendientePage.js';
+import GuiasPendientePage from '../pages/admin/solicitudGuia/GuiasPendientePage';
+import SolicitudGuias from '../pages/admin/solicitudGuia/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
 import RegisterGuia from '../pages/RegisterGuia';
 import AdminLugar from '../pages/admin/lugar/LugarPage';
@@ -26,6 +27,7 @@ function App () {
                 <AppRoute exact path="/lugar/:id" component={LugarPage} layout={Layout} />
 
                 <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
                 <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
                 <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
                 <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
