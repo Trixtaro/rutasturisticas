@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import foto from '../../../images/montecristi.jpg';
-import './styles/SolicitudGuias.css';
+import { Button } from 'reactstrap';
 
 class SolicitudGuias extends React.Component {
     guia = {
@@ -12,37 +12,34 @@ class SolicitudGuias extends React.Component {
 
     render () {
         return (
-            <div className="SolicitudGuias">
-                <div className="panel">
-                    <div className="informacion">
-                        <div className="foto-frame">
-                            <Link to="/" className="regresar">Regresar</Link>
-                            <h1 className="titulo">
-                                Informacion del guia
-                            </h1>
-                            <img src={ this.guia.foto } alt="xxxx"/>
-                            <h2 className="nombres">
-                                { this.guia.nombres }
-                            </h2>
+            <div className="container-fuild mt-3">
+                <div className="row">
+                    <div className="col-12 col-sm-7">
+                        <div className="row no-gutters">
+                            <div className="col-md-4">
+                                <img src={ this.guia.foto } className="card-img" alt="..." />
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                    <h5 className="card-title">{this.guia.nombres}</h5>
+                                    <p className="card-text">{this.guia.descripcion}</p>
+                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
                         </div>
-                        <p className="descripcion">
-                            { this.guia.descripcion }
-                        </p>
                     </div>
-                    <div className="botones">
-                        <button>
-                            Ver certificado de turismo
-                        </button>
-                        <button>
-                            Ver documento de identidad
-                        </button>
-                        <div className="aceptar-denegar">
-                            <button>
-                                Aceptar
-                            </button>
-                            <button>
-                                Denegar
-                            </button>
+                    <div className="col-12 col-sm-5">
+                        <div className='row' >
+                            <div className='col-12'>
+                                <Button outline color="primary">Ver certificado de turismo</Button>
+                            </div>
+                            <div className='col-12'>
+                                <Button outline color="primary">Ver documento de identidad</Button>
+                            </div>
+                            <div className='col mt-3'>
+                                <Button color="success">Aceptar</Button>
+                                <Button color="danger">Denegar</Button>
+                            </div>
                         </div>
                     </div>
                 </div>
