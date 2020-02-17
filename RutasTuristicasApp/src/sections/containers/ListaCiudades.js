@@ -12,17 +12,17 @@ class ListaCiudades extends React.Component{
         ciudadesRecomendadas: [
             {
                 nombre: "Portoviejo",
-                foto: 1,
+                foto: require('../../../assets/portoviejo.jpg'),
                 descripcion: "La capital de los manabitas."
             },
             {
                 nombre: "Manta",
-                foto: 2,
+                foto: require('../../../assets/manta.jpg'),
                 descripcion: "Principal puerto atunero del mundo."
             },
             {
                 nombre: "Montecristi",
-                foto: 3,
+                foto: require('../../../assets/montecristi.jpg'),
                 descripcion: "La cuna de Eloy Alfaro, y artesanias como el sombrero de paja toquilla."
             }
         ]
