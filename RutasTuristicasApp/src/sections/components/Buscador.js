@@ -7,38 +7,61 @@ import API from '../../../utils/API';
 class Buscador extends React.Component{
 
     state = {
-        zonas : []
+        zonas : [],
+        texto: '',
+        idZona: ''
     }
 
     keyExtractor = (item) => item.Id.toString()
+    
+    
+    obtenerZonasFiltradas(){
+        const filtrarZonas = (item) => item.Lugar.indexOf(this.state.texto) != -1
 
-    filtrarZonas = (item) => item.Lugar.indexOf('Po') != -1
+        if(!this.state.texto)
+            return [];
+        
+        const zonasFiltradas = this.state.zonas.filter(filtrarZonas)
+        
+        return zonasFiltradas
+    }
+
+    seleccionarZona = (id) => {
+        this.setState({
+            ...this.state,
+            idZona: id
+        })
+
+        console.log(this.state.idZona)
+    }
 
     async componentDidMount () {
         const zonas = await API.getZonasPorNombre();
-        // this.setState({
-        //     zonas
-        // })
-        const zonasFiltradas = zonas.filter(this.filtrarZonas)
 
-        console.log(zonasFiltradas[0])
         this.setState({
-            zonas : zonasFiltradas
+            ...this.state,
+            zonas
         })
 
     }
 
     render(){
+        const zonas = this.obtenerZonasFiltradas();
+
         return(
             <View style={styles.container}>
                 <View style={styles.autocompleteContainer}>
                     <Autocomplete 
-                        data={this.state.zonas}
+                        data={zonas}
                         renderItem={( { item } ) => (
-                            <TouchableOpacity onPress={() => this.setState({ query: item })}>
+                            <TouchableOpacity onPress={() =>  
+                                this.seleccionarZona(item.Id)
+                            }>
                                 <Text style={styles.itemText}>{ item.Lugar }</Text>
                             </TouchableOpacity>
                         )}
+                        defaultValue={''}
+                        onChangeText={texto => this.setState({ texto })}
                         keyExtractor={this.keyExtractor}
                         placeholder={'Busca tus lugares preferidos...'}
                     />
