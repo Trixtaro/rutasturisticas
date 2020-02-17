@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Usuario;
 use App\Persona;
+use App\Turista;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -57,12 +58,18 @@ class CustomAuthController extends Controller {
             'correo' => $request->json()->get('correo'),
             'ID_persona' => $persona->ID_persona
         ]);
+        $now = new \DateTime();
+        $ahora = $now->format('Y-m-d H:i:s');
+        $turista = Turista::create([
+            'f_ingreso' => $ahora,
+            'ID_usuario' => $usuario->ID_usuario
+        ]);
 
         $token = JWTAuth::fromUser($usuario);
 
         DB::commit();
         
-        return response()->json(compact('usuario','token',201));
+        return response()->json(compact('usuario','token','turista',201));
     }
 
     public function login (Request $request) {
