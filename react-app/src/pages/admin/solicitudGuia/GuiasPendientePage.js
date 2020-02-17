@@ -1,26 +1,28 @@
 import React from 'react';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 class GuiasPendientePage extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            isOpenCollapse: false,
+        }
+    }
+
     render () {
         return (
             <div>
-                <h5>Solicitudes Pendientes</h5>
-                <ul>
-                    <li>Guia #1</li>
-                    <li>Guia #2</li>
-                    <li>
-                        Guia #3
-                        <ul>
-                            <li>Nombre: </li>
-                            <li>Fecha de envio: hoy</li>
-                            <li>Más información</li>
-                        </ul>
-                    </li>
-                    <li>Guia #4</li>
-                    <li>Guia #5</li>
-                    <li>Guia #6</li>
-                    <li>Guia #7</li>
-                </ul>
+                <Button color="primary" onClick={ () => this.setState({ isOpenCollapse: !this.state.isOpenCollapse }) } style={{ marginBottom: '1rem' }}>Toggle</Button>
+                <Collapse isOpen={this.state.isOpenCollapse}>
+                    <Card>
+                        <CardBody>
+                            Anim pariatur cliche reprehenderit,
+                             enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                             anim keffiyeh helvetica, craft beer labore wes anderson cred
+                             nesciunt sapiente ea proident.
+                        </CardBody>
+                    </Card>
+                </Collapse>
             </div>
         );
     }
