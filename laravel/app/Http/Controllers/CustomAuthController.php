@@ -19,8 +19,7 @@ use Tymon\JWTAuth\JWTManager as JWT;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
-class CustomAuthController extends Controller
-{
+class CustomAuthController extends Controller {
     public function register(Request $request){
         $validator = Validator::make($request->json()->all() ,[
             'nickname' => 'required|unique:Usuario',
@@ -66,7 +65,7 @@ class CustomAuthController extends Controller
         return response()->json(compact('usuario','token',201));
     }
 
-    public function login(Request $request){
+    public function login (Request $request) {
         
         $credentials = $request->json()->all();
 
@@ -86,10 +85,9 @@ class CustomAuthController extends Controller
 
     }
 
-    public function getAuthenticatedUser(Request $request){
-        
+    public function getAuthenticatedUser (Request $request) {
         try {
-            if(!$usuario = JWTAuth::parseToken()->authenticate()){
+            if (!$usuario = JWTAuth::parseToken()->authenticate() ){
                 return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
@@ -100,7 +98,6 @@ class CustomAuthController extends Controller
 
         } catch (JWTException $e) {
             return response()->json(['token_absent'], 401);
-            
         }
 
         $persona = Persona::where('ID_persona',$usuario->ID_persona)->first();

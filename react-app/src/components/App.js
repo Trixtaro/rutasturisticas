@@ -31,6 +31,7 @@ function App () {
                 <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
                 <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
                 <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
+                <Redirect exact path="/admin" to="/admin/home" />
 
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={RegisterTurista} />
