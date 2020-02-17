@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import foto from '../images/montecristi.jpg';
+import foto from '../../../images/montecristi.jpg';
 import './styles/SolicitudGuias.css';
 
 class SolicitudGuias extends React.Component {

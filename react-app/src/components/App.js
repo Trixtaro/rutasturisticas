@@ -8,7 +8,7 @@ import Login from '../pages/LoginPage';
 import BuscarLugares from '../pages/LugaresPage';
 import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
-import SolicitudGuias from '../pages/SolicitudGuias';
+import SolicitudGuias from '../pages/admin/solicitudGuia//SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
 import RegisterGuia from '../pages/RegisterGuia';
 import AdminLugar from '../pages/admin/lugar/LugarPage';
