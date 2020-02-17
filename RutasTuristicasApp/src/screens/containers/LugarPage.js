@@ -7,15 +7,27 @@ import Buscador from '../../sections/components/Buscador';
 import Close from '../../sections/components/Close';
 import SuggestionList from '../../sections/containers/SuggestionList';
 
+import API from '../../../utils/API';
+
 import * as lugaresActions from '../../../redux/actions/lugaresActions';
 
 const { seleccionarZona : guardarIdZonaSeleccionada } = lugaresActions
 
 class LugarPage extends React.Component{
 
+    state = {
+        data: []
+    }
+
     closeLugar = () => {
-        console.log('cerrando...')
         this.props.guardarIdZonaSeleccionada(null)
+    }
+
+    async componentDidMount(){
+        const lugares = await API.getLugarPorZona(this.props.zona)
+        this.setState({
+            data: lugares
+        })
     }
 
     render(){
@@ -32,7 +44,7 @@ class LugarPage extends React.Component{
                 >
                     <Buscador />
 
-                    <SuggestionList id={'1'} />
+                    <SuggestionList propData={this.state.data} />
 
                 </ImageBackground>
             </View>

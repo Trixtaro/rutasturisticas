@@ -32,7 +32,7 @@ class SuggestionList extends React.Component{
             <Layout title="Lugares sugeridos">
                 <FlatList 
                     keyExtractor={this.keyExtractor}
-                    data={this.props.lugares }
+                    data={this.props.propData || this.props.lugares }
                     ListEmptyComponent={this.renderEmpty}
                     ItemSeparatorComponent={this.renderSeparator}
                     renderItem={this.renderLugar}
