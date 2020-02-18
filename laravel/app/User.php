@@ -38,4 +38,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->clave;
     }
 
+    public function turistas () {
+        return $this->hasMany(Turista::class,'ID_usuario');
+    }
+
+    public function guias () {
+        return $this->hasMany(Guia::class,'ID_usuario');
+    }
 }

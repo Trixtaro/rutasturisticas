@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Turista extends Model {
-    protected $table = 'turista';
+class Guia extends Model {
+    protected $table = 'guia';
     protected $primaryKey = 'ID_usuario';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'f_ingreso', 'ID_usuario'
+        'f_ingreso', 'estado', 'foto_identificacion', 'certificado', 'ID_usuario'
     ];
 
     public function usuario () {
-        return $this->belongsTo(Turista::class);
+        return $this->belongsTo(Guia::class);
     }
 }
