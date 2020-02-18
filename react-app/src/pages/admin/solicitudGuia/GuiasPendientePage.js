@@ -1,5 +1,5 @@
 import React from 'react';
-import { UncontrolledCollapse, Button, Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
+import { UncontrolledCollapse, Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 class GuiasPendientePage extends React.Component {
@@ -34,7 +34,7 @@ class GuiasPendientePage extends React.Component {
             return this.state.guias.map( (e, i) =>
                 <Card key={i}>
                     <CardHeader>
-                        <a id={ 'toggler-' + e.id } >Guía {e.codigo}</a>
+                        <a href='!#' id={ 'toggler-' + e.id } >Guía {e.codigo}</a>
                     </CardHeader>
                 <UncontrolledCollapse toggler={ '#toggler-' + e.id }>
                     <CardBody>

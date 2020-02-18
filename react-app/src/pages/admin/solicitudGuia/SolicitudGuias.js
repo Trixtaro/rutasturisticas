@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import foto from '../../../images/montecristi.jpg';
 import { Button } from 'reactstrap';
 

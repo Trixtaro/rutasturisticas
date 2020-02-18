@@ -19,9 +19,9 @@ class Buscador extends React.Component {
                 'datos': data.data
             });
         } catch (error) {
-            console.log("< Mi-error en componentDidMount clase Buscador@componentDidMount >");
+            console.log("< Mi-error en clase Buscador@componentDidMount >");
             console.log(error);
-            console.log("< Mi-error en componentDidMount clase Buscador@componentDidMount />");
+            console.log("< Mi-error en clase Buscador@componentDidMount />");
         }
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
     }
