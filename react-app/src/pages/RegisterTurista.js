@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import './styles/RegisterTurista.css';
 
 class RegisterTurista extends React.Component {
@@ -88,6 +88,10 @@ class RegisterTurista extends React.Component {
     }
 
     render () {
+        if (localStorage.usertoken) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <React.Fragment>
                 <div className="RegisterTurista">
