@@ -108,12 +108,19 @@ class CustomAuthController extends Controller {
         }
 
         $persona = Persona::where('ID_persona',$usuario->ID_persona)->first();
-            
-        return response()->json([
-            'usuario' => $usuario,
-            'persona' => $persona
-        ]);
 
+        if ( $persona->cedula === '1351824071' ) {
+            return response()->json([
+                'usuario' => $usuario,
+                'persona' => $persona,
+                'admin' => true
+            ]);
+        } else {
+            return response()->json([
+                'usuario' => $usuario,
+                'persona' => $persona,
+                'admin' => false
+            ]);
+        }
     }
-
 }
