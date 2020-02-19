@@ -28,7 +28,7 @@ class LugarController extends Controller {
             'altura_sobre_nivel_del_mar' => 'required|digits_between:1,50000',
             'latitud' => 'required|max:20',
             'longitud' => 'required|max:20',
-            'imagen' => 'required',
+            'imagen' => 'nullable',
             'ID_zona' => 'required|exists:zona,ID_zona',
         ], [
             //Para nombre
@@ -46,8 +46,6 @@ class LugarController extends Controller {
             //Para longitud
             'longitud.required' => '¡Necesitamos saber la :attribute!',
             'longitud.max' => '¡No puedes pasarte de :max caracteres!',
-            //Para imagen
-            'imagen.required' => '¡Necesitamos el archivo de la :attribute!',
             //Para ID_zona
             'ID_zona.required' => '¡Necesitamos sabes el identificador de la zona!',
             'ID_zona.exists' => '¡No encontramos este identificador en nuestras bases de datos!',
@@ -71,7 +69,12 @@ class LugarController extends Controller {
         $lugar->ID_zona = $request->json()->get('ID_zona');
         $lugar->save();
 
-        return response()->json(compact('lugar',201));
+        return response()->json([
+            'data' => $lugar,
+            'error' => '',
+            'message' => 'Se guardo correctamento el lugar',
+            'success' => true 
+        ], 201);
     }
 
     public function show($id_lugar)
