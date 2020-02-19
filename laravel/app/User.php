@@ -7,8 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
-{
+class User extends Authenticatable implements JWTSubject {
     use Notifiable;
 
     protected $table = 'Usuario';
@@ -43,6 +42,10 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function guias () {
-        return $this->hasMany(Guia::class,'ID_usuario');
+        return $this->hasMany(Guia::class, 'ID_usuario', 'ID_usuario');
+    }
+
+    public function persona () {
+        return $this->belongsTo(Persona::class, 'ID_persona', 'ID_persona');
     }
 }

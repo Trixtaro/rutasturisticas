@@ -257,4 +257,4 @@ ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
 
 ALTER TABLE `zona` ADD UNIQUE( `nombre`, `cargo`);
 
-ALTER TABLE `guia` CHANGE `estado` `estado` ENUM('H','R','E') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'Habilitado,Rechazado,Espera'; 
+ALTER TABLE `Guia` CHANGE `estado` `estado` ENUM('H','R','E') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'Habilitado,Rechazado,Espera'; 
