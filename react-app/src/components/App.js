@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import SolicitudGuia from '../pages/SolicitudGuia';
 import AppRoute from '../components/AppRoute';
 import Layout from './Layout';
 import AdminLayout from '../components/AdminLayout';
@@ -25,6 +26,7 @@ function App () {
                 <AppRoute exact path="/" component={Dashboard} layout={Layout} />
                 <AppRoute exact path="/lugares/:id" component={BuscarLugares} layout={Layout} />
                 <AppRoute exact path="/lugar/:id" component={LugarPage} layout={Layout} />
+                <AppRoute exact path='/solicitudes/guia/:id' component={SolicitudGuia} layout={Layout} />
 
                 <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
                 <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
