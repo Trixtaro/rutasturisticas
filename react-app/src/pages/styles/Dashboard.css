@@ -6,7 +6,7 @@
     padding: 30px;
     min-height: 80vh;
     background: url('../../images/bg-2.png') no-repeat;
-    background-position-y: -800px;
+    background-position-y: -600px;
     background-size: cover;
     display: flex;
     position: relative;

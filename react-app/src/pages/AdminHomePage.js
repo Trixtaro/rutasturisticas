@@ -1,11 +1,9 @@
 import React from 'react';
 
 class AdminHomePage extends React.Component{
-
-    render(){
+    render () {
         return 'AdminHomePage';
     }
-
 }
 
 export default AdminHomePage;

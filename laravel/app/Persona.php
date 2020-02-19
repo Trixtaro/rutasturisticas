@@ -10,4 +10,8 @@ class Persona extends Model
     protected $primaryKey = 'ID_persona';
 
     public $timestamps = false;
+
+    public function usuarios () {
+        return $this->hasMany(User::class, 'ID_persona', 'ID_persona');
+    }
 }

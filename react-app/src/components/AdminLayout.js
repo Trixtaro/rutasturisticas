@@ -6,14 +6,18 @@ import SideAdminBar from './SideAdminBar';
 import './styles/AdminLayout.css';
 
 const AdminLayout = (props) => {
-
     return (
-        <div className="AdminLayout">
-            <div className="AdminLayout body">
-                <SideAdminBar />
-                { props.children }
-            </div>
+    	<>
+		<Navbar />
+        <div className="AdminLayout container-fluid">
+			<div className="row">
+				<SideAdminBar />
+				<main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
+					{ props.children }
+				</main>
+			</div>
         </div>
+        </>
     );
 }
 

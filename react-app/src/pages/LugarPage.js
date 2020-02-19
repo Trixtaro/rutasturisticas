@@ -1,29 +1,23 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
-
 import './styles/LugarPage.css';
 
-class LugarPage extends React.Component{
-
+class LugarPage extends React.Component {
     state = {
         lugar: null
     }
 
-    async componentDidMount(){
+    async componentDidMount () {
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugar/${this.props.match.params.id}`);
         this.setState({
             lugar: await response.json()
         });
 
         this.ponerMapa()
-
     }
 
     ponerMapa = () => {
         const zoom = 14;
-
-        try{
+        try {
             var map = window.L.map('map').setView([this.state.lugar.latitud, this.state.lugar.longitud], zoom);
     
             const addLayerMap = (map) => {
@@ -42,15 +36,16 @@ class LugarPage extends React.Component{
                 .bindPopup(this.state.lugar.nombre)
                 .openPopup();
             
-        } catch (error){
-
+        } catch (error) {
+            alert("Error");
+            console.log("Alerta en la clase LugarPage@ponerMapa");
+            console.log(error);
+            console.log("Alerta en la clase LugarPage@ponerMapa/>");
         }
-
     }
 
-    render(){
-
-        if(!this.state.lugar) 
+    render () {
+        if ( !this.state.lugar )
             return (<div className="LugarPage">
                 Cargando
             </div>);
@@ -72,12 +67,9 @@ class LugarPage extends React.Component{
                     </div>
                     <div id="map" ></div>
                 </div>
-      
             </div>
         </div>);
-
     }
-
 }
 
 export default LugarPage;

@@ -1,10 +1,8 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-
+import { withRouter, Redirect } from 'react-router-dom';
 import './styles/RegisterTurista.css';
 
 class RegisterTurista extends React.Component {
-
     state = {
         error : '',
         cargando: false,
@@ -28,18 +26,18 @@ class RegisterTurista extends React.Component {
         e.preventDefault()
 
         this.setState({cargando: true});
-
+        let rutaServer = `${process.env.REACT_APP_LARAVEL}/api/register`;
         const response = await fetch(
-            `${process.env.REACT_APP_LARAVEL}/api/register`, 
+             rutaServer,
                 { 
                     method: 'POST',
                     body: JSON.stringify(this.state.form)
                 }
         );
-        
+
         const data = await response.json();
-        
-        if(data.token){
+
+        if (data.token) {
             localStorage.setItem('usertoken',data.token)
             this.props.history.push(`/`);
         } else {
@@ -55,7 +53,7 @@ class RegisterTurista extends React.Component {
             }
         })
 
-        if(e.target.name == 'correo')
+        if (e.target.name === 'correo')
             this.setState({
                 form: {
                     ...this.state.form,
@@ -67,11 +65,33 @@ class RegisterTurista extends React.Component {
         console.log(this.state.form)
     }
 
-    componentDidMount(){
-        
+    componentDidMount () {
+        if (document.forms.length === 1) {
+            var focusInput = function () {
+                this.parentElement.children[0].className = "label active";
+            };
+
+            var blurInput = function () {
+                if (this.value <= 0) {
+                    this.parentElement.children[0].className = "label";
+                }
+            };
+            var formulario = document.forms[0],
+                elementos = formulario.elements;
+            for (var i = 0; i < elementos.length; i++) {
+                if (elementos[i].type === "text" || elementos[i].type === "email" || elementos[i].type === "password") {
+                    elementos[i].addEventListener("focus", focusInput);
+                    elementos[i].addEventListener("blur", blurInput);
+                }
+            }
+        }
     }
 
     render () {
+        if (localStorage.usertoken) {
+            return <Redirect to="/" />;
+        }
+
         return (
             <React.Fragment>
                 <div className="RegisterTurista">

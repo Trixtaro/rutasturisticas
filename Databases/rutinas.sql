@@ -42,7 +42,6 @@ CREATE PROCEDURE INGRESAR_PERSONA (
 )
 BEGIN
 	INSERT INTO Persona (
-		f_ingreso,
 		nombres,
 		apellido_paterno,
 		apellido_materno,
@@ -52,7 +51,6 @@ BEGIN
 		nacionalidad,
 		genero
 	) VALUES (
-		NOW(),
 		NOMBRES,
 		APELLIDO_PATERNO,
 		APELLIDO_MATERNO,
@@ -155,13 +153,11 @@ BEGIN
 		SELECT '0' AS RESULTADO;
 	ELSE
 		INSERT INTO Usuario (
-			f_ingreso,
 			clave,
 			nickname,
 			correo,
 			ID_persona
 		) VALUES (
-			NOW(),
 			CLAVE,
 			NICKNAME,
 			CORREO,

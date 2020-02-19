@@ -1,12 +1,10 @@
 import React from 'react';
-
 import Facebook from '../images/facebook.svg';
 import GitHub from '../images/github.svg';
 import Instagram from '../images/instagram.svg';
-
 import './styles/Footer.css';
 
-class Footer extends React.Component {s
+class Footer extends React.Component {
     render () {
         return (
             <div className="Footer">

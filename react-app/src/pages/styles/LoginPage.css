@@ -3,11 +3,10 @@
     background-position-y: -400px;
     background-size: cover;
     min-height: 100vh;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     align-content: center
 }

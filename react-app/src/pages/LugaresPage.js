@@ -1,34 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Buscador from '../components/Buscador';
-
 import './styles/LugaresPage.css';
 import Lugar from '../components/Lugar';
 
-class LugaresPage extends React.Component{
-
+class LugaresPage extends React.Component {
     state = {
         lugares: []
     }
 
-    async componentDidMount(){
+    async componentDidMount () {
 
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
-            const data = await response.json();
-            this.setState({
-                lugares: data.data
-            });
+        const data = await response.json();
+        this.setState({
+            lugares: data.data
+        });
         console.log(this.state.lugares)
     }
 
     ponerLugares = () => {
-
-        if(this.state.lugares.length)
+        if (this.state.lugares.length)
             return this.state.lugares.map( lugar => {
-                console.log(lugar)
                 return (
-                    <Lugar 
+                    <Lugar key={lugar.id}
                         lugar={lugar} 
                     />
                 );
@@ -38,12 +33,12 @@ class LugaresPage extends React.Component{
         }
     }
 
-    render(){
+    render () {
         return (
             <div className="LugaresPage">
                 <Link to="/">
                     <div className="LugaresPage-regresar">
-                        <i class="fas fa-undo-alt"></i>
+                        <i className="fas fa-undo-alt"></i>
                         &nbsp;
                         Regresar
                     </div>
@@ -60,7 +55,6 @@ class LugaresPage extends React.Component{
             </div>
         );
     }
-
 }
 
 export default LugaresPage;

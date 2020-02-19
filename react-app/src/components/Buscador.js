@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 import './styles/Buscador.css'
 
 class Buscador extends React.Component {
@@ -14,16 +13,15 @@ class Buscador extends React.Component {
 
     async componentDidMount () {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares`);
+            const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/zonas`);
             const data = await response.json();
             this.setState({
                 'datos': data.data
             });
         } catch (error) {
-            console.log("< Mi-error en componentDidMount clase Buscador >");
+            console.log("< Mi-error en clase Buscador@componentDidMount >");
             console.log(error);
-            console.log("< Mi-error en componentDidMount clase Buscador />");
-            const data = [];
+            console.log("< Mi-error en clase Buscador@componentDidMount />");
         }
         this.autocomplete(document.getElementById("buscador"), this.state.datos);
     }
@@ -54,7 +52,6 @@ class Buscador extends React.Component {
 
     autocomplete = (inp, arr) => {
         var currentFocus;
-        var currentFocus;
 
         inp.addEventListener("input", function(e) {
             var a, b, i, val = this.value;
@@ -72,7 +69,7 @@ class Buscador extends React.Component {
               let lugar = arr[i];
 
               /*check if the item starts with the same letters as the text field value:*/
-              if (lugar.Lugar.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+              if (lugar.Lugar.substr(0, val.length).toUpperCase() === val.toUpperCase()) {
                 /*create a DIV element for each matching element:*/
                 b = document.createElement("DIV");
                 /*make the matching letters bold:*/
@@ -93,24 +90,24 @@ class Buscador extends React.Component {
               }
             }
         });
-        
+
         /*execute a function presses a key on the keyboard:*/
         inp.addEventListener("keydown", function(e) {
             var x = document.getElementById(this.id + "autocomplete-list");
             if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
+            if (e.keyCode === 40) {
               /*If the arrow DOWN key is pressed,
               increase the currentFocus variable:*/
               currentFocus++;
               /*and and make the current item more visible:*/
               addActive(x);
-            } else if (e.keyCode == 38) { //up
+            } else if (e.keyCode === 38) { //up
               /*If the arrow UP key is pressed,
               decrease the currentFocus variable:*/
               currentFocus--;
               /*and and make the current item more visible:*/
               addActive(x);
-            } else if (e.keyCode == 13) {
+            } else if (e.keyCode === 13) {
               /*If the ENTER key is pressed, prevent the form from being submitted,*/
               e.preventDefault();
               if (currentFocus > -1) {
@@ -143,7 +140,7 @@ class Buscador extends React.Component {
                 except the one passed as an argument: */
             var x = document.getElementsByClassName("autocomplete-items");
             for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
+                if (elmnt !== x[i] && elmnt !== inp) {
                     x[i].parentNode.removeChild(x[i]);
                 }
             }
@@ -161,7 +158,6 @@ class Buscador extends React.Component {
             this.props.history.push(`/lugares/${this.state.id}`);
         }
     }
-
 }
 
 export default withRouter(Buscador);
