@@ -20,3 +20,5 @@ Route::post('api/zona', 'ZonaController@store');
 Route::get('api/zona', 'ZonaController@index');
 
 Route::post('api/lugar', 'LugarController@store');
+
+Route::post('api/guia', 'GuiaController@store');
