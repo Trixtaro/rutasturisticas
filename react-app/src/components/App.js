@@ -36,7 +36,6 @@ function App () {
                 <Route exact path="/404" component={Page404} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
 
-                <Redirect path="*" to="/404" />
                 {/* Esto debe estar de último */}
                 { isAdmin() ? (
                     <>
@@ -51,7 +50,8 @@ function App () {
                     </>
                 ) : (
                     null
-                )}
+                    )}
+                <Redirect path="**" to="/404" />
             </Switch>
         </BrowserRouter>
     );

@@ -6,6 +6,7 @@ class agregarLugar extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
+            zonas:[],
             form: {
                 nombre:'',
                 descripcion: '',
@@ -143,11 +144,28 @@ class agregarLugar extends React.Component {
             }
         })
     }
+    componentDidMount () {
+        this.comboZonas();
+    }
 
-    comboZonas () {
-        return(
-            <option value='1852'>1</option>
+    async comboZonas () {
+        const response = await fetch( 
+            `${process.env.REACT_APP_LARAVEL}/api/zona`, 
+            { 
+                method: 'GET'
+            } 
         );
+        const respuesta = await response.json();
+        if (response.ok) {
+            this.setState({
+                zonas : respuesta.data,
+            });
+        } else {
+            this.setState({
+                zonas : [],
+            });
+            console.log("Error " + response.statusText + " estado es " + response.status);
+        }
     }
 
     formulario () {
@@ -232,7 +250,7 @@ class agregarLugar extends React.Component {
                         <label htmlFor="ID_zona">Zonas</label>
                         <select className={ this.state.errores.ID_zona === '' ? "form-control custom-select" : "form-control custom-select is-invalid" } id="ID_zona" name="ID_zona" onChange={this.handleChange} value={this.state.form.ID_zona} required>
                             <option value="">Seleccione una zona...</option>
-                            { this.comboZonas() }
+                            { this.state.zonas.map( (e, i)=><option key={i} value={e.Id} >{ e.Lugar } { e.nivel_superior ? e.nivel_superior : '' }</option> )  }
                         </select>
                         <div className={ this.state.errores.ID_zona === '' ? "" : "invalid-feedback" } >
                             {this.state.errores.ID_zona}
