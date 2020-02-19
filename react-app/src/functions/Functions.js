@@ -1,5 +1,3 @@
-import { Redirect } from "react-router-dom";
-
 export const getProfile = async () => {
     const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/profile`,{
         headers: {
@@ -21,5 +19,15 @@ export async function isAdmin () {
         return false;
     } else {
         return data.admin;
+    }
+}
+
+export async function getAdminAttribute () {
+    const admin = await isAdmin();
+    if (admin) {
+        const data = await getProfile();
+        return data;
+    } else {
+        return null;
     }
 }
