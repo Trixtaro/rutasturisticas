@@ -5,17 +5,40 @@ import montecristi from '../images/montecristi.jpg';
 import portoviejo from '../images/portoviejo.jpg';
 import manta from '../images/manta.jpg';
 import './styles/Dashboard.css';
+import { Link } from 'react-router-dom';
+import { getProfile } from '../functions/Functions';
 
 class Dashboard extends React.Component {
     state = {
-        recomendaciones: []
+        recomendaciones: [],
+        usuario: null,
+        persona: null,
+        admin: false,
     }
 
     async componentDidMount () {
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/3`);
         const data = await response.json();
+
+        const dataProfile = await getProfile();
+        if (dataProfile === 'token_expired' || dataProfile === 'token_invalid' ) {
+            localStorage.removeItem('usertoken');
+
+            this.setState({
+                ...this.state,
+                usuario: null,
+                persona: null,
+                admin: false,
+            })
+
+            return;
+        }
+
         this.setState({
-            recomendaciones: data.data
+            recomendaciones: data.data,
+            usuario: dataProfile.usuario,
+            persona: dataProfile.persona,
+            admin: dataProfile.admin,
         });
     }
 
@@ -30,6 +53,13 @@ class Dashboard extends React.Component {
                         <Buscador placeholder="Busca tus lugares preferidos..." />
                     </div>
                     <div>
+                        { (this.state.usuario || this.state.persona) &&
+                            <div>
+                                <h3>¿Eres guía?</h3>
+                                <p>Unete a nosotros para desbloquear mas cosas. Este mensaje debe ser mejorado :v. <Link to={`/solicitudes/guia/${this.state.usuario.ID_usuario}`}>Ir ...</Link></p>
+                                <hr />
+                            </div>
+                        }
                         <h2 className="titulo-lugares">
                             Los lugares más visitados del mes
                         </h2>

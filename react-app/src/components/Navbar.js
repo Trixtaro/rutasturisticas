@@ -86,6 +86,10 @@ class Navbar extends React.Component {
                                 <h4 style={{color: 'black', border: 'none' }}>
                                     { `${this.state.persona.nombres} ${this.state.persona.apellido_paterno} ${this.state.persona.apellido_materno}` }
                                 </h4>
+                                <small>
+                                    { this.state.usuario.turistas.length > 0 ? 'Turista' : '' }
+                                    { this.state.usuario.guias.length > 0 ? ' - Guía' : '' }
+                                </small>
                                 <Link to="/perfil">
                                     <h3>
                                         Ver Perfil
