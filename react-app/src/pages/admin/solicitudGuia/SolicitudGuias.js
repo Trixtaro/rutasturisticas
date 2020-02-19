@@ -4,9 +4,9 @@ import { Button } from 'reactstrap';
 
 class SolicitudGuias extends React.Component {
     guia = {
-        nombres : 'Wilmer Cedeño',
+        nombres : 'Cinthya Briones',
         foto : foto,
-        descripcion : 'Soy muy guapo'
+        descripcion : ''
     };
 
     render () {

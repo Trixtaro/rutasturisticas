@@ -36,21 +36,14 @@ function App () {
                 <Route exact path="/404" component={Page404} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
 
-                {/* Esto debe estar de último */}
-                { isAdmin() ? (
-                    <>
-                    <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
-                    <Redirect exact path="/admin" to="/admin/home" />
-                    </>
-                ) : (
-                    null
-                    )}
+                <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
+                <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
+                <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
+                <Redirect exact path="/admin" to="/admin/home" />
                 <Redirect path="**" to="/404" />
             </Switch>
         </BrowserRouter>

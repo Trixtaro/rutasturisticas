@@ -14,6 +14,7 @@ export async function isAdmin () {
     if (data.length === 1) {
         console.log(data[0]);
         if ( data[0] === 'token_invalid' ) {
+            localStorage.removeItem('usertoken');
             return false;
         }
         return false;
