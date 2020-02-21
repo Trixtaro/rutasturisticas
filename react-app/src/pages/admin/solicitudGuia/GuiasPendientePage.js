@@ -8,12 +8,17 @@ class GuiasPendientePage extends React.Component {
         super(props);
         this.state = {
             isOpenCollapse: false,
+            guiasEstado: null,
+            guiasTexto: '',
             guias: [],
         }
     }
 
     async componentDidMount () {
         try {
+            this.setState({
+                guiasTexto: 'Buscando...',
+            });
             const response = await fetch( 
                 `${process.env.REACT_APP_LARAVEL}/api/guia/filtro/estado/E`, 
                 { 
@@ -25,18 +30,39 @@ class GuiasPendientePage extends React.Component {
             console.log('La respuesta GuiasPendientePage@componentDidMount dio ', respuesta);
             if (response.ok) {
                 if (respuesta.success) {
-                    this.setState({
-                        guias: respuesta.data.guia
-                    });
+                    if ( respuesta.data.guia.length > 0 ) {
+                        this.setState({
+                            guias: respuesta.data.guia,
+                            guiasEstado: true,
+                            guiasTexto: '',
+                        });
+                    } else {
+                        this.setState({
+                            guias: respuesta.data.guia,
+                            guiasEstado: false,
+                            guiasTexto: 'No hemos encontrodo solicitudes de guías',
+                        });
+                    }
                 } else {
                     this.setState({
-                        guias: []
+                        guias: [],
+                        guiasEstado: false,
+                        guiasTexto: 'No hemos encontrodo solicitudes de guías',
                     });
                 }
             } else {
-
+                this.setState({
+                    guiasEstado: false,
+                    guiasTexto: 'Ha ocurrido algo con la busqueda',
+                    guias: [],
+                });
             }
         } catch (error) {
+            this.setState({
+                guiasEstado: false,
+                guiasTexto: 'Error fatal',
+                guias: [],
+            });
             console.log("<Error en clase 'GuiasPendientePage@componentDidMount'>");
             console.log(error);
             console.log("<Error en clase 'GuiasPendientePage@componentDidMount'/>");
@@ -74,7 +100,7 @@ class GuiasPendientePage extends React.Component {
                     </Breadcrumb>
                 </div>
                 <div className="accordion">
-                    { this.listar() }
+                    { this.state.guiasEstado ? (this.listar()) : this.state.guiasTexto }
                 </div>
             </div>
         );
