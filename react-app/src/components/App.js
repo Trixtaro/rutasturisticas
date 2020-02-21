@@ -19,8 +19,6 @@ import AdminZona from '../pages/admin/zona/ZonaPage';
 import AdminAgregarZona from '../pages/admin/zona/agregarZona';
 import AdminHomePage from '../pages/AdminHomePage';
 
-import {isAdmin} from '../functions/Functions'; 
-
 function App () {
     return (
         <BrowserRouter>

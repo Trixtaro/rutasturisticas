@@ -19,7 +19,7 @@ class Guia extends React.Component{
                         { this.props.titulo }
                     </h3>
                     <div className="estrellas">
-                        <i class="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
                         { this.props.estrellas }
                     </div>
                 </div>

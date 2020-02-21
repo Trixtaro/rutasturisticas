@@ -7,7 +7,7 @@ class AdminHomePage extends React.Component {
             <Jumbotron fluid>
                 <Container fluid>
                   <h1 className="display-3">Hola</h1>
-                  <p className="lead">Este es el espacio para poder controlar todo el sistema 😎.</p>
+                  <p className="lead">Este es el espacio para poder controlar todo el sistema <span aria-label='emoji con gafas' role="img">😎</span>.</p>
                 </Container>
             </Jumbotron>
         );

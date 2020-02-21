@@ -1,4 +1,4 @@
-.Guia{
+.Guia {
     height: 100px;
     width: 400px;
     padding: 10px;
@@ -12,30 +12,30 @@
     cursor: pointer;
 }
 
-.Guia .foto{
+.Guia .foto {
     width: 80px;
     height: 80px;
 }
 
-.Guia .foto img{
+.Guia .foto img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.Guia .datos{
+.Guia .datos {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
 }
 
-.Guia .nombres{
+.Guia .nombres {
     color: green;
 }
 
-.Guia .estrellas{
+.Guia .estrellas {
     margin-top: 3px;
     border-radius: 4px;
     background-color: darkgreen;

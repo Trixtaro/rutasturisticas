@@ -85,7 +85,7 @@ class GuiaController extends Controller {
                 'data' => [
                     'guia' => $guia->load('usuario', 'persona')
                 ]
-            ],200);
+            ], 200);
         } else {
             return response()->json([
                 'success' => false,
@@ -155,7 +155,7 @@ class GuiaController extends Controller {
                 'success' => true,
                 'message' => 'Se actualizo al guía',
                 'data'  => $guia
-            ],200);
+            ], 200);
         } else {
             return response()->json([
                 'success' => false,
