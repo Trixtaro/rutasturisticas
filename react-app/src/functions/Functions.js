@@ -17,6 +17,10 @@ export async function isAdmin () {
             localStorage.removeItem('usertoken');
             return false;
         }
+        if ( data[0] === 'token_expired' ) {
+            localStorage.removeItem('usertoken');
+            return false;
+        }
         return false;
     } else {
         return data.admin;

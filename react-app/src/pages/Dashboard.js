@@ -18,12 +18,13 @@ class Dashboard extends React.Component {
 
     async componentDidMount () {
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/3`);
+        console.log("el fetch en Dashboard@componentDidMount dio ", response);
         const data = await response.json();
-
+        console.log("el data de responsae JSON en Dashboard@componentDidMount dio ", data);
         const dataProfile = await getProfile();
         if (dataProfile === 'token_expired' || dataProfile === 'token_invalid' ) {
             localStorage.removeItem('usertoken');
-
+            console.log('Se removio el token en Dashboard@componentDidMount');
             this.setState({
                 ...this.state,
                 usuario: null,

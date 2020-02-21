@@ -29,7 +29,7 @@ class LugarController extends Controller {
             'latitud' => 'required|max:20',
             'longitud' => 'required|max:20',
             'imagen' => 'nullable',
-            'ID_zona' => 'required|exists:zona,ID_zona',
+            'ID_zona' => 'required|exists:Zona,ID_zona',
         ], [
             //Para nombre
             'nombre.required' => '¡Necesitamos saber el :attribute!',

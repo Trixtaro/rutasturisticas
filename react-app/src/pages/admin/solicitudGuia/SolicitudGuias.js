@@ -22,7 +22,7 @@ class SolicitudGuias extends React.Component {
                                 <div className="card-body">
                                     <h5 className="card-title">{this.guia.nombres}</h5>
                                     <p className="card-text">{this.guia.descripcion}</p>
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Fecha de envio: </small></p>
                                 </div>
                             </div>
                         </div>
@@ -31,13 +31,11 @@ class SolicitudGuias extends React.Component {
                         <div className='row' >
                             <div className='col-12'>
                                 <Button outline color="primary">Ver certificado de turismo</Button>
-                            </div>
-                            <div className='col-12'>
                                 <Button outline color="primary">Ver documento de identidad</Button>
                             </div>
                             <div className='col mt-3'>
                                 <Button color="success">Aceptar</Button>
-                                <Button color="danger">Denegar</Button>
+                                <Button className='ml-3' color="danger">Denegar</Button>
                             </div>
                         </div>
                     </div>
