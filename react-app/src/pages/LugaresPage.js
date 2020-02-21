@@ -7,17 +7,32 @@ import Guia from '../components/Guia';
 
 class LugaresPage extends React.Component {
     state = {
-        lugares: []
+        lugares: [],
+        guiasH: [],
     }
 
     async componentDidMount () {
-
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/${this.props.match.params.id}`);
         const data = await response.json();
+        console.log(this.state.lugares)
+        const responseGuiasH = await fetch(`${process.env.REACT_APP_LARAVEL}/api/guia/filtro/estado/H`);
+        console.log('El fetch LugaresPage@componentDidMount responseGuiasH', responseGuiasH);
+        const dataGuiasH = await responseGuiasH.json();
+        console.log('La respuesta LugaresPage@componentDidMount dataGuiasH', dataGuiasH);
         this.setState({
             lugares: data.data
         });
-        console.log(this.state.lugares)
+        if ( responseGuiasH.ok ) {
+            if (dataGuiasH.success){
+                this.setState({
+                    guiasH: dataGuiasH.data.guia
+                });
+            } else {
+                
+            }
+        } else {
+            console.log("Error LugaresPage@componentDidMount " + response.statusText + " estado es " + response.status);
+        }
     }
 
     ponerLugares = () => {
@@ -74,6 +89,18 @@ class LugaresPage extends React.Component {
                         titulo={'Guia experto de la ciudad de Portoviejo'}
                         estrellas={5}
                     />
+                </div>
+                <h2 className="titulo-guias">Otros Guias</h2>
+                <div className="guias">
+                { this.state.guiasH.map( (e, i) =>
+                    <Guia 
+                        key={i}
+                        foto={'https://source.unsplash.com/64x64/?woman,man'}
+                        nombres={e.persona.nombres}
+                        titulo={'Guia experto de la ciudad de Portoviejo'}
+                        estrellas={0}
+                    />
+                ) }
                 </div>
             </div>
         );
