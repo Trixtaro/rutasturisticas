@@ -1,6 +1,7 @@
 import React from 'react';
-import { UncontrolledCollapse, Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
-import {Link} from 'react-router-dom';
+import { UncontrolledCollapse, Card, CardHeader, CardBody, CardTitle, CardText, CardFooter,
+    Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class GuiasPendientePage extends React.Component {
     constructor (props) {
@@ -19,13 +20,19 @@ class GuiasPendientePage extends React.Component {
                     method: 'GET'
                 } 
             );
+            console.log('El fetch de GuiasPendientePage@componentDidMount dio ', response);
             const respuesta = await response.json();
-            console.log(response);
-            console.log(respuesta);
+            console.log('La respuesta GuiasPendientePage@componentDidMount dio ', respuesta);
             if (response.ok) {
-                this.setState({
-                    guias: respuesta.data.guia
-                });
+                if (respuesta.success) {
+                    this.setState({
+                        guias: respuesta.data.guia
+                    });
+                } else {
+                    this.setState({
+                        guias: []
+                    });
+                }
             } else {
 
             }
@@ -46,9 +53,10 @@ class GuiasPendientePage extends React.Component {
                 <UncontrolledCollapse toggler={ '#toggler-' + e.ID_usuario }>
                     <CardBody>
                         <CardTitle>{ e.persona.nombres + ' ' + e.persona.apellido_paterno + ' ' + e.persona.apellido_materno }</CardTitle>
-                        <Link to={`/admin/solicitudes/ver/${e.ID_usuario}`} >Más Información</Link>
+                        <CardText>{e.usuario.correo}</CardText>
                         <CardText><small className="text-muted">Fecha de envio: {e.f_ingreso}</small></CardText>
                     </CardBody>
+                    <CardFooter><Link to={`/admin/solicitudes/ver/${e.ID_usuario}`} >Más Información</Link></CardFooter>
                 </UncontrolledCollapse >
                 </Card>
             );
@@ -59,6 +67,12 @@ class GuiasPendientePage extends React.Component {
         return (
             <div className='container-fluid mt-3'>
                 <h1>Solicitudes Pendientes</h1>
+                <div>
+                    <Breadcrumb tag="nav" listTag="div">
+                        <BreadcrumbItem tag="a" href="/admin">Home</BreadcrumbItem>
+                        <BreadcrumbItem active tag="span">Solicitudes</BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
                 <div className="accordion">
                     { this.listar() }
                 </div>

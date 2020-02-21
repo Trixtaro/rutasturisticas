@@ -24,3 +24,7 @@ Route::post('api/lugar', 'LugarController@store');
 Route::post('api/guia', 'GuiaController@store');
 
 Route::get('api/guia/filtro/estado/{texto}', 'GuiaController@filtroEstado');
+
+Route::get('api/guia/filtro/E/{id}', 'GuiaController@filtroEsperaGuia');
+
+Route::post('api/guia/cambiarEstado', 'GuiaController@cambiarEstadoGuia');

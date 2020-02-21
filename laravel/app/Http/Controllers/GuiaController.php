@@ -88,10 +88,81 @@ class GuiaController extends Controller {
             ],200);
         } else {
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'message'=> '',
                 'data' => null
             ], 400);
+        }
+    }
+
+    public function filtroEsperaGuia (Request $request, $id) {
+        if ($id) {
+            $guia = Guia::find($id);
+            if ($guia) {
+                if ( $guia->estado === 'E' ) {
+                    return response()->json([
+                        'success' => true,
+                        'message'=> '',
+                        'data' => [
+                            'guia' => $guia->load('usuario', 'persona')
+                        ]
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'error' => 'No es el guia que buscas',
+                        'message'=> 'El guía no tiene estado en espera',
+                        'data' => $guia->estado
+                    ], 404);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'No se encontro ese guía',
+                    'message' => 'Ese ID '.$id.' no pertenece a ningun guía en nuestras bases de datos',
+                    'data' => null
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message'=> '',
+                'data' => null
+            ], 400);
+        }
+    }
+
+    public function cambiarEstadoGuia (Request $request) {
+        $validator = Validator::make($request->json()->all() ,[
+            'estado' => 'required',
+            'ID_guia' => 'required|exists:Guia,ID_usuario',
+        ]);
+
+        if ( $validator->fails() ) {
+            return response()->json([
+                'data' => null,
+                'error' => 'Error en validar datos GuiaController@cambiarEstadoGuia',
+                'message' => $validator->messages(),
+                'success' => false 
+            ], 400);
+        }
+
+        $ID_guia = $request->json()->get('ID_guia');
+        $guia = Guia::findOrFail($ID_guia);
+        if ($guia) {
+            $guia->update($request->json()->all());
+            return response()->json([
+                'success' => true,
+                'message' => 'Se actualizo al guía',
+                'data'  => $guia
+            ],200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'error' => 'No se encontro ese guía',
+                'message' => 'Ese ID '.$ID_guia.' no pertenece a ningun guía en nuestras bases de datos',
+                'data' => null
+            ], 404);
         }
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guia extends Model {
     protected $table = 'Guia';
+    protected $primaryKey = 'ID_usuario';
 
     public $timestamps = false;
 
