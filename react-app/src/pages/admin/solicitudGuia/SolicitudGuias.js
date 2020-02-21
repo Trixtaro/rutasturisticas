@@ -13,6 +13,7 @@ class SolicitudGuias extends React.Component {
             guia: null,
             cargaTexto: '',
             carga: false,
+            zonas:[],
             form: {
                 estado: '',
                 ID_guia: this.props.match.params.id,
@@ -67,9 +68,32 @@ class SolicitudGuias extends React.Component {
                 });
             }
         } catch (error) {
-            console.log("<Error en clase 'GuiasPendientePage@componentDidMount'>");
+            console.log("<Error en clase 'SolicitudGuias@componentDidMount'>");
             console.log(error);
-            console.log("<Error en clase 'GuiasPendientePage@componentDidMount'/>");
+            console.log("<Error en clase 'SolicitudGuias@componentDidMount'/>");
+        }
+        try {
+            const responseZona = await fetch( 
+                `${process.env.REACT_APP_LARAVEL}/api/zona`, 
+                { 
+                    method: 'GET'
+                } 
+            );
+            const respuestaZona = await responseZona.json();
+            if (responseZona.ok) {
+                this.setState({
+                    zonas : respuestaZona.data,
+                });
+            } else {
+                this.setState({
+                    zonas : [],
+                });
+                console.log("Error " + responseZona.statusText + " estado es " + responseZona.status);
+            }
+        } catch (error) {
+            console.log("<Error en clase 'SolicitudGuias@componentDidMount'>");
+            console.log(error);
+            console.log("<Error en clase 'SolicitudGuias@componentDidMount'/>");
         }
     }
 
@@ -143,6 +167,11 @@ class SolicitudGuias extends React.Component {
                                         <p className="card-text">Descripción del guía: {this.state.guia.descripcion}</p>
                                         <p className="card-text">Correo: {this.state.guia.usuario.correo}</p>
                                         <p className="card-text">Título: {this.state.guia.titulo}</p>
+                                        { this.state.zonas.map( (e, i) =>  { 
+                                            if (e.Id === this.state.guia.ID_zona) {
+                                                return <p className="card-text">Zona: {e.Lugar} Nivel Supeior: { e.nivel_superior }</p>;
+                                            }
+                                        })}
                                         <p className="card-text"><small className="text-muted">Fecha de envio: {this.state.guia.f_ingreso}</small></p>
                                 </div>
                             </div>

@@ -92,15 +92,21 @@ class LugaresPage extends React.Component {
                 </div>
                 <h2 className="titulo-guias">Otros Guias</h2>
                 <div className="guias">
-                { this.state.guiasH.map( (e, i) =>
-                    <Guia 
-                        key={i}
-                        foto={'https://source.unsplash.com/64x64/?woman,man'}
-                        nombres={e.persona.nombres}
-                        titulo={(e.titulo) ? e.titulo : 'Sin título'}
-                        estrellas={0}
-                    />
-                ) }
+                { this.state.guiasH.map( (e, i) => {
+                    if (e.ID_zona) {
+                        if (e.ID_zona == this.props.match.params.id ) {
+                            return <Guia 
+                                key={i}
+                                foto={'https://source.unsplash.com/64x64/?woman,man'}
+                                nombres={e.persona.nombres}
+                                titulo={(e.titulo) ? e.titulo : 'Sin título'}
+                                estrellas={0}
+                            />
+                        } else {
+                            return 'No es';
+                        }
+                    }
+                })}
                 </div>
             </div>
         );

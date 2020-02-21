@@ -16,6 +16,7 @@ class GuiaController extends Controller {
             'titulo' => 'required|between:5,100',
             'motivo' => 'required|between:2,255',
             'ID_usuario' => 'required|exists:Usuario,ID_usuario',
+            'ID_zona' => 'required|exists:Zona,ID_zona',
             'identificacion' => 'nullable',
         ], [
             //Para descripción
@@ -30,6 +31,9 @@ class GuiaController extends Controller {
             //Para ID_usuario
             'ID_usuario.required' => '¡Necesitamos sabes el identificador del usuario!',
             'ID_usuario.exists' => '¡No encontramos este identificador en nuestras bases de datos!',
+            //Para ID_zona
+            'ID_zona.required' => '¡Necesitamos sabes el identificador de la zona!',
+            'ID_zona.exists' => '¡No encontramos este identificador en nuestras bases de datos!',
         ]);
 
         if ( $validator->fails() ) {
@@ -51,6 +55,7 @@ class GuiaController extends Controller {
             $motivo = $request->json()->get('motivo');
             $titulo = $request->json()->get('titulo');
             $ID_usuario = $request->json()->get('ID_usuario');
+            $ID_zona = $request->json()->get('ID_zona');
             $identificacion = $request->json()->get('identificacion');
 
             $usuario = User::find($ID_usuario);
@@ -58,6 +63,7 @@ class GuiaController extends Controller {
                 'f_ingreso' => $ahora,
                 'titulo' => $titulo,
                 'motivo' => $motivo,
+                'ID_zona' => $ID_zona,
                 'descripcion' => $descripcion,
                 'certificado' => $certificado,
                 'identificacion' => $identificacion,

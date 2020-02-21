@@ -268,3 +268,5 @@ ALTER TABLE `Persona` CHANGE `genero` `genero` ENUM('M','F','O') CHARACTER SET u
 ALTER TABLE `Guia` ADD `titulo` VARCHAR(100) NULL AFTER `motivo`;
 
 ALTER TABLE `Guia` ADD `feedback` TEXT NULL AFTER `titulo`;
+
+ALTER TABLE `Guia` ADD `ID_zona` INT NULL AFTER `feedback`; 

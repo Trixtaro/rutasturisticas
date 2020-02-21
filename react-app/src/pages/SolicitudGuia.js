@@ -6,6 +6,7 @@ class SolicitudGuia extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
+            zonas:[],
             form: {
                 certificado: '',
                 identificacion: '',
@@ -13,6 +14,7 @@ class SolicitudGuia extends React.Component {
                 descripcion: '',
                 motivo: '',
                 titulo: '',
+                ID_zona: '',
             },
             toHome:false,
             cargando:false,
@@ -75,6 +77,30 @@ class SolicitudGuia extends React.Component {
         }
     }
 
+    componentDidMount () {
+        this.comboZonas();
+    }
+
+    async comboZonas () {
+        const response = await fetch( 
+            `${process.env.REACT_APP_LARAVEL}/api/zona`, 
+            { 
+                method: 'GET'
+            } 
+        );
+        const respuesta = await response.json();
+        if (response.ok) {
+            this.setState({
+                zonas : respuesta.data,
+            });
+        } else {
+            this.setState({
+                zonas : [],
+            });
+            console.log("Error " + response.statusText + " estado es " + response.status);
+        }
+    }
+
     render () {
         return (
             <>
@@ -102,6 +128,14 @@ class SolicitudGuia extends React.Component {
                         <Label for="motivoText">Motivo</Label>
                         <Input type="textarea" name="motivo" id="motivoText" onChange={this.handleChange} />
                         <FormText>Aquí nos cuenta por que te aceptariamos como un guía.</FormText>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="idZonaText">Zonas</Label>
+                        <Input type="select" name="ID_zona" id="idZonaText" onChange={this.handleChange}>
+                            <option value="">Seleccione una zona...</option>
+                            { this.state.zonas.map( (e, i)=><option key={i} value={e.Id} >{ e.Lugar } { e.nivel_superior ? e.nivel_superior : '' }</option> )  }
+                        </Input>
+                        <FormText>Aquí puedes poder la zona de donde eres guía.</FormText>
                     </FormGroup>
                      <FormGroup>
                         <Label for="identidadFile">Documento de identidad</Label>
