@@ -169,7 +169,7 @@ class SolicitudGuias extends React.Component {
                                         <p className="card-text">Título: {this.state.guia.titulo}</p>
                                         { this.state.zonas.map( (e, i) =>  { 
                                             if (e.Id === this.state.guia.ID_zona) {
-                                                return <p className="card-text">Zona: {e.Lugar} Nivel Supeior: { e.nivel_superior }</p>;
+                                                return <p className="card-text">Zona: {e.Lugar} Nivel Superior: { e.nivel_superior }</p>;
                                             }
                                         })}
                                         <p className="card-text"><small className="text-muted">Fecha de envio: {this.state.guia.f_ingreso}</small></p>

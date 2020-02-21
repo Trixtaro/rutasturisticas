@@ -102,8 +102,6 @@ class LugaresPage extends React.Component {
                                 titulo={(e.titulo) ? e.titulo : 'Sin título'}
                                 estrellas={0}
                             />
-                        } else {
-                            return 'No es';
                         }
                     }
                 })}

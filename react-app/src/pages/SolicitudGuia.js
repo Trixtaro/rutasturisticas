@@ -104,7 +104,7 @@ class SolicitudGuia extends React.Component {
     render () {
         return (
             <>
-            { this.state.toHome ? <Redirect to="/admin/lugar" /> : null }
+            { this.state.toHome ? <Redirect to="/" /> : null }
             <div className='container-fluid mt-3 mb-3'>
                 <h1>Solicitud <span className="badge badge-secondary">Guía</span></h1>
                 <nav aria-label="breadcrumb">
