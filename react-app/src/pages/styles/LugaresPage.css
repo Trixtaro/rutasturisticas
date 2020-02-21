@@ -46,3 +46,13 @@
 .lugares .Lugar:hover{
     margin: -10px 5px;
 }
+
+.LugaresPage .guias{
+    display: flex;
+    justify-content: center;
+}
+
+.LugaresPage .titulo-guias{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
