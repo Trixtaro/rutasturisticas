@@ -64,43 +64,24 @@ class LugaresPage extends React.Component {
                 </h1>
                 <Buscador placeholder="Escriba su lugar de destino (Ciudad, País, Lugar, etc)" />    
                 <div className="lugares">
-                {
-                    this.ponerLugares()
-                }
+                    { this.ponerLugares() }
                 </div>
-                
                 <h2 className="titulo-guias">Guias recomendados</h2>
-                <div className="guias">
-                    <Guia 
-                        foto={'/cinthya.jpeg'}
-                        nombres={'Cinthya Stephanie Briones Cedeño'}
-                        titulo={'Guia local de Calderón'}
-                        estrellas={4}
-                    />
-                    <Guia 
-                        foto={'/gema.jpeg'}
-                        nombres={'Gema Briggite Giler Velásquez'}
-                        titulo={'Guia de Higuerón'}
-                        estrellas={3}
-                    />
-                    <Guia 
-                        foto={'/marcillo.jpeg'}
-                        nombres={'Bryan Steven Marcillo Delgado'}
-                        titulo={'Guia experto de la ciudad de Portoviejo'}
-                        estrellas={5}
-                    />
-                </div>
-                <h2 className="titulo-guias">Otros Guias</h2>
                 <div className="guias">
                 { this.state.guiasH.map( (e, i) => {
                     if (e.ID_zona) {
                         if (e.ID_zona == this.props.match.params.id ) {
                             return <Guia 
                                 key={i}
-                                foto={'https://source.unsplash.com/64x64/?woman,man'}
+                                foto={ (e.persona.cedula === '1310770589') ? '/cinthya.jpeg' : (
+                                    e.persona.cedula === '1310172729' ? '/marcillo.jpeg' : (
+                                        e.persona.cedula === '1315634806' ? '/gema.jpeg' : 'https://source.unsplash.com/64x64/?woman,man'
+                                    )
+                                ) }
                                 nombres={e.persona.nombres}
                                 titulo={(e.titulo) ? e.titulo : 'Sin título'}
-                                estrellas={0}
+                                estrellas={5}
+                                descripcion={e.descripcion}
                             />
                         }
                     }

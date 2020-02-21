@@ -18,6 +18,9 @@ class Guia extends React.Component{
                     <h3 className="titulo">
                         { this.props.titulo }
                     </h3>
+                    <p className='descripcion'>
+                        {this.props.descripcion}
+                    </p>
                     <div className="estrellas">
                         <i className="fas fa-star"></i>
                         { this.props.estrellas }
