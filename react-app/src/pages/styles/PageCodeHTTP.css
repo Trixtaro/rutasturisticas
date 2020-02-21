@@ -1,4 +1,4 @@
-.Page404{
+.PageCodeHTTP {
     background: #11999e;
     height: 100vh;
     color: white;
@@ -9,16 +9,16 @@
     flex-direction: column;
 }
 
-.Page404 .error{
+.PageCodeHTTP .error {
     font-size: 3rem;
 }
 
-.Page404 .descripcion{
+.PageCodeHTTP .descripcion {
     margin-top: 30px;
     font-size: 1.5rem;
 }
 
-.Page404 a{
+.PageCodeHTTP a {
     margin-top: 30px;
     text-decoration: none;
     color: inherit;

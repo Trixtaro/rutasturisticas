@@ -9,6 +9,7 @@ import Login from '../pages/LoginPage';
 import BuscarLugares from '../pages/LugaresPage';
 import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
+import Page403 from '../pages/Page403';
 import GuiasPendientePage from '../pages/admin/solicitudGuia/GuiasPendientePage';
 import SolicitudGuias from '../pages/admin/solicitudGuia/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
@@ -32,6 +33,7 @@ function App () {
                 <Route exact path="/register" component={RegisterTurista} />
                 <Route exact path="/logout" component={Logout} />
                 <Route exact path="/404" component={Page404} />
+                <Route exact path="/403" component={Page403} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
 
                 <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
