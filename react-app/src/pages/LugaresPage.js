@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Buscador from '../components/Buscador';
 import './styles/LugaresPage.css';
 import Lugar from '../components/Lugar';
+import Guia from '../components/Guia';
 
 class LugaresPage extends React.Component {
     state = {
@@ -51,6 +52,28 @@ class LugaresPage extends React.Component {
                 {
                     this.ponerLugares()
                 }
+                </div>
+                
+                <h2 className="titulo-guias">Guias recomendados</h2>
+                <div className="guias">
+                    <Guia 
+                        foto={'/cinthya.jpeg'}
+                        nombres={'Cinthya Stephanie Briones Cedeño'}
+                        titulo={'Guia local de Calderón'}
+                        estrellas={4}
+                    />
+                    <Guia 
+                        foto={'/gema.jpeg'}
+                        nombres={'Gema Briggite Giler Velásquez'}
+                        titulo={'Guia de Higuerón'}
+                        estrellas={3}
+                    />
+                    <Guia 
+                        foto={'/marcillo.jpeg'}
+                        nombres={'Bryan Steven Marcillo Delgado'}
+                        titulo={'Guia experto de la ciudad de Portoviejo'}
+                        estrellas={5}
+                    />
                 </div>
             </div>
         );
