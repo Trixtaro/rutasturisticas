@@ -61,8 +61,6 @@ class RegisterTurista extends React.Component {
                     nickname: e.target.value
                 }
             })
-
-        console.log(this.state.form)
     }
 
     componentDidMount () {
@@ -145,7 +143,7 @@ class RegisterTurista extends React.Component {
                                                 <option value="0">Seleccione su género</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Femenino</option>
-                                                <option value="I">Otro</option>
+                                                <option value="O">Otro</option>
                                             </select>
                                         </div>
                                         {/* <div className="field"> */}

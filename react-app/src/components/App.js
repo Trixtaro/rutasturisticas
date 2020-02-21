@@ -9,6 +9,7 @@ import Login from '../pages/LoginPage';
 import BuscarLugares from '../pages/LugaresPage';
 import LugarPage from '../pages/LugarPage';
 import Page404 from '../pages/Page404';
+import Page403 from '../pages/Page403';
 import GuiasPendientePage from '../pages/admin/solicitudGuia/GuiasPendientePage';
 import SolicitudGuias from '../pages/admin/solicitudGuia/SolicitudGuias';
 import RegisterTurista from '../pages/RegisterTurista';
@@ -18,8 +19,6 @@ import AdminAgregarLugar from '../pages/admin/lugar/agregarLugar';
 import AdminZona from '../pages/admin/zona/ZonaPage';
 import AdminAgregarZona from '../pages/admin/zona/agregarZona';
 import AdminHomePage from '../pages/AdminHomePage';
-
-import {isAdmin} from '../functions/Functions'; 
 
 function App () {
     return (
@@ -34,23 +33,17 @@ function App () {
                 <Route exact path="/register" component={RegisterTurista} />
                 <Route exact path="/logout" component={Logout} />
                 <Route exact path="/404" component={Page404} />
+                <Route exact path="/403" component={Page403} />
                 <Route exact path="/register/guia" component={RegisterGuia} />
 
-                {/* Esto debe estar de último */}
-                { isAdmin() ? (
-                    <>
-                    <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
-                    <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
-                    <Redirect exact path="/admin" to="/admin/home" />
-                    </>
-                ) : (
-                    null
-                    )}
+                <AppRoute exact path="/admin/solicitudes" component={GuiasPendientePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/solicitudes/ver/:id" component={SolicitudGuias} layout={AdminLayout} />
+                <AppRoute exact path="/admin/home" component={AdminHomePage} layout={AdminLayout} />
+                <AppRoute exact path="/admin/lugar" component={AdminLugar} layout={AdminLayout} />
+                <AppRoute exact path="/admin/lugar/agregar" component={AdminAgregarLugar} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona" component={AdminZona} layout={AdminLayout} />
+                <AppRoute exact path="/admin/zona/agregar" component={AdminAgregarZona} layout={AdminLayout} />
+                <Redirect exact path="/admin" to="/admin/home" />
                 <Redirect path="**" to="/404" />
             </Switch>
         </BrowserRouter>

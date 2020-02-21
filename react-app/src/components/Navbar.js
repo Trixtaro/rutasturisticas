@@ -12,10 +12,10 @@ class Navbar extends React.Component {
 
     async componentDidMount () {
         const data = await getProfile()
-
-        if (data === 'token_expired' || data === 'token_invalid' ) {
+        console.log("El fetch en navbar dio ", data);
+        if (data[0] === 'token_expired' || data[0] === 'token_invalid' ) {
             localStorage.removeItem('usertoken');
-
+            console.log("Navbar removio token");
             this.setState({
                 usuario: null,
                 persona: null,
@@ -31,7 +31,7 @@ class Navbar extends React.Component {
             persona: data.persona,
             admin: data.admin,
         })
-        console.log(this.state)
+        console.log('El navbar devuelve de this.state ', this.state);
     }
 
     toggleOptions = () => {
@@ -88,7 +88,13 @@ class Navbar extends React.Component {
                                 </h4>
                                 <small>
                                     { this.state.usuario.turistas.length > 0 ? 'Turista' : '' }
-                                    { this.state.usuario.guias.length > 0 ? ' - Guía' : '' }
+                                    { this.state.usuario.guias.length > 0 ? ( 
+                                        this.state.usuario.guias[0].estado === 'R' ? ' - Guía Rechazado' : (
+                                            this.state.usuario.guias[0].estado === 'H' ? ' - Guía' : (
+                                                this.state.usuario.guias[0].estado === 'E' ? ' - Guía en espera' : ' errorGuia'
+                                            )
+                                        )
+                                    ) : '' }
                                 </small>
                                 <Link to="/perfil">
                                     <h3>

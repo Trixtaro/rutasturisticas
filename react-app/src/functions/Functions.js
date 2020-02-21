@@ -1,5 +1,3 @@
-import { Redirect } from "react-router-dom";
-
 export const getProfile = async () => {
     const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/profile`,{
         headers: {
@@ -16,11 +14,25 @@ export async function isAdmin () {
     if (data.length === 1) {
         console.log(data[0]);
         if ( data[0] === 'token_invalid' ) {
-            alert('Token invalido');
+            localStorage.removeItem('usertoken');
+            return false;
+        }
+        if ( data[0] === 'token_expired' ) {
+            localStorage.removeItem('usertoken');
             return false;
         }
         return false;
     } else {
         return data.admin;
+    }
+}
+
+export async function getAdminAttribute () {
+    const admin = await isAdmin();
+    if (admin) {
+        const data = await getProfile();
+        return data;
+    } else {
+        return null;
     }
 }

@@ -239,8 +239,8 @@ class agregarLugar extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <label className="form-control-file" htmlFor="InputImagen">Imagen</label>
-                        <input type="file" className={ this.state.errores.imagen === '' ? "form-control-file" : "form-control-file is-invalid" } id="InputImagen" name='imagen' />
+                        <label htmlFor="InputImagen">Imagen</label>
+                        <input type="text" className={ this.state.errores.imagen === '' ? "form-control" : "form-control is-invalid" } id="InputImagen" name='imagen' onChange={this.handleChange} value={this.state.form.imagen} />
                         <div className={ this.state.errores.imagen === '' ? "" : "invalid-feedback" }>
                             {this.state.errores.imagen}
                         </div>

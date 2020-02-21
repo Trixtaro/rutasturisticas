@@ -18,12 +18,13 @@ class Dashboard extends React.Component {
 
     async componentDidMount () {
         const response = await fetch(`${process.env.REACT_APP_LARAVEL}/api/lugares/3`);
+        console.log("el fetch en Dashboard@componentDidMount dio ", response);
         const data = await response.json();
-
+        console.log("el data de responsae JSON en Dashboard@componentDidMount dio ", data);
         const dataProfile = await getProfile();
         if (dataProfile === 'token_expired' || dataProfile === 'token_invalid' ) {
             localStorage.removeItem('usertoken');
-
+            console.log('Se removio el token en Dashboard@componentDidMount');
             this.setState({
                 ...this.state,
                 usuario: null,
@@ -53,13 +54,26 @@ class Dashboard extends React.Component {
                         <Buscador placeholder="Busca tus lugares preferidos..." />
                     </div>
                     <div>
-                        { (this.state.usuario || this.state.persona) &&
-                            <div>
-                                <h3>¿Eres guía?</h3>
-                                <p>Unete a nosotros para desbloquear mas cosas. Este mensaje debe ser mejorado :v. <Link to={`/solicitudes/guia/${this.state.usuario.ID_usuario}`}>Ir ...</Link></p>
-                                <hr />
-                            </div>
-                        }
+                        { this.state.usuario ? (
+                            this.state.usuario.guias.length > 0 ? (
+                                <div>
+                                    <h3>
+                                        Respuesta de nosotros
+                                        { this.state.usuario.guias[0].estado === 'H' ? (<span role='img' arial-label='Emoji de aceptacion'>😀</span>) : (
+                                            this.state.usuario.guias[0].estado === 'R' ? (<span role='img' arial-label='Emoji de rechazo'>😕</span>) : ''
+                                        ) }
+                                    </h3>
+                                    <p>{this.state.usuario.guias[0].feedback}</p>
+                                    <hr />
+                                </div>
+                            ) : (
+                                <div>
+                                    <h3>¿Eres guía?</h3>
+                                    <p>Unete a nosotros para poder ser guía. <Link to={`/solicitudes/guia/${this.state.usuario.ID_usuario}`}>Ir ...</Link></p>
+                                    <hr />
+                                </div>
+                            )
+                        ) : null }
                         <h2 className="titulo-lugares">
                             Los lugares más visitados del mes
                         </h2>
