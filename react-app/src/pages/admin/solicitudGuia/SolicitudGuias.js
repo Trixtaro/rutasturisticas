@@ -1,7 +1,8 @@
 import React from 'react';
 import foto from '../../../images/montecristi.jpg';
 import { Button,
-    Breadcrumb, BreadcrumbItem } from 'reactstrap';
+    Breadcrumb, BreadcrumbItem,
+    FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
 class SolicitudGuias extends React.Component {
@@ -15,8 +16,18 @@ class SolicitudGuias extends React.Component {
             form: {
                 estado: '',
                 ID_guia: this.props.match.params.id,
+                feedback: '',
             },
         }
+    }
+
+    handleChange = e => {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [e.target.name] : e.target.value
+            }
+        })
     }
 
     async componentDidMount () {
@@ -131,6 +142,7 @@ class SolicitudGuias extends React.Component {
                                         <p className="card-text">Motivo para ser guía: {this.state.guia.motivo}</p>
                                         <p className="card-text">Descripción del guía: {this.state.guia.descripcion}</p>
                                         <p className="card-text">Correo: {this.state.guia.usuario.correo}</p>
+                                        <p className="card-text">Título: {this.state.guia.titulo}</p>
                                         <p className="card-text"><small className="text-muted">Fecha de envio: {this.state.guia.f_ingreso}</small></p>
                                 </div>
                             </div>
@@ -147,6 +159,11 @@ class SolicitudGuias extends React.Component {
                                 <Button outline block disabled={!this.state.carga} color="primary">Ver documento de identidad</Button>
                             </div>
                             <div className='col mt-3'>
+                                <FormGroup>
+                                    <Label for="feedbackText">Retro alimentación</Label>
+                                    <Input type="textarea" name="feedback" id="feedbackText" onChange={this.handleChange} />
+                                    <FormText>Motivo de la aceptación o rechazo de la solicitud.</FormText>
+                                </FormGroup>
                                 <Button onClick={() => this.agregarEstado('H')} outline color="success" disabled={!this.state.carga}>Aceptar</Button>
                                 <Button onClick={() => this.agregarEstado('R')} outline className='ml-3' color="danger" disabled={!this.state.carga}>Denegar</Button>
                             </div>

@@ -13,6 +13,7 @@ class GuiaController extends Controller {
         $validator = Validator::make($request->json()->all() ,[
             'certificado' => 'nullable',
             'descripcion' => 'required|between:2,255',
+            'titulo' => 'required|between:5,100',
             'motivo' => 'required|between:2,255',
             'ID_usuario' => 'required|exists:Usuario,ID_usuario',
             'identificacion' => 'nullable',
@@ -20,6 +21,9 @@ class GuiaController extends Controller {
             //Para descripción
             'descripcion.required' => '¡Necesitamos saber la descripción!',
             'descripcion.between' => '¡Te pasaste del rango entre :min - :max!',
+            //Para título
+            'titulo.required' => '¡Necesitamos saber el título!',
+            'titulo.between' => '¡Te pasaste del rango entre :min - :max!',
             //Para motivo
             'motivo.required' => '¡Necesitamos saber el :attribute!',
             'motivo.between' => '¡Te pasaste del rango entre :min - :max!',
@@ -45,12 +49,14 @@ class GuiaController extends Controller {
             $certificado = $request->json()->get('certificado');
             $descripcion = $request->json()->get('descripcion');
             $motivo = $request->json()->get('motivo');
+            $titulo = $request->json()->get('titulo');
             $ID_usuario = $request->json()->get('ID_usuario');
             $identificacion = $request->json()->get('identificacion');
 
             $usuario = User::find($ID_usuario);
             $guia = $usuario->guias()->create([
                 'f_ingreso' => $ahora,
+                'titulo' => $titulo,
                 'motivo' => $motivo,
                 'descripcion' => $descripcion,
                 'certificado' => $certificado,

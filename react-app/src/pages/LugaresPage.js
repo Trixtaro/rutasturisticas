@@ -97,7 +97,7 @@ class LugaresPage extends React.Component {
                         key={i}
                         foto={'https://source.unsplash.com/64x64/?woman,man'}
                         nombres={e.persona.nombres}
-                        titulo={'Guia experto de la ciudad de Portoviejo'}
+                        titulo={(e.titulo) ? e.titulo : 'Sin título'}
                         estrellas={0}
                     />
                 ) }

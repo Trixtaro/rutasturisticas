@@ -11,7 +11,7 @@ class Guia extends Model {
     public $timestamps = false;
 
     protected $fillable = [
-        'f_ingreso', 'estado', 'certificado', 'ID_usuario', 'descripcion', 'motivo'
+        'f_ingreso', 'estado', 'certificado', 'ID_usuario', 'descripcion', 'motivo', 'titulo', 'feedback'
     ];
 
     public function usuario () {

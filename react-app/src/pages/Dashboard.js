@@ -56,7 +56,16 @@ class Dashboard extends React.Component {
                     <div>
                         { this.state.usuario ? (
                             this.state.usuario.guias.length > 0 ? (
-                                null
+                                <div>
+                                    <h3>
+                                        Respuesta de nosotros
+                                        { this.state.usuario.guias[0].estado === 'H' ? (<span role='img' arial-label='Emoji de aceptacion'>😀</span>) : (
+                                            this.state.usuario.guias[0].estado === 'R' ? (<span role='img' arial-label='Emoji de rechazo'>😕</span>) : ''
+                                        ) }
+                                    </h3>
+                                    <p>{this.state.usuario.guias[0].feedback}</p>
+                                    <hr />
+                                </div>
                             ) : (
                                 <div>
                                     <h3>¿Eres guía?</h3>

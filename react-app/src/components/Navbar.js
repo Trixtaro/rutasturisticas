@@ -90,7 +90,9 @@ class Navbar extends React.Component {
                                     { this.state.usuario.turistas.length > 0 ? 'Turista' : '' }
                                     { this.state.usuario.guias.length > 0 ? ( 
                                         this.state.usuario.guias[0].estado === 'R' ? ' - Guía Rechazado' : (
-                                            this.state.usuario.guias[0].estado === 'H' ? ' - Guía' : 'errorGuia'
+                                            this.state.usuario.guias[0].estado === 'H' ? ' - Guía' : (
+                                                this.state.usuario.guias[0].estado === 'E' ? ' - Guía en espera' : ' errorGuia'
+                                            )
                                         )
                                     ) : '' }
                                 </small>

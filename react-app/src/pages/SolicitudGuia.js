@@ -12,6 +12,7 @@ class SolicitudGuia extends React.Component {
                 ID_usuario: this.props.match.params.id,
                 descripcion: '',
                 motivo: '',
+                titulo: '',
             },
             toHome:false,
             cargando:false,
@@ -87,6 +88,11 @@ class SolicitudGuia extends React.Component {
                     </ol>
                 </nav>
                 <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label for="tituloText">Título</Label>
+                        <Input type="text" name="titulo" id="tituloText" onChange={this.handleChange} />
+                        <FormText>Así nos ayuda a saber donde eres experto.</FormText>
+                    </FormGroup>
                     <FormGroup>
                         <Label for="descripcionText">Descripción</Label>
                         <Input type="textarea" name="descripcion" id="descripcionText" onChange={this.handleChange} />

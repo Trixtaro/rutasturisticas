@@ -264,3 +264,7 @@ ALTER TABLE `Guia` ADD `descripcion` TEXT NULL AFTER `ID_usuario`;
 ALTER TABLE `Guia` ADD `motivo` TEXT NULL AFTER `descripcion`; 
 
 ALTER TABLE `Persona` CHANGE `genero` `genero` ENUM('M','F','O') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Masculino, Femenino, Otro'; 
+
+ALTER TABLE `Guia` ADD `titulo` VARCHAR(100) NULL AFTER `motivo`;
+
+ALTER TABLE `Guia` ADD `feedback` TEXT NULL AFTER `titulo`;
