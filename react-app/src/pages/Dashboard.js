@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
                             ) : (
                                 <div>
                                     <h3>¿Eres guía?</h3>
-                                    <p>Unete a nosotros para desbloquear mas cosas. Este mensaje debe ser mejorado :v. <Link to={`/solicitudes/guia/${this.state.usuario.ID_usuario}`}>Ir ...</Link></p>
+                                    <p>Unete a nosotros para poder ser guía. <Link to={`/solicitudes/guia/${this.state.usuario.ID_usuario}`}>Ir ...</Link></p>
                                     <hr />
                                 </div>
                             )

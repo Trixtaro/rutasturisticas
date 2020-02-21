@@ -255,6 +255,12 @@ ALTER TABLE `Persona` ADD UNIQUE(`pasaporte`);
 
 ALTER TABLE `Imagen` ADD UNIQUE(`ruta`);
 
-ALTER TABLE `zona` ADD UNIQUE( `nombre`, `cargo`);
+ALTER TABLE `Zona` ADD UNIQUE( `nombre`, `cargo`);
 
 ALTER TABLE `Guia` CHANGE `estado` `estado` ENUM('H','R','E') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'Habilitado,Rechazado,Espera'; 
+
+ALTER TABLE `Guia` ADD `descripcion` TEXT NULL AFTER `ID_usuario`;
+
+ALTER TABLE `Guia` ADD `motivo` TEXT NULL AFTER `descripcion`; 
+
+ALTER TABLE `Persona` CHANGE `genero` `genero` ENUM('M','F','O') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Masculino, Femenino, Otro'; 
